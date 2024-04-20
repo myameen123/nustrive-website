@@ -19,7 +19,7 @@ const ROUTES = [
   },
   {
     id: "3",
-    title: "Moke Test",
+    title: "Mock Test",
     url: "/mock-test",
   },
 ];
@@ -111,7 +111,7 @@ function Navbar() {
                 <Link href="/">Home</Link>
               </li>
               <li className=" border-b mb-2 border-black">
-                <Link href="/moke-test">Moke Test</Link>
+                <Link href="/mock-test">Mock Test</Link>
               </li>
               <li className=" border-b mb-2 border-black">
                 <Link href="/calculator">Aggregate Calculator</Link>
