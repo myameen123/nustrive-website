@@ -52,7 +52,7 @@ function InstructionModal() {
           <li>
             <p>
               You can move back and forth between the questions by clicking the
-              buttons "Previous" and "Next" respectively.
+              buttons &quot;Previous&quot; and &quot;Next&quot; respectively.
             </p>
           </li>
           <li>
@@ -72,8 +72,8 @@ function InstructionModal() {
           </li>
           <li>
             <p>
-              Do not click the button "End test" before completing the test. A
-              test once submitted cannot be resumed.
+              Do not click the button &quot;End test&quot; before completing the
+              test. A test once submitted cannot be resumed.
             </p>
           </li>
         </ul>

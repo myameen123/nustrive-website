@@ -12,10 +12,10 @@ function TestOverview() {
               NET ( NUST ENTRANCE TEST) PREPARE YOURSELF FOR NET.
             </Typography>
 
-            <Typography variant="p">
-              Try our free tests, mock test's are only for register user's and
-              will only be visible to register user's.
-            </Typography>
+            {/* <Typography variant="p">
+              Try our free tests, mock test&apos;s are only for register
+              user&apos;s and will only be visible to register user&apos;s.
+            </Typography> */}
           </div>
           <div className=" text-left">
             <Typography variant="h5">A brief Summary:</Typography>

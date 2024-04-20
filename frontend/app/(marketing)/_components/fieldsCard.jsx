@@ -17,7 +17,7 @@ function FieldsCard({ title, desc, courses, id }) {
         </h3>
         <ul className=" grid grid-cols-2 list-disc gap-4 text-[#111256] font-bold w-full px-4">
           {courses.map((c) => (
-            <li>{c}</li>
+            <li key={id}>{c}</li>
           ))}
         </ul>
       </div>
