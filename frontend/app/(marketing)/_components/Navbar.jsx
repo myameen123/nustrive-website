@@ -111,16 +111,13 @@ function Navbar() {
                 <Link href="/">Home</Link>
               </li>
               <li className=" border-b mb-2 border-black">
-                <Link href="/about">About Us</Link>
+                <Link href="/moke-test">Moke Test</Link>
               </li>
               <li className=" border-b mb-2 border-black">
-                <Link href="/our-work">Our Work</Link>
+                <Link href="/calculator">Aggregate Calculator</Link>
               </li>
               <li className=" border-b mb-2 border-black">
-                <Link href="/contact">Contact Us</Link>
-              </li>
-              <li className=" border-b border-black">
-                <Link href="/join-us">Join Us</Link>
+                <Link href="/contact-us">Contact Us</Link>
               </li>
             </ul>
           </div>
