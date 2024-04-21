@@ -140,7 +140,7 @@ function HeroSection() {
           </div>
           <div
             className={`bg-[#111256] h-[123px] w-[300px] mx-2 flex flex-col gap-2 p-4 items-center rounded-[7px] ${
-              inView ? " animate-from-bottom" : " opacity-0"
+              inView ? "animate-from-bottom" : " opacity-0"
             }`}
             ref={ref}
           >

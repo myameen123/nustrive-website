@@ -56,7 +56,7 @@ const StudentTestimonials = [
 const Testimonials = () => {
   return (
     <div className="bg-[#49ADE5] mt-12  py-12">
-      <h1 className=" text-center font-bold text-3xl mt-4 text-[#111256]">
+      <h1 className=" text-center font-bold text-3xl mt-4 text-[#111256] mx-4">
         Testimonials of Students from NUSTrive
       </h1>
       <p className=" text-center font-bold text-[#111256] mb-8">

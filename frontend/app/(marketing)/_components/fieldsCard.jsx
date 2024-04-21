@@ -5,7 +5,7 @@ import examImg from "@/public/examImg.svg";
 import { Button } from "@/components/ui/button";
 function FieldsCard({ title, desc, courses, id }) {
   return (
-    <div className=" md:w-[33.33%] sm:w-[60%] w-[80%] mx-auto bg-[#8fa1fc] rounded-[10px] flex flex-col items-center">
+    <div className=" md:w-[33.33%] sm:w-[60%] w-[95%] mx-auto bg-[#8fa1fc] rounded-[10px] flex flex-col items-center">
       <div>
         <Image src={examImg} alt="exam img" className=" w-[950px]" />
       </div>

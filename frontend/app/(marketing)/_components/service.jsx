@@ -10,7 +10,7 @@ function Service({ imgSrc, title, desc, annimationClass }) {
   });
   return (
     <div
-      className={`bg-[#e4f1fa] sm:w-[420px]  rounded-[10px] p-4 shadow-lg flex gap-6 mx-auto ${
+      className={`bg-[#e4f1fa] sm:w-[420px]  rounded-[10px] p-4 shadow-lg flex md:gap-6 mx-auto ${
         inView ? annimationClass : "opacity-0"
       }`}
       ref={ref}
