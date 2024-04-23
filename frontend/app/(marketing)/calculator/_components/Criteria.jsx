@@ -11,16 +11,16 @@ function Criteria() {
           </div>
           <div className=" w-[70%] ">
             <div className=" border-b flex justify-between px-2">
-              <span>NET</span>
-              <span>75%</span>
+              <span className=" p-1">NET</span>
+              <span className=" p-1">75%</span>
             </div>
             <div className=" border-b flex justify-between px-2">
-              <span>FSC-1</span>
-              <span>15%</span>
+              <span className=" p-1">FSC-1</span>
+              <span className=" p-1">15%</span>
             </div>
             <div className=" border-b flex justify-between px-2">
-              <span>Matric</span>
-              <span>10%</span>
+              <span className=" p-1">Matric</span>
+              <span className=" p-1">10%</span>
             </div>
           </div>
         </div>
@@ -30,12 +30,12 @@ function Criteria() {
           </div>
           <div className=" w-[70%] ">
             <div className=" border-b flex justify-between px-2">
-              <span>NET</span>
-              <span>75%</span>
+              <span className=" p-1">NET</span>
+              <span className=" p-1">75%</span>
             </div>
             <div className=" border-b flex justify-between px-2">
-              <span>O-Level</span>
-              <span>25%</span>
+              <span className=" p-1">O-Level</span>
+              <span className=" p-1">25%</span>
             </div>
           </div>
         </div>

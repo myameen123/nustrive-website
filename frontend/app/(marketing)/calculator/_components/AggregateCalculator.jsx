@@ -16,15 +16,15 @@ function AggregateCalculator() {
       <div className="md:w-[90%] mx-auto">
         <div className=" border-b w-fit mx-auto px-4 border-b-[#111256]">
           <h1 className=" font-bold text-3xl text-center  text-[#111256]">
-            NUST Merit Calculator
+            Aggregate Calculator
           </h1>
         </div>
-        <div className=" border-b flex justify-center mt-4 gap-4 pt-4">
+        <div className=" border-b border-b-[#111256] flex justify-center mt-4 gap-4 pt-4">
           <button
             className={`${
               isFCS &&
               "bg-slate-50 p-2 border-2 border-b-0 border-[#111256] rounded-t-[6px]"
-            } transition`}
+            } transition text-lg text-[#111256]`}
             onClick={onFSCHandler}
           >
             FSC Student
@@ -33,7 +33,7 @@ function AggregateCalculator() {
             className={`${
               !isFCS &&
               "bg-slate-50 p-2 border-2 border-b-0 border-[#111256] rounded-t-[6px]"
-            } transition`}
+            } transition text-lg text-[#111256]`}
             onClick={onALevelHandler}
           >
             A-Level Student
