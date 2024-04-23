@@ -3,6 +3,7 @@ import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Navbar from "./(marketing)/_components/Navbar";
 import Footer from "./footer";
+import { ToasterProvider } from "@/components/providers/toast-provider";
 
 // const inter = Inter({ subsets: ["latin"] });
 // const montserrat = Montserrat({ subsets: ["latin"] });
@@ -24,6 +25,7 @@ export default function RootLayout({ children }) {
       <body className={montserrat.className}>
         <div className=" h-full">
           <Navbar />
+          <ToasterProvider />
           <div className=" mt-16">{children}</div>
           <Footer />
         </div>

@@ -21,9 +21,9 @@ function FieldsCard({ title, desc, courses, id }) {
           ))}
         </ul>
       </div>
-      <Button className=" mx-auto bg-[#5d68ba] hover:bg-[#5d68ba]/90 rounded-[7px] mb-2 text-white">
+      {/* <Button className=" mx-auto bg-[#5d68ba] hover:bg-[#5d68ba]/90 rounded-[7px] mb-2 text-white">
         TAKE A TRAIL
-      </Button>
+      </Button> */}
     </div>
   );
 }
