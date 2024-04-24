@@ -84,9 +84,9 @@ function Navbar() {
       </div>
 
       <div className="md:w-[10%] sm:flex hidden">
-        <Button className=" bg-[#4D6799] rounded-[7px] hover:bg-[#4D6799]/90">
+        {/* <Button className=" bg-[#4D6799] rounded-[7px] hover:bg-[#4D6799]/90">
           Sign In
-        </Button>
+        </Button> */}
       </div>
       <div className="flex z-10 sm:hidden">
         {toggleMenu ? (
