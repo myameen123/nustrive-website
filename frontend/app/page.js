@@ -6,6 +6,7 @@ import Services from "./(marketing)/_components/services";
 import Testimonials from "./(marketing)/_components/testimonials";
 import Image from "next/image";
 import whatsappSvg from "@/public/whatsapp.svg";
+import generalInfo from "./constants/general-info";
 export default function Home() {
   return (
     <div className=" h-full">
@@ -16,7 +17,7 @@ export default function Home() {
       <Testimonials />
       <div className=" fixed bottom-6 right-8 z-10 flex flex-col items-center whatsapp">
         <Link
-          href="https://wa.me/923103563314"
+          href={`https://wa.me/${generalInfo.whatsapp}`}
           target="_blank"
           className=" flex items-center justify-center h-12 w-12 rounded-full bg-[#24D366] cursor-pointer z-10"
         >
