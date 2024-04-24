@@ -3,7 +3,8 @@ import React, { useState, useEffect } from "react";
 import HeroCard from "./hero-card";
 import { useInView } from "react-intersection-observer";
 import { Button } from "@/components/ui/button";
-import FeaturedStudents from "@/app/constants/header-testimonials";
+// import FeaturedStudents from "@/app/constants/header-testimonials";
+import FeaturedStudents from "@/app/constants/testimonials";
 
 function HeroSection() {
   const [currentStudentIndex, setCurrentStudentIndex] = useState(0);
@@ -79,10 +80,10 @@ function HeroSection() {
             }`}
             ref={ref}
           >
-            <h1 className=" font-bold">NET-Enhanced Mocks!</h1>
+            <h1 className=" font-bold">NET-Modeled Mock Exams</h1>
             <p className=" text-xs">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-              accumsan leo in velit malesuada, sit amet luctus eros efficitur.{" "}
+              Mock test is designed with the exact NET interface, making it easy
+              for you to practice and test your knowledge in different subjects.
             </p>
           </div>
           <div
@@ -91,10 +92,11 @@ function HeroSection() {
             }`}
             ref={ref}
           >
-            <h1 className=" font-bold">NET-Enhanced Mocks!</h1>
+            <h1 className=" font-bold">Comprehensive Courses</h1>
             <p className=" text-xs">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-              accumsan leo in velit malesuada, sit amet luctus eros efficitur.{" "}
+              Our comprehensive courses provide in-depth learning across a wide
+              range of subjects, ensuring thorough preparation for your academic
+              journey.
             </p>
           </div>
           <div
@@ -103,10 +105,10 @@ function HeroSection() {
             }`}
             ref={ref}
           >
-            <h1 className=" font-bold">NET-Enhanced Mocks!</h1>
+            <h1 className=" font-bold">NUST Agreggate Calculator</h1>
             <p className=" text-xs">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-              accumsan leo in velit malesuada, sit amet luctus eros efficitur.{" "}
+              Calculate your NUST aggregate score effortlessly with our
+              user-friendly calculator tool.
             </p>
           </div>
         </div>
