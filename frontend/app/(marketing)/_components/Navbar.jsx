@@ -105,18 +105,18 @@ function Navbar() {
           </button>
         )}
         {toggleMenu && (
-          <div className="scale-up-center absolute top-16 right-0  shadow-xl bg-[#49ADE5] rounded">
+          <div className="scale-up-center absolute top-16 right-0  shadow-xl bg-[#111256] border rounded">
             <ul className="flex flex-col gap-2 py-6 px-14 text-xl font-bold w-60">
-              <li className=" border-b border-black mb-2">
+              <li className=" border-b  mb-2">
                 <Link href="/">Home</Link>
               </li>
-              <li className=" border-b mb-2 border-black">
-                <Link href="/mock-test">Mock Test</Link>
-              </li>
-              <li className=" border-b mb-2 border-black">
+              <li className=" border-b mb-2">
                 <Link href="/calculator">Aggregate Calculator</Link>
               </li>
-              <li className=" border-b mb-2 border-black">
+              <li className=" border-b mb-2">
+                <Link href="/mock-test">Mock Test</Link>
+              </li>
+              <li className=" border-b mb-2">
                 <Link href="/contact-us">Contact Us</Link>
               </li>
             </ul>

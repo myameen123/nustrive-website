@@ -3,48 +3,7 @@ import React, { useState, useEffect } from "react";
 import HeroCard from "./hero-card";
 import { useInView } from "react-intersection-observer";
 import { Button } from "@/components/ui/button";
-const FeaturedStudents = [
-  {
-    id: 1,
-    name: "Inza Zahra",
-    netScore: 173,
-    enrolledIn: "BBA NBS-2021",
-    photo: "aa",
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
-            veniam inventore tenetur dolorem asperiores possimus consectetur
-            voluptatibus recusandae omnis, assi jji masai ji.`,
-  },
-  {
-    id: 2,
-    name: "M.Yameen",
-    netScore: 164,
-    enrolledIn: "BESE SEECS-2021",
-    photo: "aa",
-    description: `Yameen Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
-            veniam inventore tenetur dolorem asperiores possimus consectetur
-            voluptatibus recusandae omnis, assi jji masai ji.`,
-  },
-  {
-    id: 3,
-    name: "Vishal Sager",
-    netScore: 162,
-    enrolledIn: "BESE SEECS-2021",
-    photo: "aa",
-    description: `Vishal Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
-            veniam inventore tenetur dolorem asperiores possimus consectetur
-            voluptatibus recusandae omnis, assi jji masai ji.`,
-  },
-  {
-    id: 3,
-    name: "Mehran",
-    netScore: 164,
-    enrolledIn: "BSCS SEECS-2021",
-    photo: "aa",
-    description: `Mehran Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
-            veniam inventore tenetur dolorem asperiores possimus consectetur
-            voluptatibus recusandae omnis, assi jji masai ji.`,
-  },
-];
+import FeaturedStudents from "@/app/constants/header-testimonials";
 
 function HeroSection() {
   const [currentStudentIndex, setCurrentStudentIndex] = useState(0);
