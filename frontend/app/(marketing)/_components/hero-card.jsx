@@ -32,7 +32,7 @@ function HeroCard({ student, ind, totalStudents, sendDataToParent }) {
             <p>Enrolled In: {student.enrolledIn}</p>
           </div>
           <p className=" text-xs text-white">
-            {truncateText(student.description, 30)}
+            {truncateText(student.description, 28)}
             {/* {student.description} */}
           </p>
         </div>

@@ -21,7 +21,7 @@ function Testimonial({ testimonial }) {
         <span className="font-bold">NET - {testimonial.netScore}</span>
         <span className="font-bold">{testimonial.enrolledIn}</span>
         {/* Apply truncateText function to description */}
-        <p className="mt-2 font-semibold text-sm">
+        <p className="mt-2 font-semibold text-[0.8rem]">
           {truncateText(testimonial.description, 100)}
         </p>
       </div>
