@@ -12,7 +12,7 @@ const montserrat = Montserrat({
   style: ["normal", "italic"],
   subsets: ["latin"],
   display: "swap",
-  adjustFontFallback: false,
+  adjustFontFallback: true,
 });
 export const metadata = {
   title: "NusTrive | NET/NBS online preparation",
