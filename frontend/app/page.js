@@ -6,7 +6,7 @@ import Services from "./(marketing)/_components/services";
 import Testimonials from "./(marketing)/_components/testimonials";
 import Image from "next/image";
 import whatsappSvg from "@/public/whatsapp.svg";
-import generalInfo from "./constants/general-info";
+import generalInfo from "../constants/general-info";
 export default function Home() {
   return (
     <div className=" h-full">

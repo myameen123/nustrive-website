@@ -5,7 +5,7 @@ import InstructionModal from "../../_components/instruction-modal";
 function TestInstructions() {
   return (
     <div className="w-full p-4">
-      <InstructionModal />
+      <InstructionModal type="enginerring" />
     </div>
   );
 }

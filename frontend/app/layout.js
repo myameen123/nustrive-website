@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./(marketing)/_components/Navbar";
 import Footer from "./footer";
 import { ToasterProvider } from "@/components/providers/toast-provider";
+import { ReduxProviders } from "@/redux/Provider";
 
 // const inter = Inter({ subsets: ["latin"] });
 // const montserrat = Montserrat({ subsets: ["latin"] });
@@ -23,12 +24,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={montserrat.className}>
-        <div className=" h-full">
-          <Navbar />
-          <ToasterProvider />
-          <div className=" mt-16">{children}</div>
-          <Footer />
-        </div>
+        <ReduxProviders>
+          <div className=" h-full">
+            <Navbar />
+            <ToasterProvider />
+            <div className=" mt-16">{children}</div>
+            <Footer />
+          </div>
+        </ReduxProviders>
       </body>
     </html>
   );

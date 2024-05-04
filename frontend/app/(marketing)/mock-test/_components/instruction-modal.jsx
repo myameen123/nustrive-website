@@ -1,9 +1,10 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Box, Typography } from "@mui/material";
+import Link from "next/link";
 import React, { useState } from "react";
 
-function InstructionModal() {
+function InstructionModal({ type }) {
   const [isChecked, setIsChecked] = useState(false);
 
   const onCheckHandler = (e) => {
@@ -94,12 +95,21 @@ function InstructionModal() {
             I have read and understood the instructions. I agree that in case of
             not adhering to the exam instructions.
           </label>
-          <Button
-            disabled={!isChecked}
-            className=" bg-[#49ADE5] hover:bg-[#49ADE5]"
-          >
-            Start Test
-          </Button>
+          {type == "enginerring" ? (
+            <Button
+              disabled={!isChecked}
+              className=" bg-[#49ADE5] hover:bg-[#49ADE5]"
+            >
+              <Link href="/mock-test/engineering-test/start">Start Test</Link>
+            </Button>
+          ) : (
+            <Button
+              disabled={!isChecked}
+              className=" bg-[#49ADE5] hover:bg-[#49ADE5]"
+            >
+              <Link href="/mock-test/business-test/start">Start Test</Link>
+            </Button>
+          )}
         </div>
       </div>
     </div>
