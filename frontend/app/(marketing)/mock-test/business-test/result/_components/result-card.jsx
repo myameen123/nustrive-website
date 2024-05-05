@@ -91,7 +91,7 @@ function ResultCard({ result }) {
                 <StyledTableCell />
                 <StyledTableCell align="center">Percentage</StyledTableCell>
                 <StyledTableCell align="center">
-                  {result.resultPersentage.toFixed(2)}%
+                  {result.resultPersentage?.toFixed(2)}%
                 </StyledTableCell>
               </TableRow>
             </TableBody>
