@@ -5,7 +5,7 @@ import { FiInstagram } from "react-icons/fi";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#111256] text-center text-white dark:bg-neutral-600">
+    <footer className="bg-[#111256] text-center text-white dark:bg-neutral-600 ">
       <div className="container pt-9">
         <div className="mb-9 flex justify-center">
           <Link

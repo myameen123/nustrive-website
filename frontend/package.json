@@ -23,6 +23,7 @@
     "libphonenumber-js": "^1.10.58",
     "lucide-react": "^0.356.0",
     "next": "13.4.12",
+    "next-cloudinary": "^6.5.1",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.51.3",

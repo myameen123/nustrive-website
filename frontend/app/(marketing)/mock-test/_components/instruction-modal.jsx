@@ -80,21 +80,23 @@ function InstructionModal({ type }) {
         </ul>
       </Box>
       <div className=" border-t mt-4 p-4">
-        <div className=" p-2 bg-gray-300 py-4 flex gap-2 items-center ">
-          <input
-            type="checkbox"
-            id="check"
-            className=" cursor-pointer"
-            checked={isChecked}
-            onChange={onCheckHandler}
-          />
-          <label
-            htmlFor="check"
-            className=" text-red-500 text-sm cursor-pointer"
-          >
-            I have read and understood the instructions. I agree that in case of
-            not adhering to the exam instructions.
-          </label>
+        <div className=" p-2 bg-gray-300 md:flex-row flex-col py-4 flex gap-2 items-center ">
+          <div className=" flex gap-2">
+            <input
+              type="checkbox"
+              id="check"
+              className=" cursor-pointer"
+              checked={isChecked}
+              onChange={onCheckHandler}
+            />
+            <label
+              htmlFor="check"
+              className=" text-red-500 text-sm cursor-pointer"
+            >
+              I have read and understood the instructions. I agree that in case
+              of not adhering to the exam instructions.
+            </label>
+          </div>
           {type == "enginerring" ? (
             <Button
               disabled={!isChecked}

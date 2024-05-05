@@ -1,7 +1,7 @@
 "use client";
 import { LuClock12 } from "react-icons/lu";
 import React, { useEffect, useState } from "react";
-function TimeCount() {
+function TimeCount({ handleFinsheValue }) {
   const [timeRemaining, setTimeRemaining] = useState(180);
   const getTimeFromLocalStorage = () => {
     const startTime = parseInt(localStorage.getItem("startTime"));
@@ -24,7 +24,8 @@ function TimeCount() {
       if (remainingTimeInSeconds <= 0) {
         clearInterval(interval);
         setTimeRemaining(0);
-        alert("Your time is over!");
+        handleFinsheValue(true);
+        // alert("Your time is over!");
       } else {
         setTimeRemaining(Math.ceil(remainingTimeInSeconds / 60));
       }
@@ -39,14 +40,14 @@ function TimeCount() {
     timeRemaining >= 720 ? "pm" : "am"
   }`;
   return (
-    <div className=" border border-black w-fit h-fit">
+    <div className=" border border-black h-fit">
       <div className=" flex gap-1 border-b p-1 border-black">
         <span>Start Time:</span>
         <span className=" text-blue-600">{getTimeFromLocalStorage()}</span>
       </div>
       <div className=" flex">
         <div className=" bg-[#009933] text-white flex gap-2 p-2 justify-center items-center w-[71%]">
-          <p className="text-xl font-bold">
+          <p className=" font-bold">
             {timeRemaining === 0
               ? "Time is over!"
               : `${timeRemaining} minutes left`}

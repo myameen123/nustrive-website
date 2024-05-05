@@ -1,9 +1,18 @@
 import express from "express";
 
-import { getBusinessTest } from "../controlers/mock-test.controller.js";
+import {
+  businessTestResponse,
+  engineeringTestResponse,
+  getBusinessTest,
+  getEngineeringTest,
+} from "../controlers/mock-test.controller.js";
 
 const router = express.Router();
 
 router.get("/getBusinessTest", getBusinessTest);
+router.post("/businessTestResponse", businessTestResponse);
+
+router.get("/getEngineeringTest", getEngineeringTest);
+router.post("/engineeringTestResponse", engineeringTestResponse);
 
 export default router;
