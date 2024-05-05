@@ -1,3 +1,4 @@
+import generalInfo from "@/constants/general-info";
 import Link from "next/link";
 import React from "react";
 import { FaFacebookF, FaWhatsapp } from "react-icons/fa";
@@ -9,19 +10,19 @@ export default function Footer() {
       <div className="container pt-9">
         <div className="mb-9 flex justify-center">
           <Link
-            href="/"
+            href={generalInfo.facebook}
             className="mr-9 bg-[#49ade5] border hover:border-white hover:text-white hover:bg-[#111256] text-[#111256] border-[#111256] flex justify-center items-center p-2 rounded-[7px]"
           >
             <FaFacebookF />
           </Link>
           <Link
-            href="/"
+            href={`https://wa.me/${generalInfo.whatsapp}`}
             className="mr-9 bg-[#49ade5] border hover:border-white hover:text-white hover:bg-[#111256] text-[#111256] border-[#111256] flex justify-center items-center p-2 rounded-[7px]"
           >
             <FaWhatsapp />
           </Link>
           <Link
-            href="/"
+            href={generalInfo.instagram}
             className="mr-9 bg-[#49ade5] border hover:border-white hover:text-white hover:bg-[#111256] text-[#111256] border-[#111256] flex justify-center items-center p-2 rounded-[7px]"
           >
             <FiInstagram />
