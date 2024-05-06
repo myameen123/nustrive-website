@@ -14,7 +14,7 @@ function EngineeringTestStart() {
     dispatch(getBusinessTest());
   }, [dispatch]);
   return (
-    <div>
+    <div className=" min-h-screen">
       {/* <Test /> */}
       {businessTest.questions && (
         // <QuestionDisplay questions={questions.questions} />

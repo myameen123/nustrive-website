@@ -16,6 +16,7 @@ if (typeof window !== "undefined") {
 const saveCurrentTime = () => {
   const currentTime = new Date().getTime();
   localStorage.setItem("startTime", currentTime);
+  console.log("this is the current time", currentTime);
 };
 
 export const getBusinessTest = createAsyncThunk(

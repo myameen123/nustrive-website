@@ -6,7 +6,7 @@ import { ImNext2, ImPrevious2 } from "react-icons/im";
 
 import { ClipboardList, Play, Save } from "lucide-react";
 import TimeCount from "./time-count";
-import { getBusinessTest } from "@/redux/test/get-business-test-slice";
+// import { getBusinessTest } from "@/redux/test/get-business-test-slice";
 import { useDispatch } from "react-redux";
 import { businessTestResponse } from "@/redux/test/bussiness-test-response-slice";
 import { useRouter } from "next/navigation";
@@ -14,6 +14,9 @@ import Loader from "@/components/modals/loader";
 import { engineeringTestResponse } from "@/redux/test/engineering-test-response-slice";
 // import Image from "next/image";
 import { CldImage } from "next-cloudinary";
+import { getEngineeringTest } from "@/redux/test/get-engineering-test-slice";
+import { getBusinessTest } from "@/redux/test/get-business-test-slice";
+import { set } from "react-hook-form";
 function Questions({ questions, title, category, sections }) {
   const router = useRouter();
   const [currentSection, setCurrentSection] = useState("math");
@@ -28,7 +31,7 @@ function Questions({ questions, title, category, sections }) {
     filteredQuestions[currentQuestionIndex]?.isSaved || selectedOption == null
   );
   const [isReviewdisabled, setIsReviewDisabled] = useState(
-    filteredQuestions[currentQuestionIndex]?.isSaved ||
+    !filteredQuestions[currentQuestionIndex]?.isSaved ||
       selectedOption == null ||
       filteredQuestions[currentQuestionIndex]?.isReviewed
   );
@@ -54,7 +57,7 @@ function Questions({ questions, title, category, sections }) {
 
   // Function to handle moving to the next question
   const questionIndex = () => {
-    const id = filteredQuestions[currentQuestionIndex]?.id;
+    const id = filteredQuestions[currentQuestionIndex].id;
     return questions.findIndex((question) => question.id === id);
   };
 
@@ -134,6 +137,7 @@ function Questions({ questions, title, category, sections }) {
           category === "Business" ? "businessTest" : "engineeringTest"
         )
       ) || [];
+    console.log("simple", storedQuestions);
     const updatedQuestions = storedQuestions.map((question) => {
       if (question.id === id) {
         return {
@@ -143,15 +147,23 @@ function Questions({ questions, title, category, sections }) {
           selectedOption,
         };
       }
+
       return question;
     });
-    localStorage.setItem(
-      category === "Business" ? "businessTest" : "engineeringTest",
-      JSON.stringify(updatedQuestions)
-    );
+    // localStorage.setItem(
+    //   category === "Business" ? "businessTest" : "engineeringTest",
+    //   JSON.stringify(updatedQuestions)
+    // );
 
+    if (category === "Business") {
+      localStorage.setItem("businessTest", JSON.stringify(updatedQuestions));
+      dispatch(getBusinessTest());
+    } else {
+      localStorage.setItem("engineeringTest", JSON.stringify(updatedQuestions));
+      dispatch(getEngineeringTest());
+    }
     // Set state variable to trigger re-render after questions update
-    dispatch(getBusinessTest());
+
     setIsSaveDisabled(true);
     setIsReviewDisabled(false);
   };
@@ -175,24 +187,37 @@ function Questions({ questions, title, category, sections }) {
     });
 
     // Save the updated questions array back to local storage
-    localStorage.setItem(
-      category === "Business" ? "businessTest" : "engineeringTest",
-      JSON.stringify(updatedQuestions)
-    );
-    dispatch(getBusinessTest());
+    // localStorage.setItem(
+    //   category === "Business" ? "businessTest" : "engineeringTest",
+    //   JSON.stringify(updatedQuestions)
+    // );
+    // dispatch(getEngineeringTest());
+
+    if (category === "Business") {
+      localStorage.setItem("businessTest", JSON.stringify(updatedQuestions));
+      dispatch(getBusinessTest());
+    } else {
+      localStorage.setItem("engineeringTest", JSON.stringify(updatedQuestions));
+      dispatch(getEngineeringTest());
+    }
     setIsReviewDisabled(true);
   };
 
   useEffect(() => {
+    console.log("currentQuestionIndex", currentQuestionIndex);
     if (
       filteredQuestions.length > 0 &&
-      filteredQuestions[currentQuestionIndex]?.isSaved
+      filteredQuestions[currentQuestionIndex].isSaved
     ) {
-      setSelectedOption(
-        filteredQuestions[currentQuestionIndex]?.selectedOption
-      );
+      console.log("saved");
+      console.log(filteredQuestions[currentQuestionIndex].selectedOption);
+      setSelectedOption(filteredQuestions[currentQuestionIndex].selectedOption);
+      if (!filteredQuestions[currentQuestionIndex].isReviewed) {
+        setIsReviewDisabled(false);
+      }
     } else {
       setSelectedOption(null);
+      setIsReviewDisabled(true);
     }
   }, [questionsUpdated, currentQuestionIndex]);
 
@@ -245,17 +270,17 @@ function Questions({ questions, title, category, sections }) {
                 </div>
                 <div className=" p-1  bg-[#F0F8FF] pt-2">
                   <span className=" font-semibold">Question</span>
-                  {filteredQuestions[currentQuestionIndex]?.image.length > 0 ? (
+                  {filteredQuestions[currentQuestionIndex].image.length > 0 ? (
                     <div className=" flex flex-col justify-center items-center p-1 border border-black">
                       <p className=" text-base font-semibold my-2">
-                        {filteredQuestions[currentQuestionIndex]?.text}
+                        {filteredQuestions[currentQuestionIndex].text}
                       </p>
 
                       <CldImage
                         width="500"
                         height="500"
                         src={
-                          filteredQuestions[currentQuestionIndex]?.image[0]
+                          filteredQuestions[currentQuestionIndex].image[0]
                             .imgUrl
                         }
                       />
@@ -269,7 +294,7 @@ function Questions({ questions, title, category, sections }) {
                       className="bg-white w-full border border-[#111256] p-1"
                       readOnly
                       // defaultValue={filteredQuestions[currentQuestionIndex].text} // Use defaultValue to set the initial value
-                      value={filteredQuestions[currentQuestionIndex]?.text}
+                      value={filteredQuestions[currentQuestionIndex].text}
                     />
                   )}
                   {/* <p>{filteredQuestions[currentQuestionIndex].text}</p> */}
@@ -293,7 +318,7 @@ function Questions({ questions, title, category, sections }) {
             </div>
           </div>
           <div>
-            {filteredQuestions[currentQuestionIndex]?.options.map(
+            {filteredQuestions[currentQuestionIndex].options.map(
               (option, index) => (
                 <div key={index} className="py-1 px-1 w-full flex gap-1">
                   <input
@@ -305,7 +330,7 @@ function Questions({ questions, title, category, sections }) {
                       selectedOption
                         ? selectedOption === option
                         : filteredQuestions[currentQuestionIndex]
-                            ?.selectedOption === option || false
+                            .selectedOption === option || false
                     }
                     onChange={handleOptionSelect}
                   />
@@ -327,7 +352,7 @@ function Questions({ questions, title, category, sections }) {
                   Icon={Save}
                   text="Save"
                   onClick={() =>
-                    onSaveHandler(filteredQuestions[currentQuestionIndex]?.id)
+                    onSaveHandler(filteredQuestions[currentQuestionIndex].id)
                   }
                   disable={isSavedisabled}
                 />
@@ -350,7 +375,7 @@ function Questions({ questions, title, category, sections }) {
                   //   filteredQuestions[currentQuestionIndex].isSaved == false
                   // }
                   onClick={() =>
-                    onReviewHandler(filteredQuestions[currentQuestionIndex]?.id)
+                    onReviewHandler(filteredQuestions[currentQuestionIndex].id)
                   }
                 />
                 <TestButton
