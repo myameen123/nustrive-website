@@ -4,7 +4,7 @@ function Loader() {
   return (
     <div
       role="status"
-      class="absolute -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2 bg-transparent/50 w-full h-full flex justify-center items-center z-50"
+      class="absolute -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2 bg-[#49ADE5]/40 w-full h-full flex flex-col justify-center items-center z-10"
     >
       <svg
         aria-hidden="true"
@@ -22,6 +22,7 @@ function Loader() {
           fill="currentFill"
         />
       </svg>
+      <p className=" font-bold text-[#111256]">Please wait</p>
       <span class="sr-only">Loading...</span>
     </div>
   );

@@ -59,7 +59,7 @@ function Navbar() {
 
   return (
     <div
-      className={`fixed top-0 w-full h-16 flex md:gap-4 items-center p-4 justify-between bg-[#111256] transition-all ease-in-out duration-300 z-10 text-white font-semibold`}
+      className={`fixed top-0 w-full h-16 flex md:gap-4 items-center p-4 justify-between bg-[#111256] transition-all ease-in-out duration-300 z-50 text-white font-semibold`}
       // className={`fixed top-0 w-full h-16 flex md:gap-4 items-center p-4 justify-between ${navbarBackground} transition-all ease-in-out duration-300 z-10 text-lg text-white font-semibold`}
     >
       <Link
