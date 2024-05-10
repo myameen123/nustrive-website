@@ -6,7 +6,7 @@ import cors from "cors";
 import { logger } from "./config/winston.config.js";
 import questionRouter from "./routers/questions.route.js";
 import mockTestRouter from "./routers/mock-test.route.js";
-
+import cloudinary from "cloudinary";
 dotenv.config();
 const app = express();
 
@@ -20,6 +20,11 @@ app.use(
     exposedHeaders: ["Set-cookie"],
   })
 );
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 app.get("/", (req, res) => {
   res.status(200).json({
     success: true,

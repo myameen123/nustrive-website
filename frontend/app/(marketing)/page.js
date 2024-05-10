@@ -1,12 +1,18 @@
 import Link from "next/link";
-import CustomizeTest from "./(marketing)/_components/customizeTest";
-import Features from "./(marketing)/_components/features";
-import HeroSection from "./(marketing)/_components/hero-section";
-import Services from "./(marketing)/_components/services";
-import Testimonials from "./(marketing)/_components/testimonials";
+// import CustomizeTest from "./_components/customizeTest";
+// import Features from "./_components/features";
+// import HeroSection from "./_components/hero-section";
+// import Services from "./_components/services";
+// import Testimonials from "./_components/testimonials";
 import Image from "next/image";
 import whatsappSvg from "@/public/whatsapp.svg";
-import generalInfo from "../constants/general-info";
+import generalInfo from "@/constants/general-info";
+import HeroSection from "./_components/hero-section";
+import Features from "./_components/features";
+import Services from "./_components/services";
+import CustomizeTest from "./_components/customizeTest";
+import Testimonials from "./_components/testimonials";
+// import generalInfo from "../../constants/general-info";
 export default function Home() {
   return (
     <div className=" h-full">

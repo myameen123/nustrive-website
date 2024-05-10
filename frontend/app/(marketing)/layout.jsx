@@ -1,13 +1,10 @@
 // import { Inter } from "next/font/google";
 import { Montserrat } from "next/font/google";
-import "./globals.css";
-import Navbar from "./(marketing)/_components/Navbar";
-import Footer from "./footer";
-import { ToasterProvider } from "@/components/providers/toast-provider";
-import { ReduxProviders } from "@/redux/Provider";
 
-// const inter = Inter({ subsets: ["latin"] });
-// const montserrat = Montserrat({ subsets: ["latin"] });
+import Navbar from "./_components/Navbar";
+import Footer from "../footer";
+// import Navbar from "./(marketing)/_components/Navbar";
+// import Footer from "./footer";
 const montserrat = Montserrat({
   weight: ["400", "700", "500", "800"],
   style: ["normal", "italic"],
@@ -20,12 +17,16 @@ export const metadata = {
   description: "Nust entry test Prepration website",
 };
 
-export default function RootLayout({ children }) {
+export default function MarketingLayout({ children }) {
   return (
     <html lang="en">
       <body className={montserrat.className}>
-        <ToasterProvider />
-        <ReduxProviders>{children}</ReduxProviders>
+        <div className=" h-full">
+          <Navbar />
+
+          <div className=" mt-16">{children}</div>
+          <Footer />
+        </div>
       </body>
     </html>
   );

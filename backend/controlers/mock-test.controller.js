@@ -1,16 +1,42 @@
-import {
-  Business_Questions,
-  Engineering_Questions,
-} from "../dummy_questions.js";
+// import {
+//   Business_Questions,
+//   Engineering_Questions,
+// } from "../dummy_questions.js";
 import shuffle from "lodash/shuffle.js";
+import BusinessQuestions from "../modals/business-questions.modal.js";
+import EngineeringQuestions from "../modals/enginering-questions.modal.js";
+// import { Engineering_Questions } from "../dummy_questions.js";
+// import { Business_Questions } from "../dummy_questions.js";
 
-export const getBusinessTest = (req, res) => {
+export const getBusinessTest = async (req, res) => {
   try {
     // Shuffle options of each question in Business_Questions array
-    const shuffledQuestions = Business_Questions.map((question) => ({
-      ...question,
-      options: shuffle(question.options),
-    }));
+
+    // const Business_Questions = await BusinessQuestions.find({});
+    const mathQuestions = await BusinessQuestions.find({
+      subject: "math",
+    }).limit(5);
+    const englishQuestions = await BusinessQuestions.find({
+      subject: "english",
+    }).limit(4);
+    const iqQuestions = await BusinessQuestions.find({ subject: "iq" }).limit(
+      4
+    );
+    const questionsArray = [
+      ...mathQuestions,
+      ...englishQuestions,
+      ...iqQuestions,
+    ];
+    const shuffledQuestions = questionsArray.map((question) => {
+      // Shuffle the options array using lodash shuffle function
+      const shuffledOptions = shuffle(question.options);
+
+      // Return the question object with shuffled options
+      return {
+        ...question._doc, // Use ._doc to get the document object without mongoose metadata
+        options: shuffledOptions,
+      };
+    });
 
     res.status(200).json({
       message: "Successfully",
@@ -23,8 +49,9 @@ export const getBusinessTest = (req, res) => {
   }
 };
 
-export const businessTestResponse = (req, res) => {
+export const businessTestResponse = async (req, res) => {
   try {
+    const Business_Questions = await BusinessQuestions.find();
     const questions = req.body;
     const subjects = ["math", "english", "iq"];
     const subjectQuestions = subjects.map((subject) =>
@@ -67,13 +94,46 @@ export const businessTestResponse = (req, res) => {
   }
 };
 
-export const getEngineeringTest = (req, res) => {
+export const getEngineeringTest = async (req, res) => {
   try {
     // Shuffle options of each question in Business_Questions array
-    const shuffledQuestions = Engineering_Questions.map((question) => ({
-      ...question,
-      options: shuffle(question.options),
-    }));
+
+    const mathQuestions = await EngineeringQuestions.find({
+      subject: "math",
+    }).limit(6);
+    const physicsQuestions = await EngineeringQuestions.find({
+      subject: "physics",
+    }).limit(5);
+    const chemistryQuestions = await EngineeringQuestions.find({
+      subject: "chemistry",
+    }).limit(5);
+    const englishQuestions = await EngineeringQuestions.find({
+      subject: "english",
+    }).limit(4);
+    const iqQuestions = await EngineeringQuestions.find({
+      subject: "iq",
+    }).limit(3);
+
+    // Organize questions into an array in the specified order
+    const questionsArray = [
+      ...mathQuestions,
+      ...physicsQuestions,
+      ...chemistryQuestions,
+      ...englishQuestions,
+      ...iqQuestions,
+    ];
+
+    const shuffledQuestions = questionsArray.map((question) => {
+      // Shuffle the options array using lodash shuffle function
+      const shuffledOptions = shuffle(question.options);
+
+      // Return the question object with shuffled options
+      return {
+        ...question._doc, // Use ._doc to get the document object without mongoose metadata
+        // ...question, // Use ._doc to get the document object without mongoose metadata
+        options: shuffledOptions,
+      };
+    });
 
     res.status(200).json({
       message: "Successfully",
@@ -86,8 +146,9 @@ export const getEngineeringTest = (req, res) => {
   }
 };
 
-export const engineeringTestResponse = (req, res) => {
+export const engineeringTestResponse = async (req, res) => {
   try {
+    const Engineering_Questions = await EngineeringQuestions.find();
     const questions = req.body;
     const subjects = ["math", "physics", "chemistry", "english", "iq"];
     const subjectQuestions = subjects.map((subject) =>

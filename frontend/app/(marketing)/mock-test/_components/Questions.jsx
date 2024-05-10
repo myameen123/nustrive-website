@@ -40,11 +40,12 @@ function Questions({ questions, title, category, sections }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("questions", questions);
+    // console.log("questions", questions);
     // Filter questions based on the current section
     const filtered = questions.filter(
       (question) => question.subject === currentSection
     );
+    // console.log(filtered);
     setFilteredQuestions(filtered);
     // setCurrentQuestionIndex(0); // Reset question index
 
@@ -57,8 +58,9 @@ function Questions({ questions, title, category, sections }) {
 
   // Function to handle moving to the next question
   const questionIndex = () => {
-    const id = filteredQuestions[currentQuestionIndex].id;
-    return questions.findIndex((question) => question.id === id);
+    const id = filteredQuestions[currentQuestionIndex]._id;
+    // console.log(id);
+    return questions.findIndex((question) => question._id === id);
   };
 
   // Function to handle moving to the next question
@@ -93,8 +95,8 @@ function Questions({ questions, title, category, sections }) {
     const filteredLastSectionQuestions = questions.filter(
       (question) => question.subject === lastSection
     );
-    console.log(lastSection);
-    console.log(filteredLastSectionQuestions.length - 1);
+    // console.log(lastSection);
+    // console.log(filteredLastSectionQuestions.length - 1);
     setCurrentSection(lastSection);
     setCurrentQuestionIndex(filteredLastSectionQuestions.length - 1);
   };
@@ -137,9 +139,9 @@ function Questions({ questions, title, category, sections }) {
           category === "Business" ? "businessTest" : "engineeringTest"
         )
       ) || [];
-    console.log("simple", storedQuestions);
+    // console.log("simple", storedQuestions);
     const updatedQuestions = storedQuestions.map((question) => {
-      if (question.id === id) {
+      if (question._id === id) {
         return {
           ...question,
           isSaved: true,
@@ -179,7 +181,7 @@ function Questions({ questions, title, category, sections }) {
 
     // Find the question with the corresponding ID
     const updatedQuestions = storedQuestions.map((question) => {
-      if (question.id === id) {
+      if (question._id === id) {
         // Update the isSaved property to true
         return { ...question, isReviewed: true };
       }
@@ -209,8 +211,8 @@ function Questions({ questions, title, category, sections }) {
       filteredQuestions.length > 0 &&
       filteredQuestions[currentQuestionIndex].isSaved
     ) {
-      console.log("saved");
-      console.log(filteredQuestions[currentQuestionIndex].selectedOption);
+      // console.log("saved");
+      // console.log(filteredQuestions[currentQuestionIndex].selectedOption);
       setSelectedOption(filteredQuestions[currentQuestionIndex].selectedOption);
       if (!filteredQuestions[currentQuestionIndex].isReviewed) {
         setIsReviewDisabled(false);
@@ -352,7 +354,7 @@ function Questions({ questions, title, category, sections }) {
                   Icon={Save}
                   text="Save"
                   onClick={() =>
-                    onSaveHandler(filteredQuestions[currentQuestionIndex].id)
+                    onSaveHandler(filteredQuestions[currentQuestionIndex]._id)
                   }
                   disable={isSavedisabled}
                 />
@@ -375,7 +377,7 @@ function Questions({ questions, title, category, sections }) {
                   //   filteredQuestions[currentQuestionIndex].isSaved == false
                   // }
                   onClick={() =>
-                    onReviewHandler(filteredQuestions[currentQuestionIndex].id)
+                    onReviewHandler(filteredQuestions[currentQuestionIndex]._id)
                   }
                 />
                 <TestButton
