@@ -6,6 +6,7 @@ import cors from "cors";
 import { logger } from "./config/winston.config.js";
 import questionRouter from "./routers/questions.route.js";
 import mockTestRouter from "./routers/mock-test.route.js";
+import authRouter from "./routers/auth.route.js";
 import cloudinary from "cloudinary";
 dotenv.config();
 const app = express();
@@ -34,6 +35,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/question", questionRouter);
 app.use("/api/mock-test", mockTestRouter);
+app.use("/api/auth", authRouter);
 const PORT = process.env.PORT || 5000;
 databaseConnection();
 app.listen(PORT, () => {

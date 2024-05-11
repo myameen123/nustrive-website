@@ -7,6 +7,7 @@ import getEngineeringTest from "./test/get-engineering-test-slice";
 import engineeringTestResponse from "./test/engineering-test-response-slice";
 import addEngineeringQuestionSlice from "./test/add-engineering-questions";
 import addBuisnessQuestionSlice from "./test/add-business-questions";
+import loginUserSlice from "./auth/login-slice";
 // import todoSlice from "./test/todo-slice";
 // import todoReducer from "./todo-slice";
 
@@ -20,6 +21,7 @@ const store = configureStore({
     engineeringTestResponse: engineeringTestResponse,
     addNewEngineeringQuestion: addEngineeringQuestionSlice,
     addNewBusinessQuestion: addBuisnessQuestionSlice,
+    userLogin: loginUserSlice,
   },
 });
 export default store;

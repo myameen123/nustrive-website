@@ -138,7 +138,7 @@ function NewEngineeringQuestions() {
     }
   };
   return (
-    <div>
+    <div className=" p-3">
       <form
         // onSubmit={handleSubmit(onSubmit)}
         onSubmit={handleUpload}
