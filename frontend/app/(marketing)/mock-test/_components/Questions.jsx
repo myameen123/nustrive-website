@@ -206,7 +206,7 @@ function Questions({ questions, title, category, sections }) {
   };
 
   useEffect(() => {
-    console.log("currentQuestionIndex", currentQuestionIndex);
+    // console.log("currentQuestionIndex", currentQuestionIndex);
     if (
       filteredQuestions.length > 0 &&
       filteredQuestions[currentQuestionIndex].isSaved

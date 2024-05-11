@@ -107,7 +107,7 @@ function NewEngineeringQuestions() {
     try {
       e.preventDefault();
       const formData = new FormData();
-      console.log("File:", file);
+      // console.log("File:", file);
       // console.log("Data Form:", dataForm);
       file.forEach((imageFile) => {
         formData.append("images", imageFile);
