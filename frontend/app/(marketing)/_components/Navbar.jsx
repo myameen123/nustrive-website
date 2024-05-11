@@ -29,7 +29,7 @@ function Navbar() {
   const [toggleMenu, setToggleMenu] = useState(false);
   const handleToggleMenu = () => {
     setToggleMenu(!toggleMenu);
-    console.log("hello");
+    // console.log("hello");
   };
 
   //   const onClickHandler = () => {

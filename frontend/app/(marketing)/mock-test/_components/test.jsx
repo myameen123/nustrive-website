@@ -94,7 +94,7 @@ const QuestionDisplay = ({ questions }) => {
   useEffect(() => {
     // Reset questionsUpdated state variable after re-render
     if (questionsUpdated) {
-      console.log("updated");
+      // console.log("updated");
       setQuestionsUpdated(false);
     }
   }, [questionsUpdated]);

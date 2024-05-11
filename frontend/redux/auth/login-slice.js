@@ -56,8 +56,8 @@ export const loginUserSlice = createSlice({
       //   console.log(action);
     });
     builder.addCase(loginUser.rejected, (state, action) => {
-      console.log("in eroor...........................");
-      console.log(action.payload.message);
+      //   console.log("in eroor...........................");
+      //   console.log(action.payload.message);
       state.loading = false;
       state.user = {};
       state.isAuthenticated = false;
