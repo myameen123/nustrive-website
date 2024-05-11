@@ -40,7 +40,7 @@ function LoginForm() {
   const onSubmit = (e) => {
     e.preventDefault();
     console.log("email password", email, password);
-    dipatch(loginUser({ email, password }));
+    dispatch(loginUser({ email, password }));
   };
   return (
     <div className="  flex flex-col justify-center p-4 items-center border md:w-1/2 w-full mx-auto shadow-[8px]">

@@ -5,10 +5,10 @@ import Sidebar from "../_components/sidebar";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
-export const metadata = {
-  title: "NusTrive | Admin",
-  description: "Nust entry test Prepration website",
-};
+// export const metadata = {
+//   title: "NusTrive | Admin",
+//   description: "Nust entry test Prepration website",
+// };
 
 export default function AdminLayout({ children }) {
   const { isAuthenticated } = useSelector((state) => state.userLogin);
