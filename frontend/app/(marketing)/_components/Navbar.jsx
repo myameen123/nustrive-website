@@ -32,31 +32,6 @@ function Navbar() {
     // console.log("hello");
   };
 
-  //   const onClickHandler = () => {
-  //     setOpenModal(true);
-  //   };
-
-  //   const onClose = () => {
-  //     setOpenModal(false);
-  //   };
-
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const scrollPosition = window.scrollY;
-  //     if (scrollPosition > 10) {
-  //       setNavbarBackground("bg-[#111256] shadow-sm");
-  //     } else {
-  //       setNavbarBackground("bg-[#111256]");
-  //     }
-  //   };
-
-  //   window.addEventListener("scroll", handleScroll);
-
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, []);
-
   return (
     <div
       className={`fixed top-0 w-full h-16 flex md:gap-4 items-center p-4 justify-between bg-[#111256] transition-all ease-in-out duration-300 z-50 text-white font-semibold`}
@@ -108,16 +83,24 @@ function Navbar() {
           <div className="scale-up-center absolute top-16 right-0  shadow-xl bg-[#111256] border rounded">
             <ul className="flex flex-col gap-2 py-6 px-14 text-xl font-bold w-60">
               <li className=" border-b  mb-2">
-                <Link href="/">Home</Link>
+                <Link href="/" onClick={handleToggleMenu}>
+                  Home
+                </Link>
               </li>
               <li className=" border-b mb-2">
-                <Link href="/calculator">Aggregate Calculator</Link>
+                <Link href="/calculator" onClick={handleToggleMenu}>
+                  Aggregate Calculator
+                </Link>
               </li>
               <li className=" border-b mb-2">
-                <Link href="/mock-test">Mock Test</Link>
+                <Link href="/mock-test" onClick={handleToggleMenu}>
+                  Mock Test
+                </Link>
               </li>
               <li className=" border-b mb-2">
-                <Link href="/contact-us">Contact Us</Link>
+                <Link href="/contact-us" onClick={handleToggleMenu}>
+                  Contact Us
+                </Link>
               </li>
             </ul>
           </div>

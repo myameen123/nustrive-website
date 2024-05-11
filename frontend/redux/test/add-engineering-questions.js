@@ -15,9 +15,9 @@ export const addEngineeringQuestion = createAsyncThunk(
       const config = {
         withCredentials: true,
       };
-      for (var pair of data.entries()) {
-        console.log(pair[0] + " - " + pair[1]);
-      }
+      // for (var pair of data.entries()) {
+      //   console.log(pair[0] + " - " + pair[1]);
+      // }
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/addEngineeringQuestion`,
         data,
