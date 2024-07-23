@@ -2,18 +2,20 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
 export const generateAccessToken = (user) => {
+  console.log("generateAccessToken -> user", user);
   return jwt.sign(
     {
       userId: user.id,
     },
     process.env.JWT_ACCESS_SECRET,
     {
-      expiresIn: "5m",
+      expiresIn: "10m",
     }
   );
 };
 
 export const generateRefreshToken = (user, jwtid) => {
+  console.log("generateRefreshToken -> user", user);
   return jwt.sign(
     {
       userId: user.id,
@@ -21,7 +23,7 @@ export const generateRefreshToken = (user, jwtid) => {
     },
     process.env.JWT_REFRESH_SECRET,
     {
-      expiresIn: "24h",
+      expiresIn: "1h",
     }
   );
 };

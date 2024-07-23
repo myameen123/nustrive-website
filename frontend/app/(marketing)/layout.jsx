@@ -3,6 +3,7 @@ import { Montserrat } from "next/font/google";
 
 import Navbar from "./_components/Navbar";
 import Footer from "../footer";
+import { ToasterProvider } from "@/components/providers/toast-provider";
 // import Navbar from "./(marketing)/_components/Navbar";
 // import Footer from "./footer";
 const montserrat = Montserrat({
@@ -23,7 +24,7 @@ export default function MarketingLayout({ children }) {
       <body className={montserrat.className}>
         <div className=" h-full">
           <Navbar />
-
+          <ToasterProvider />
           <div className=" mt-16">{children}</div>
           <Footer />
         </div>

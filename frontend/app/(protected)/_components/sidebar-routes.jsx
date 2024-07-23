@@ -6,26 +6,23 @@ import {
   BookOpenCheck,
   DraftingCompass,
   BriefcaseBusiness,
+  Folder,
 } from "lucide-react";
 import SidebarItem from "./sidebar-item";
+import { usePathname } from "next/navigation";
 // import { AccessTime, Person } from "@mui/icons-material";
-// const athleteRoutes = [
-//   {
-//     icon: LayoutDashboard,
-//     label: "Dashboard",
-//     href: "/athlete",
-//   },
-//   // {
-//   //   icon: Person,
-//   //   label: "Profile",
-//   //   href: "/athlete/profile",
-//   // },
-//   {
-//     icon: Stethoscope,
-//     label: "Find a Doctor",
-//     href: "/athlete/doctors",
-//   },
-// ];
+const studentRoutes = [
+  {
+    icon: LayoutDashboard,
+    label: "Dashboard",
+    href: "/student",
+  },
+  {
+    icon: Folder,
+    label: "Files",
+    href: "/student/files",
+  },
+];
 const adminRoutes = [
   {
     icon: LayoutDashboard,
@@ -44,13 +41,13 @@ const adminRoutes = [
   },
 ];
 function SidebarRoutes() {
-  // const pathname = usePathname();
-  // const isAthletePage = pathname.includes("/athlete");
-  // const routes = isAthletePage ? athleteRoutes : doctorRoutes;
+  const pathname = usePathname();
+  const isStudentPage = pathname.includes("/student");
+  const routes = isStudentPage ? studentRoutes : adminRoutes;
 
   return (
     <div className=" flex flex-col w-full gap-y-2">
-      {adminRoutes.map((route) => (
+      {routes.map((route) => (
         <SidebarItem
           key={route.href}
           icon={route.icon}

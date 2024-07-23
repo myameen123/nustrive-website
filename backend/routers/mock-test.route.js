@@ -5,7 +5,7 @@ import {
   engineeringTestResponse,
   getBusinessTest,
   getEngineeringTest,
-} from "../controlers/mock-test.controller.js";
+} from "../controllers/mock-test.controller.js";
 
 const router = express.Router();
 

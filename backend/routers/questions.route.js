@@ -1,7 +1,9 @@
 import express from "express";
-import { addEngineeringQuestion } from "../controlers/engineering-questions.contoler.js";
+// import { addEngineeringQuestion } from "../controlers/engineering-questions.contoller.js";
 import multer from "multer";
-import { addBusinessQuestion } from "../controlers/business-question.controller.js";
+import { addBusinessQuestion } from "../controllers/business-question.controller.js";
+import { addEngineeringQuestion } from "../controllers/engineering-questions.contoller.js";
+
 const upload = multer({});
 const router = express.Router();
 
