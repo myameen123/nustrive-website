@@ -11,10 +11,10 @@ import Navbar from "../../_components/navbar";
 import Sidebar from "../../_components/sidebar";
 // import { useEffect } from "react";
 
-export const metadata = {
-  title: "NusTrive | Student",
-  description: "Nust entry test Prepration website",
-};
+// export const metadata = {
+//   title: "NusTrive | Student",
+//   description: "Nust entry test Prepration website",
+// };
 
 export default function StudentLayout({ children }) {
   const { user, isAuthenticated } = useSelector((state) => state.userLogin);
