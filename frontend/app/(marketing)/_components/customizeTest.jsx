@@ -26,7 +26,7 @@ const Disciplines = [
     id: 3,
     title: "Business & Social Sciences",
     desc: "Excel in social sciences exams by enhancing your mathematical abilities, refining communication skills, fostering analytical thinking, and participating thoughtfully for outstanding performance.",
-    courses: ["Basic Math", "English", "Intelligence"],
+    courses: ["Basic Math", "English", "Intelligence","",""],
   },
 ];
 

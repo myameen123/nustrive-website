@@ -44,7 +44,7 @@ function Services() {
               desc={SERVICES[0].desc}
             />
             <Service
-              annimationClass="animate-from-right"
+              annimationClass="animate-from-right" 
               title={SERVICES[1].title}
               imgSrc={SERVICES[1].imgSrc}
               desc={SERVICES[1].desc}

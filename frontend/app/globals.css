@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+// <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 100 to 1000
+
+/* .dm-sans.{
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+} */
+
 body,
 :root {
   width: 100%;

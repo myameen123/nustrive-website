@@ -35,13 +35,17 @@ function HeroSection() {
         
         
         */}
-          <h1 className="font-extrabold text-2xl sm:text-4xl md:text-6xl  text-[#000000]">
+          <h1 className="font-extrabold text-xl sm:text-3xl md:text-5xl  text-[#000000]">
             <span className="block sm:pb-8 pb-4">Unlock Your Potential Through </span>
+          </h1>
+          <h1 className="font-extrabold text-xl sm:text-3xl md:text-5xl  text-[#000000]">
             <span className=" text-[#4463FB] " > NUSTrive</span>
             <span> In Education</span>
           </h1>
-          <p className=" text-black md:text-lg">
+          <p className=" text-black  md:text-lg">
             <span className='block pb-4'> Prepare for NET with Video Lectures, Practice Questions, </span>
+          </p>
+          <p className=" text-black md:text-lg">  
             <span>and Full-Length Tests Free Trial Available!</span>
           </p>
           <Button className=" bg-[#4463FB] text-white rounded-[7px] w-fit hover:bg-[#111256]/90">

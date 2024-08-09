@@ -10,7 +10,7 @@ function Service({ imgSrc, title, desc, annimationClass }) {
   });
   return (
     <div
-      className={`bg-[#e4f1fa] sm:w-[420px]  rounded-[10px] p-4 shadow-lg flex md:gap-6 mx-auto ${
+      className={`bg-[#CDCDCD] sm:w-[420px]  rounded-[10px] p-4 shadow-lg flex md:gap-6 mx-auto ${
         inView ? annimationClass : "opacity-0"
       }`}
       ref={ref}
@@ -19,8 +19,8 @@ function Service({ imgSrc, title, desc, annimationClass }) {
         <Image src={imgSrc} alt="icon" width={150} height={150} />
       </div>
       <div className=" ">
-        <h1 className=" text-[#111256] font-bold text-lg mb-2">{title}</h1>
-        <p className=" text-[#4D6799]">{desc}</p>
+        <h1 className=" text-[#000000] font-bold text-lg mb-2">{title}</h1>
+        <p className=" text-[#000000]">{desc}</p>
       </div>
     </div>
   );

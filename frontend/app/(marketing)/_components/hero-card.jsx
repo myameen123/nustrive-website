@@ -17,9 +17,9 @@ function HeroCard({ student, ind, totalStudents, sendDataToParent }) {
   };
   return (
     <div className="md:w-[420px] md:h-[200px] bg-slate-400 mybg ml-auto shadow-lg rounded-[10px] flex flex-col transition-all duration-75">
-      <div className="  flex sm:flex-row flex-col p-6 gap-2">
+      <div className="  flex sm:flex-row flex-col p-2 gap-2">
         <div className=" w-[25%]">
-          <div className=" w-[82px] h-[82px] border-[3px] rounded-full border-[#111256]">{/* 111256 */}
+          <div className=" w-[82px] h-[82px] border-[3px] rounded-full border-[#4463FB]">{/* 111256 */}
             <Image src={student.photo} alt="img" width={100} height={100} />
           </div>
         </div>

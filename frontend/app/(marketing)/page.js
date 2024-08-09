@@ -3,11 +3,11 @@ import Image from "next/image";
 import whatsappSvg from "@/public/whatsapp.svg";
 import generalInfo from "@/constants/general-info";
 import HeroSection from "./_components/hero-section";
-import Features from "./_components/features";
+// import Features from "./_components/features";
 import Services from "./_components/services";
 import CustomizeTest from "./_components/customizeTest";
 import Testimonials from "./_components/testimonials";
-// import generalInfo from "../../constants/general-info";
+
 export default function Home() {
   return (
     <div className=" h-full">

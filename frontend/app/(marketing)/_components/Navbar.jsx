@@ -39,12 +39,12 @@ function Navbar() {
 
   return (
     <div
-      className={`fixed top-0 w-full h-16 flex md:gap-4 items-center p-4 justify-between bg-[#ffffff] transition-all ease-in-out duration-300 z-50 text-black font-semibold`}
+      className={`fixed top-0 w-full h-16 flex md:gap-4 sm:gap-2 items-center p-4 justify-between bg-[#ffffff] transition-all ease-in-out duration-300 z-50 text-black font-semibold`}
       // className={`fixed top-0 w-full h-16 flex md:gap-4 items-center p-4 justify-between ${navbarBackground} transition-all ease-in-out duration-300 z-10 text-lg text-white font-semibold`}
     >
       <Link
         href="/"
-        className="  sm:w-[20%] flex justify-center h-full gap-2 md:ml-4"
+        className="  sm:w-[20%] flex justify-center h-full md:ml-4"
       >
         {/* <Image src="/nustrive white.png" width={200} height={100} /> */}
         <Image src="/NR.png" width={50} height={70} alt="NR" />
@@ -56,7 +56,7 @@ function Navbar() {
           className=" md:flex hidden"
         /> */}
       </Link>
-      <div className=" hidden sm:flex w-[70%] justify-center items-center h-full gap-10 ">
+      <div className=" hidden sm:flex w-[70%] justify-center items-center h-full gap-4 sm:gap-4 md:gap-6 ">
         {ROUTES.map((r) => (
           <Link key={r.id} href={r.url}>
             {r.title}
@@ -65,11 +65,11 @@ function Navbar() {
       </div>
 
       <div className="md:w-[10%] sm:flex hidden">
-        <Button className=" bg-[#4463FB] rounded-[7px] hover:bg-[#4463FB]/90">
+        <Button className=" bg-[#4463FB] rounded-[7px] hover:bg-[#4463FB]/90 text-white">
           Sign In
         </Button>
       </div>
-      <div className="flex z-10 sm:hidden bg-[#4463FB]">
+      <div className="flex z-10 sm:hidden md:hidden bg-[#4463FB]">
         {toggleMenu ? (
           <button
             className=" cursor-pointer transition-all ease-in-out duration-300"
