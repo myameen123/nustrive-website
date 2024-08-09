@@ -165,7 +165,7 @@ export const refreshToken = async (req, res, next) => {
     if (!incomingRefreshToken) {
       return resFailure(res, authErrors.UNAUTHORIZED, {}, 401);
     }
-    console.log("here");
+    // console.log("here");
     const verifiedJwt = verifyRefreshToken(incomingRefreshToken);
     const existingRefreshToken = await getRefreshTokenById(verifiedJwt.userId);
     if (
@@ -211,7 +211,7 @@ export const refreshToken = async (req, res, next) => {
 
 export const verifyEmailVerificationToken_ = async (req, res, next) => {
   try {
-    console.log("inside verifyEmailVerificationToken_");
+    // console.log("inside verifyEmailVerificationToken_");
     const { token } = req.params;
     const { email } = verifyEmailVerificationToken(token);
 

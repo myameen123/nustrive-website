@@ -24,6 +24,7 @@ export const loginUser = createAsyncThunk(
 
       return response.data;
     } catch (error) {
+      console.log("in try of login slice", error);
       return rejectWithValue(error.response.data);
     }
   }
@@ -47,7 +48,7 @@ export const loginUserSlice = createSlice({
       state.loading = false;
       state.user = {};
       state.isAuthenticated = false;
-      console.log(action);
+      console.log("action...", action);
       state.error = action.payload?.message || action.error;
     });
   },
