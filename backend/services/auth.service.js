@@ -1,5 +1,5 @@
 // import { db } from "../utils/db.util.js";
-import { User } from "../modals/user.modal.js";
+import { User } from "../models/user.model.js";
 
 // import { hashToken } from "../utils/hashToken.util.js";
 

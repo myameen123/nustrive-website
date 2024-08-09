@@ -1,8 +1,7 @@
-// import Questions from "../modals/enginering-questions.modal.js";
-import { Engineering_Questions } from "../dummy_questions.js";
-import EngineeringQuestions from "../modals/enginering-questions.modal.js";
+import EngineeringQuestions from "../models/enginering-questions.model.js";
 import cloudinary from "cloudinary";
-// Controller function to add a new question
+
+// Controller function to upload an image
 async function handleUpload(file) {
   const res = await cloudinary.v2.uploader.upload(file, {
     resource_type: "auto",
@@ -10,54 +9,75 @@ async function handleUpload(file) {
   });
   return res;
 }
+
+// Controller function to add a new question
 export const addEngineeringQuestion = async (req, res) => {
   try {
-    // const newQuestion = await Questions.create(req.body);
-    // console.log(req.body);
-    // console.log(req.files);
+    const { test, text, subject, option1, option2, option3, option4 } = req.body;
+    
+    console.log("Request body in question controller:", {test, text, subject, option1, option2, option3, option4});
+
+    if (!test || !text || !subject || !option1 || !option2 || !option3 || !option4) {
+      return res.status(400).json({ error: "All fields are required" });
+    }
+    console.log('req.body', req.body);
     const imagesLinks = [];
-    const options = [];
-    if (req.files.length > 0) {
+    const options = [option1, option2, option3, option4];
+
+    if (req.files && req.files.length > 0) {
       const b64 = Buffer.from(req.files[0].buffer).toString("base64");
       let dataURI = "data:" + req.files[0].mimetype + ";base64," + b64;
       const result = await handleUpload(dataURI);
-      console.log("id:", result.public_id);
-      console.log("url:", result.secure_url);
       imagesLinks.push({
         public_id: result.public_id,
         url: result.secure_url,
       });
     }
 
-    options.push(req.body.option1);
-    options.push(req.body.option2);
-    options.push(req.body.option3);
-    options.push(req.body.option4);
-
-    const myBody = {
-      text: req.body.text,
+    const newQuestion = new EngineeringQuestions({
+      test,
+      text,
       options,
-      subject: req.body.questionSubject,
+      subject: subject,
       image: imagesLinks,
-    };
+    });
 
-    await EngineeringQuestions.create(myBody);
+    console.log('newQuestion', newQuestion);
+
+    await newQuestion.save();
+
     res.status(201).json({
       success: true,
+      data: newQuestion,
     });
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    console.error("Error adding question:", err.message);
+    // console.log('error',err.message);
+    res.status(500).json({ error: err.message });
   }
 };
 
-// Controller function to delete a question by ID
-export const deleteQuestion = async (req, res) => {
+
+// Controller function to get all questions
+export const getAllQuestions = async (req, res) => {
   try {
-    const deletedQuestion = await Questions.findByIdAndDelete(req.params.id);
-    if (!deletedQuestion) {
+    console.log('req in controller', req.params.testId)
+    const questions = await EngineeringQuestions.find({test:req.params.testId});
+    res.json(questions);
+    console.log('in get all question')
+  } catch (err) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+// Controller function to get a question by ID
+export const getQuestionById = async (req, res) => {
+  try {
+    const question = await EngineeringQuestions.findById(req.params.id);
+    if (!question) {
       return res.status(404).json({ error: "Question not found" });
     }
-    res.json(deletedQuestion);
+    res.json(question);
   } catch (err) {
     res.status(500).json({ error: "Internal server error" });
   }
@@ -66,7 +86,7 @@ export const deleteQuestion = async (req, res) => {
 // Controller function to update a question by ID
 export const updateQuestion = async (req, res) => {
   try {
-    const updatedQuestion = await Questions.findByIdAndUpdate(
+    const updatedQuestion = await EngineeringQuestions.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true }
@@ -80,4 +100,15 @@ export const updateQuestion = async (req, res) => {
   }
 };
 
-// Importing shuffle function from lodash library
+// Controller function to delete a question by ID
+export const deleteQuestion = async (req, res) => {
+  try {
+    const deletedQuestion = await EngineeringQuestions.findByIdAndDelete(req.params.id);
+    if (!deletedQuestion) {
+      return res.status(404).json({ error: "Question not found" });
+    }
+    res.json(deletedQuestion);
+  } catch (err) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+};

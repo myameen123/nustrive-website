@@ -19,7 +19,8 @@ function LoginForm() {
 
   useEffect(() => {
     if (error) {
-      toast.error(error);
+      console.log("login form error", error)
+      toast.error(error.message);
       // setErrorToastId(id);
     }
     if (isAuthenticated) {
@@ -60,11 +61,11 @@ function LoginForm() {
       <form className="flex flex-col gap-4 w-full ">
         <div>
           <div className="mb-2 block">
-            <label htmlFor="password1">Your Email</label>
+            <label htmlFor="email">Your Email</label>
           </div>
           <CustomTextField
             size="small"
-            id="email1"
+            id="email"
             type="email"
             placeholder=""
             onChange={onEmailChange}
@@ -73,11 +74,11 @@ function LoginForm() {
         </div>
         <div>
           <div className="mb-2 block">
-            <label htmlFor="password1">Your Password</label>
+            <label htmlFor="password">Your Password</label>
           </div>
           <CustomTextField
             size="small"
-            id="password1"
+            id="password"
             type="password"
             onChange={onPasswordChange}
             required

@@ -4,11 +4,11 @@ function Loader() {
   return (
     <div
       role="status"
-      class="absolute -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2 bg-[#49ADE5]/40 w-full h-full flex flex-col justify-center items-center z-10"
+      className="absolute -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2 bg-[#49ADE5]/40 w-full h-full flex flex-col justify-center items-center z-10"
     >
       <svg
         aria-hidden="true"
-        class="w-16 h-16 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+        className="w-16 h-16 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -23,7 +23,7 @@ function Loader() {
         />
       </svg>
       <p className=" font-bold text-[#111256]">Please wait</p>
-      <span class="sr-only">Loading...</span>
+      <span className="sr-only">Loading...</span>
     </div>
   );
 }

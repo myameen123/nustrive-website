@@ -27,55 +27,46 @@ function HeroSection() {
     threshold: 0.2, // Adjust the threshold as needed
   });
   return (
-    <div className=" bg-[#49ADE5] relative">
-      <div className="flex lg:flex-row flex-col items-center transition-all duration-75 sm:w-[80%] lg:w-[90%] mx-auto h-full sm:py-8 py-12 sm:px-1 px-4">
-        <div
-          className={`lg:w-[60%] flex flex-col gap-4 md:mt-12 md:mb-12 mx-4 mb-4`}
-        >
-          {/* <div
-          className={`lg:w-[60%] flex flex-col gap-4 md:mt-12 md:mb-12 mx-4 mb-4 ${
-            inView ? " animate-from-left" : " opacity-0"
-          }`}
-          ref={ref}
-        > */}
-          <h1 className=" font-extrabold sm:text-5xl text-4xl text-[#111256] ">
-            Start Your Learning Journey With
-            <span className=" text-white"> NUSTrive</span>
+    <div className=" bg-[#ffffff] relative"> {/*49ADE5*/}
+      <div className="flex lg:flex-row flex-col  transition-all items-center duration-75 sm:w-[80%] lg:w-[90%] mx-auto h-full sm:py-8 py-12 sm:px-1 px-4">
+        <div className={`lg:w-[100%] flex flex-col items-center  gap-4 md:mt-12 md:mb-12 mx-4 mb-4`}>
+        {/* 
+          <div className={`lg:w-[60%] flex flex-col gap-4 md:mt-12 md:mb-12 mx-4 mb-4 ${ inView ? " animate-from-left" : " opacity-0"}`}ref={ref}> 
+        
+        
+        */}
+          <h1 className="font-extrabold text-2xl sm:text-4xl md:text-6xl  text-[#000000]">
+            <span className="block sm:pb-8 pb-4">Unlock Your Potential Through </span>
+            <span className=" text-[#4463FB] " > NUSTrive</span>
+            <span> In Education</span>
           </h1>
-          <p className=" text-white md:text-lg">
-            NUSTrive offers a tuition service with comprehensive video lectures,
-            practice questions, and full-length practice tests for students
-            preparing for the NET exam. The service also provides a trial with
-            video lectures and practice questions, along with detailed answer
-            keys, allowing students to evaluate their concepts before making any
-            commitment or payment.
+          <p className=" text-black md:text-lg">
+            <span className='block pb-4'> Prepare for NET with Video Lectures, Practice Questions, </span>
+            <span>and Full-Length Tests Free Trial Available!</span>
           </p>
-          <Button className=" bg-[#111256] text-white rounded-[7px] w-fit hover:bg-[#111256]/90">
+          <Button className=" bg-[#4463FB] text-white rounded-[7px] w-fit hover:bg-[#111256]/90">
             Get Started
           </Button>
         </div>
+        {/*
         <div
           className={`lg:w-[40%] mx-4 `}
-          // ref={ref}
+          ref={ref}
         >
-          {/* <div
+           <div
           className={`lg:w-[40%] mx-4 ${
             inView ? " animate-from-right" : " opacity-0"
           }`}
           ref={ref}
-        > */}
-          <HeroCard
+        >  <HeroCard
             student={FeaturedStudents[currentStudentIndex]}
             ind={currentStudentIndex}
             totalStudents={FeaturedStudents.length}
             sendDataToParent={handleDataFromChild}
-          />
-        </div>
-        <div
-          className={`absolute lg:flex hidden bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 z-0 text-white `}
-        >
-          <div
-            className={`bg-[#111256] h-[123px] w-[300px] mx-2 flex flex-col gap-2 p-4 items-center rounded-[7px] ${
+            /> 
+            </div>
+        <div className={`absolute lg:flex hidden bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 z-0 text-white `}>
+          <div className={`bg-[#111256] h-[123px] w-[300px] mx-2 flex flex-col gap-2 p-4 items-center rounded-[7px] ${
               inView ? " animate-from-bottom" : " opacity-0"
             }`}
             ref={ref}
@@ -111,7 +102,8 @@ function HeroSection() {
               user-friendly calculator tool.
             </p>
           </div>
-        </div>
+        </div> 
+        */}
       </div>
     </div>
   );

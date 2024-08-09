@@ -5,7 +5,7 @@ import { verifyAccessToken } from "../../utils/jwt.util.js";
 import jwt from "jsonwebtoken";
 import { authErrors } from "../../errors/auth.error.js";
 import { resSuccess, resFailure } from "../../utils/responseObject.utils.js";
-import { User } from "../../modals/user.modal.js";
+import { User } from "../../models/user.model.js";
 // import { http } from "winston";
 
 export const hasAuthToken = async (req, res, next) => {

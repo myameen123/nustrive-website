@@ -3,8 +3,8 @@
 //   Engineering_Questions,
 // } from "../dummy_questions.js";
 import shuffle from "lodash/shuffle.js";
-import BusinessQuestions from "../modals/business-questions.modal.js";
-import EngineeringQuestions from "../modals/enginering-questions.modal.js";
+import BusinessQuestions from "../models/business-questions.model.js";
+import EngineeringQuestions from "../models/enginering-questions.model.js";
 // import { Engineering_Questions } from "../dummy_questions.js";
 // import { Business_Questions } from "../dummy_questions.js";
 

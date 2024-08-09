@@ -32,7 +32,9 @@ function Services() {
   return (
     <div className=" lg:mt-[150px] mt-20 mb-20">
       <div className=" xl:w-[70%] lg:w-[85%] mx-auto w-[91%]">
-        <MainHeading heading="Unlock your academic potential with NUSTrive." />
+        <MainHeading heading="Online Learning Designed To Ace Your Entry Tests" />
+        {/* <h1>Online Learning Designed To Ace Your Entry Tests</h1> */}
+        <p className=" text-center text-[#000000]" >Comprehensive Courses, Practice Tests, and Expert Guidance to Ensure Your Success in Entry Exams</p>
         <div className=" flex flex-col md:gap-8 mt-12 gap-4">
           <div className=" flex md:flex-row flex-col justify-between gap-4">
             <Service

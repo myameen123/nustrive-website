@@ -9,15 +9,13 @@ function FieldsCard({ title, desc, courses, id }) {
       <div>
         <Image src={examImg} alt="exam img" className=" w-[950px]" />
       </div>
-      <div className=" p-8 flex flex-col items-center gap-2">
-        <h2 className=" text-xl font-bold text-[#111256s]">{title}</h2>
+      <div className="p-8  flex flex-col items-center  gap-2">
+        <h2 className=" text-xl font-bold text-[#030303]">{title}</h2>
         <p className=" text-white">{desc}</p>
-        <h3 className={`font-bold ${id === 3 ? " mt-10" : ""}`}>
-          Courses Offered
-        </h3>
-        <ul className=" grid grid-cols-2 list-disc gap-4 text-[#111256] font-bold w-full px-4">
+        <h3 className={`font-bold `}> Courses Offered </h3> {/*${id === 3 ? "mt-8" : ""}*/}
+        <ul className=" grid grid-cols-1 list-disc gap-4 text-[#ffffff]  w-full px-4">
           {courses.map((c) => (
-            <li key={id}>{c}</li>
+            <li key={c.id}>{c}</li>
           ))}
         </ul>
       </div>

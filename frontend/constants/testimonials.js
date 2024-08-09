@@ -6,6 +6,7 @@ const StudentTestimonials = [
   {
     id: 1,
     name: "Prithvi Raj",
+    title:"Great Learning Platform",
     netScore: 154,
     enrolledIn: "BSCS SEECS-2021",
     photo: prithvi,
@@ -14,6 +15,7 @@ const StudentTestimonials = [
   {
     id: 2,
     name: "M.Yameen",
+    title:"Great Learning Platform",
     netScore: 164,
     enrolledIn: "BESE SEECS-2021",
     photo: yameen,
@@ -22,6 +24,7 @@ const StudentTestimonials = [
   {
     id: 3,
     name: "Vishal Sager",
+    title:"Great Learning Platform",
     netScore: 162,
     enrolledIn: "BESE SEECS-2021",
     photo: vishal,
@@ -30,6 +33,7 @@ const StudentTestimonials = [
   {
     id: 4,
     name: "Mehran",
+    title:"Great Learning Platform",
     netScore: 163,
     enrolledIn: "BSCS SEECS-2021",
     photo: mehran,

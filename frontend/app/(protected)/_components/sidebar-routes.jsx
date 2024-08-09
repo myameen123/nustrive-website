@@ -39,6 +39,11 @@ const adminRoutes = [
     label: "Business Test",
     href: "/admin/business-test",
   },
+  {
+    icon: BriefcaseBusiness,
+    label: "Users",
+    href: "/admin/users",
+  },
 ];
 function SidebarRoutes() {
   const pathname = usePathname();

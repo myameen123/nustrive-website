@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import { Teacher, User } from "../modals/user.modal.js";
+import { Teacher, User } from "../models/user.model.js";
 
 // import { db } from "../utils/db.util.js";
 

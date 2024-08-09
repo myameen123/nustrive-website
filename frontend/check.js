@@ -56,7 +56,7 @@ const [exams, setExams] = useState([])
             setSelectedAnswersArray(nullAnswers)
             setExams(exams)
             alert(
-                You are about to start the test. Follow this link to read the instructions: https://www.crashcoursed.com/instructions
+                `You are about to start the test. Follow this link to read the instructions: https://www.crashcoursed.com/instructions`
             )
             if (!loginStatus)
                 alert(

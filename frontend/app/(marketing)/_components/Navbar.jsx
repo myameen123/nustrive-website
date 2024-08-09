@@ -13,14 +13,19 @@ const ROUTES = [
     url: "/calculator",
   },
   {
-    id: "2",
-    title: "Contact Us",
-    url: "/contact-us",
+    id: "3",
+    title: "Courses",
+    url: "/courses",
   },
   {
-    id: "3",
+    id: "4",
     title: "Mock Test",
     url: "/mock-test",
+  },
+  {
+    id: "2",
+    title: "Contact",
+    url: "/contact-us",
   },
 ];
 function Navbar() {
@@ -34,7 +39,7 @@ function Navbar() {
 
   return (
     <div
-      className={`fixed top-0 w-full h-16 flex md:gap-4 items-center p-4 justify-between bg-[#111256] transition-all ease-in-out duration-300 z-50 text-white font-semibold`}
+      className={`fixed top-0 w-full h-16 flex md:gap-4 items-center p-4 justify-between bg-[#ffffff] transition-all ease-in-out duration-300 z-50 text-black font-semibold`}
       // className={`fixed top-0 w-full h-16 flex md:gap-4 items-center p-4 justify-between ${navbarBackground} transition-all ease-in-out duration-300 z-10 text-lg text-white font-semibold`}
     >
       <Link
@@ -42,13 +47,14 @@ function Navbar() {
         className="  sm:w-[20%] flex justify-center h-full gap-2 md:ml-4"
       >
         {/* <Image src="/nustrive white.png" width={200} height={100} /> */}
-        <Image src="/NR.png" width={50} height={70} />
-        <Image
+        <Image src="/NR.png" width={50} height={70} alt="NR" />
+        {/* <Image
           src="/nustrive-white.png"
           width={140}
           height={50}
+          alt="nustrive-white"
           className=" md:flex hidden"
-        />
+        /> */}
       </Link>
       <div className=" hidden sm:flex w-[70%] justify-center items-center h-full gap-10 ">
         {ROUTES.map((r) => (
@@ -59,11 +65,11 @@ function Navbar() {
       </div>
 
       <div className="md:w-[10%] sm:flex hidden">
-        {/* <Button className=" bg-[#4D6799] rounded-[7px] hover:bg-[#4D6799]/90">
+        <Button className=" bg-[#4463FB] rounded-[7px] hover:bg-[#4463FB]/90">
           Sign In
-        </Button> */}
+        </Button>
       </div>
-      <div className="flex z-10 sm:hidden">
+      <div className="flex z-10 sm:hidden bg-[#4463FB]">
         {toggleMenu ? (
           <button
             className=" cursor-pointer transition-all ease-in-out duration-300"
@@ -77,10 +83,11 @@ function Navbar() {
             onClick={handleToggleMenu}
           >
             <Menu color="#fff" size={40} />
+
           </button>
         )}
         {toggleMenu && (
-          <div className="scale-up-center absolute top-16 right-0  shadow-xl bg-[#111256] border rounded">
+          <div className="scale-up-center absolute top-16 right-0  shadow-xl bg-[#ffffff] border rounded">
             <ul className="flex flex-col gap-2 py-6 px-14 text-xl font-bold w-60">
               <li className=" border-b  mb-2">
                 <Link href="/" onClick={handleToggleMenu}>
@@ -93,13 +100,18 @@ function Navbar() {
                 </Link>
               </li>
               <li className=" border-b mb-2">
+                <Link href="/courses" onClick={handleToggleMenu}>
+                  Courses
+                </Link>
+              </li>
+              <li className=" border-b mb-2">
                 <Link href="/mock-test" onClick={handleToggleMenu}>
                   Mock Test
                 </Link>
               </li>
               <li className=" border-b mb-2">
                 <Link href="/contact-us" onClick={handleToggleMenu}>
-                  Contact Us
+                  Contact
                 </Link>
               </li>
             </ul>

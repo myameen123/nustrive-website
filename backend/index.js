@@ -2,17 +2,18 @@ import express from "express";
 import dotenv from "dotenv";
 import databaseConnection from "./config/db.config.js";
 import cors from "cors";
-// import cors from " cors";
-import { logger } from "./config/winston.config.js";
-import questionRouter from "./routers/questions.route.js";
-import mockTestRouter from "./routers/mock-test.route.js";
-import authRouter from "./routers/auth.route.js";
 import cookieParser from "cookie-parser";
-// authRouter;
-
+import { logger } from "./config/winston.config.js";
+import mockTestRouter from "./routers/mock-test.route.js";
+import authRouter from "./routers/auth.route.js";// authRouter;
+import engineeringuqQestionRouter from "./routers/engineering-questions.route.js";
+import engineeringTestRouter from './routers/engineering-test.route.js';
+import businessQuestioRouter from './routers/business-questions.route.js';
+import businessTestRouter from './routers/business-test.route.js'
 import cloudinary from "cloudinary";
-import { cookie } from "express-validator";
-// import { authRouter } from "./routers/auth.route.js";
+
+// import { cookie } from "express-validator";
+
 dotenv.config();
 const app = express();
 app.use(cookieParser());
@@ -21,9 +22,9 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
   cors({
-    // origin: "http://localhost:3000", // Allow requests from this origin
+    origin: "http://localhost:3000", // Allow requests from this origin
     origin: process.env.FRONTEND_URL, // Allow requests from this origin
-    origin: "https://nustrive.vercel.app", // Allow requests from this origin
+    // origin: "https://nustrive.vercel.app", // Allow requests from this origin
     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
     optionsSuccessStatus: 200,
     exposedHeaders: ["Set-cookie"],
@@ -46,8 +47,11 @@ app.get("/", (req, res) => {
   });
 });
 
-app.use("/api/question", questionRouter);
 app.use("/api/mock-test", mockTestRouter);
+app.use("/api/question", engineeringuqQestionRouter);
+app.use('/api/test', engineeringTestRouter)
+app.use('/api/question/business', businessQuestioRouter)
+app.use('/api/test/business',businessTestRouter)
 console.log("in index.js");
 app.use("/api/auth", authRouter);
 

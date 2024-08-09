@@ -2,21 +2,16 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useSelector, useDispatch } from "react-redux";
-
-import { useRouter } from "next/navigation";
-// import { createNewEngineeringQuestions } from "@/redux/NewEngineeringQuestionsSlice";
-// import { toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
+import { useRouter, useParams } from "next/navigation";
 import toast from "react-hot-toast";
-// import { addEngineeringQuestion } from "@/redux/test/add-engineering-questions";
-// import input from "@/components/inputs/TextField";
-// import { Button } from "@/components/ui/button";
 import { RotateCw } from "lucide-react";
-import { addBuisnessQuestion } from "@/redux/test/add-business-questions";
-function NewBusinessQuestions() {
-  const dispatch = useDispatch();
+import axios from "axios";
+
+function NewBusinessQuestions({ closeModal }) {
+  // const dispatch = useDispatch();
   // const [myProduct, setMyProduct] = useState({});
 
+  const params = useParams()
   const { loading, success, error } = useSelector(
     (state) => state.addNewBusinessQuestion
   );
@@ -25,8 +20,9 @@ function NewBusinessQuestions() {
   const [file, setFile] = useState([]);
   // const [isButtonLoading, setIsButtonLoading] = useState(false);
   const [dataForm, setDataForm] = useState({
+    test:params.Test,
     text: "",
-    questionSubject: "",
+    subject: "",
     option1: "",
     option2: "",
     option3: "",
@@ -39,7 +35,7 @@ function NewBusinessQuestions() {
   useEffect(() => {
     // console.log("success:", success.toString());
     if (error) {
-      toast.error(error, {
+      toast.error(error.message, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -67,7 +63,7 @@ function NewBusinessQuestions() {
       setFile([]);
       setDataForm({
         text: "",
-        questionSubject: "",
+        subject: "",
         option1: "",
         option2: "",
         option3: "",
@@ -77,7 +73,7 @@ function NewBusinessQuestions() {
       // router.push("/admin/dashboard");
       // setMyProduct({});
     }
-  }, [dispatch, error, success]);
+  }, [ error, success]);
 
   let name = "";
   let value = "";
@@ -107,25 +103,22 @@ function NewBusinessQuestions() {
   const handleUpload = async (e) => {
     try {
       e.preventDefault();
-      const formData = new FormData();
-      // console.log("File:", file);
-      // console.log("Data Form:", dataForm);
-      file.forEach((imageFile) => {
-        formData.append("images", imageFile);
-      });
-      formData.append("text", dataForm.text);
-      formData.append("questionSubject", dataForm.questionSubject);
-      formData.append("option1", dataForm.option1);
-      formData.append("option2", dataForm.option2);
-      formData.append("option3", dataForm.option3);
-      formData.append("option4", dataForm.option4);
-      // for (var pair of formData.entries()) {
-      //   console.log(pair[0] + " - " + pair[1]);
-      // }
-
-      dispatch(addBuisnessQuestion(formData));
+      console.log('dataFrom', dataForm);
+      const data = await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/business/addBusinessQuestion`,
+        dataForm,
+        {
+          headers:{'Content-Type':'application/json'},
+          withCredentials:true
+        }
+      )
+      if(data){
+        // redirect(`test/engineering-test/${param.Test}`)
+        closeModal()
+      }
+     
     } catch (error) {
-      toast.error(error, {
+      toast.error(error.message, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -264,8 +257,8 @@ function NewBusinessQuestions() {
               <input
                 onChange={onChangeHandler}
                 required
-                value={dataForm.questionSubject}
-                name="questionSubject"
+                value={dataForm.subject}
+                name="subject"
                 type="text"
                 placeholder="Subject"
                 className=" w-full border border-black p-1 rounderd-[5px]"
@@ -285,7 +278,7 @@ function NewBusinessQuestions() {
         <button
           disable={loading}
           className={`p-2 text-white rounded-[5px] transition-all my-4 bg-[#111256] hover:bg-[#111256]/90 ${
-            loading ? "bg-slate-500 flex justify-center items-center" : ""
+            loading ? "bg-slate-500 flex justify-center items-center" : " "
           }`}
         >
           {loading ? (

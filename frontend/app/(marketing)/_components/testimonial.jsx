@@ -12,18 +12,24 @@ function Testimonial({ testimonial }) {
   };
 
   return (
-    <div className="flex mt-[50px] flex-col gap-6 mb-20 group relative shadow-lg text-white rounded-xl px-6 py-8 h-[520px]  md:w-[350px] w-[330px] cursor-pointer bg-[#b6def5] mx-auto">
-      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-[#111256] rounded-full z-10">
-        <Image src={testimonial.photo} alt="img" width={100} height={100} />
-      </div>
-      <div className="mt-6 flex flex-col items-center text-[#111256] text-left">
-        <span className="font-bold">{testimonial.name}</span>
-        <span className="font-bold">NET - {testimonial.netScore}</span>
-        <span className="font-bold">{testimonial.enrolledIn}</span>
+    <div className="flex mt-[50px] flex-col gap-6 mb-20 group relative shadow-lg text-black rounded-xl px-6 py-8 h-[560px]  md:w-[350px] w-[330px] cursor-pointer bg-[#ffffff] mx-auto">
+      
+      <div className="mt-6 flex flex-col items-center text-[#000000] text-left">
+        <span className="font-bold">{testimonial.title}</span>
         {/* Apply truncateText function to description */}
         <p className="mt-2 font-semibold text-[0.8rem]">
           {truncateText(testimonial.description, 100)}
         </p>
+      </div>
+      <div className="flex ">
+        <div className=" w-20 h-20 bg-[#111256] rounded-full">{/*transform -translate-x-1/2 -translate-y-1/2*/}
+          <Image src={testimonial.photo} alt="img" width={80} height={80} />
+        </div>
+        <div className="pl-2">
+            <span className="font-bold block">{testimonial.name}</span>
+            <span className="font-bold block">NET - {testimonial.netScore}</span>
+            <span className="font-bold block">{testimonial.enrolledIn}</span>
+        </div>
       </div>
     </div>
   );

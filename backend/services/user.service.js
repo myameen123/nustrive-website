@@ -1,7 +1,7 @@
 // import User from "../modals/user.modal";
 // import { User } from "../modals/user.modal.js";
 
-import { User } from "../modals/user.modal.js";
+import { User } from "../models/user.model.js";
 
 export const getUserByEmail = async (email) => {
   return await User.findOne({ email });

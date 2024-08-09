@@ -21,6 +21,7 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  console.log("main layout page : ", children)
   return (
     <html lang="en">
       <body className={montserrat.className}>

@@ -1,9 +1,4 @@
 import Link from "next/link";
-// import CustomizeTest from "./_components/customizeTest";
-// import Features from "./_components/features";
-// import HeroSection from "./_components/hero-section";
-// import Services from "./_components/services";
-// import Testimonials from "./_components/testimonials";
 import Image from "next/image";
 import whatsappSvg from "@/public/whatsapp.svg";
 import generalInfo from "@/constants/general-info";
@@ -17,10 +12,10 @@ export default function Home() {
   return (
     <div className=" h-full">
       <HeroSection />
+      <Testimonials />
       <Features />
       <Services />
       <CustomizeTest />
-      <Testimonials />
       <div className=" fixed bottom-6 right-8 z-10 flex flex-col items-center whatsapp">
         <Link
           href={`https://wa.me/${generalInfo.whatsapp}`}

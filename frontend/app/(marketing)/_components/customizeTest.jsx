@@ -35,9 +35,9 @@ function CustomizeTest() {
     <div className=" mb-4">
       <div className=" xl:w-[80%] lg:w-[90%] mx-auto w-[95%]">
         <div>
-          <MainHeading heading="Customized Test Preparation to Navigate Your Path to Success" />
-          <p className=" text-center font-bold text-[#111256]">
-            Unleash Your Capabilities Across Diverse Fields
+          <MainHeading heading={`Customized Test Preparation To Navigate Your Path To Success`} />
+          <p className=" text-center text-black">
+          Take Detailed Mock Tests With Various Subjects to Test Your Preparation for Entry Levels.
           </p>
         </div>
         <div className=" flex md:flex-row flex-col gap-4 justify-between mt-8">

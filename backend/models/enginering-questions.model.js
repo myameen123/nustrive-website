@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 const engineeringQuestionSchema = mongoose.Schema({
   text: String,
   image: [
@@ -7,10 +7,12 @@ const engineeringQuestionSchema = mongoose.Schema({
       url: String,
     },
   ],
+  test:{type: mongoose.Schema.Types.ObjectId, ref:'EngineeringTest'},
   options: [String],
   subject: {
     type: String,
     required: [true, "Subject is required"],
+    enum:['maths', 'physics','iq','chemistry','computer science']
   },
   correctAnswer: String,
   isSaved: {

@@ -40,7 +40,7 @@
 
 import { v4 } from "uuid";
 import bcrypt from "bcrypt";
-import { User } from "../modals/user.modal.js";
+import { User } from "../models/user.model.js";
 
 import { logger } from "../config/winston.config.js";
 // import { resSuccess, resFailure } from "../utils/responseObject.util.js";
@@ -54,19 +54,19 @@ import {
   generateTokens,
   verifyRefreshToken,
   verifyEmailVerificationToken,
-  verifyAccessToken,
+  // verifyAccessToken,
 } from "../utils/jwt.util.js";
 import {
   addRefreshTokenToDb,
-  deleteRefreshToken,
+  // deleteRefreshToken,
   getRefreshTokenById,
 } from "../services/auth.service.js";
-import { hashToken } from "../utils/hashToken.util.js";
+// import { hashToken } from "../utils/hashToken.util.js";
 
 import { authErrors } from "../errors/auth.error.js";
 import {
   createRoleBasedUser,
-  getRoleBasedUserData,
+  // getRoleBasedUserData,
 } from "./helpers/auth.helper.js";
 
 export const registerUser = async (req, res, next) => {

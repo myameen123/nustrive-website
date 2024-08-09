@@ -19,16 +19,17 @@ export const metadata = {
 };
 
 export default function MarketingLayout({ children }) {
+  console.log("Pdf view layout", children)
   return (
-    <html lang="en">
-      <body className={montserrat.className}>
-        <div className=" h-full">
+    // <html lang="en">
+      // <body className={montserrat.className}>
+        <div className={` h-full`}> 
           <Navbar />
           <ToasterProvider />
           <div className=" mt-16">{children}</div>
           <Footer />
         </div>
-      </body>
-    </html>
+      // </body>
+    // </html>
   );
 }

@@ -8,25 +8,22 @@ const initialState = {
 };
 
 export const addEngineeringQuestion = createAsyncThunk(
-  "test/addEngineeringQuestion",
+  "question/addEngineeringQuestion",
   async (data, { rejectWithValue }) => {
     try {
-      // console.log(savedQuestions);
       const config = {
-        withCredentials: true,
+        headers: { 'Content-Type': 'multipart/form-data' },
+        withCredentials: false,
       };
-      // for (var pair of data.entries()) {
-      //   console.log(pair[0] + " - " + pair[1]);
-      // }
+      console.log('data: ', data);
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/addEngineeringQuestion`,
         data,
         config
       );
-
+      console.log('response', response)
       return response.data;
     } catch (error) {
-      console.log("error", error);
       return rejectWithValue(error.response.data);
     }
   }
@@ -35,14 +32,13 @@ export const addEngineeringQuestion = createAsyncThunk(
 export const addEngineeringQuestionSlice = createSlice({
   name: "addEngineeringQuestion",
   initialState,
-  // reducers: {},
   extraReducers: (builder) => {
     builder.addCase(addEngineeringQuestion.pending, (state) => {
       state.loading = true;
     });
     builder.addCase(addEngineeringQuestion.fulfilled, (state, action) => {
       state.loading = false;
-      state.success = action.payload.success || action.payload;
+      state.success = action.payload; //action.payload.success || 
       state.error = "";
     });
     builder.addCase(addEngineeringQuestion.rejected, (state, action) => {

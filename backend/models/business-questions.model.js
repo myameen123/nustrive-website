@@ -7,10 +7,12 @@ const businessQuestionSchema = mongoose.Schema({
       url: String,
     },
   ],
+  test:{type: mongoose.Schema.Types.ObjectId, ref:'BusinessTest'},
   options: [String],
   subject: {
     type: String,
     required: [true, "Subject is required"],
+    enum:['english', 'maths','iq']
   },
   correctAnswer: String,
   isSaved: {
@@ -24,7 +26,7 @@ const businessQuestionSchema = mongoose.Schema({
 });
 
 const BusinessQuestions = mongoose.model(
-  "businessQuestions",
+  "BusinessQuestions",
   businessQuestionSchema
 );
 export default BusinessQuestions;

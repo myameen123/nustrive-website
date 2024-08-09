@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 
 // import { db } from "../utils/db.util.js";
-import { User, Student } from "../modals/user.modal.js";
+import { User, Student } from "../models/user.model.js";
 import { resFailure, resSuccess } from "../utils/responseObject.utils.js";
 
 export const createStudent = async (
