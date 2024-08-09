@@ -13,7 +13,7 @@ export default function Home() {
     <div className=" h-full">
       <HeroSection />
       <Testimonials />
-      <Features />
+      {/* <Features /> */}
       <Services />
       <CustomizeTest />
       <div className=" fixed bottom-6 right-8 z-10 flex flex-col items-center whatsapp">
