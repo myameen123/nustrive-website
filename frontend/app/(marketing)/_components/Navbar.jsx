@@ -1,10 +1,10 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Menu, SquareX } from "lucide-react";
-// import { Button } from "@/components/ui/button";
+
 // import LoginModal from "@/components/modals/login-modal";
 const ROUTES = [
   {
@@ -29,13 +29,15 @@ const ROUTES = [
   },
 ];
 function Navbar() {
-  const [openModal, setOpenModal] = useState(false);
+  // const [openModal, setOpenModal] = useState(false);
   // const [navbarBackground, setNavbarBackground] = useState("transparent");
   const [toggleMenu, setToggleMenu] = useState(false);
   const handleToggleMenu = () => {
     setToggleMenu(!toggleMenu);
     // console.log("hello");
   };
+
+
 
   return (
     <div
@@ -63,26 +65,34 @@ function Navbar() {
           </Link>
         ))}
       </div>
-
-      <div className="md:w-[10%] sm:flex hidden">
-        <Button className=" bg-[#4463FB] rounded-[7px] hover:bg-[#4463FB]/90 text-white">
+      <div className="sm:w-[9%] sm:flex hidden h-10 bg-[#4463FB] rounded-[7px] hover:bg-[#4463FB]/90 items-center justify-center">
+        <Link href={'/login'} className=" text-white pl-auto">
           Sign In
-        </Button>
+        </Link>
       </div>
-      <div className="flex z-10 sm:hidden md:hidden bg-[#4463FB]">
+      <div className="flex z-10 sm:hidden md:hidden">
         {toggleMenu ? (
           <button
             className=" cursor-pointer transition-all ease-in-out duration-300"
             onClick={handleToggleMenu}
           >
-            <SquareX color="#fff" size={40} />
+           <svg width="45" height="45" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="15" y="40" width="70" height="10" fill="#4463FB" transform="rotate(45 50 50)"></rect>
+            <rect x="15" y="40" width="70" height="10" fill="#4463FB" transform="rotate(-45 50 50)"></rect>
+          </svg>
+
+ 
           </button>
         ) : (
           <button
             className=" cursor-pointer transition-all ease-in-out duration-300"
             onClick={handleToggleMenu}
           >
-            <Menu color="#fff" size={40} />
+            <svg width="40" height="40" viewBox="0 0 90 80" xmlns="http://www.w3.org/2000/svg">
+              <rect width="100" height="12" fill="#4463FB"></rect>
+              <rect y="24" width="100" height="12" fill="#4463FB"></rect>
+              <rect y="48" width="100" height="12" fill="#4463FB"></rect>
+            </svg>
 
           </button>
         )}
@@ -112,6 +122,11 @@ function Navbar() {
               <li className=" border-b mb-2">
                 <Link href="/contact-us" onClick={handleToggleMenu}>
                   Contact
+                </Link>
+              </li>
+              <li className=" border-b mb-2">
+                <Link href="/login" onClick={handleToggleMenu}>
+                  Sign in
                 </Link>
               </li>
             </ul>

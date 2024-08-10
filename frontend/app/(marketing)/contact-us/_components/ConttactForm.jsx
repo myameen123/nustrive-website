@@ -53,7 +53,7 @@ export default function ContactForm() {
             multiline
             rows={4}
           />
-          <button className=" w-fit py-2 px-3 bg-[#111256] text-white rounded-[5px] hover:bg-[#111256]/90">
+          <button className=" w-fit py-2 px-3 bg-[#4463FB] text-white rounded-[5px] hover:bg-[#4463FB]/90">
             Submit
           </button>
         </form>

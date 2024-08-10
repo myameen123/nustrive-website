@@ -68,19 +68,19 @@ export default function Footer() {
           <p className="text-sm md:text-base">(+92)336 9374191</p>
         </div>
       </div>
-      <div className="align-bottom sm:pt-20">
+      <div className="align-bottom pt-8 sm:pt-20">
         <ul className="flex flex-col sm:flex-row justify-center items-center  gap-2 sm:gap-4 text-sm md:text-base">
           <li>
-            <Link href="/">Aggregate Calculator</Link>
+            <Link href="/calculator">Aggregate Calculator</Link>
           </li>
           <li>
-            <Link href="/">Courses</Link>
+            <Link href="/courses">Courses</Link>
           </li>
           <li>
-            <Link href="/">Mock Tests</Link>
+            <Link href="/mock-test">Mock Tests</Link>
           </li>
           <li>
-            <Link href="/">Contact</Link>
+            <Link href="/contact-us">Contact</Link>
           </li>
         </ul>
       </div>

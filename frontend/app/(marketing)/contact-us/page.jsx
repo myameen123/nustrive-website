@@ -5,8 +5,8 @@ import ConttactForm from "./_components/ConttactForm";
 function ContactUsPage() {
   return (
     <div className=" min-h-screen md:p-8 p-2 w-full">
-      <div className="p-2 md:p-4 flex md:flex-row flex-col w-full min-h-screen gap-4 items-center">
-        <ContactInfo />
+      <div className="p-2 md:p-4 w-full min-h-screen gap-4 items-center">
+        {/* <ContactInfo /> */}
         <ConttactForm />
       </div>
     </div>
