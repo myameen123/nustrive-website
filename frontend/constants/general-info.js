@@ -5,6 +5,7 @@ const generalInfo = {
   instagram: "https://www.instagram.com/nustrive/",
   facebook: "https://www.facebook.com/nustrive",
   youtube: "https://www.youtube.com/@nowsherwankhan3834",
+  // linkedIn: ""
 };
 
 export default generalInfo;
