@@ -25,10 +25,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={``} style={{
-  "font-family":[ "DM Sans", "sans-serif"],
-  "font-optical-sizing": "auto",
-  "font-weight": "400",
-  "font-style": "normal",
+  "fontFamily":[ "DM Sans", "sans-serif"],
+  "fontOpticalSizing": "auto",
+  "fontWeight": "400",
+  "fontStyle": "normal",
 }}>
         <ToasterProvider />
         <ReduxProviders>{children}</ReduxProviders>

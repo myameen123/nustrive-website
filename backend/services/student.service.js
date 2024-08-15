@@ -8,8 +8,7 @@ export const createStudent = async (
   res,
   email,
   password,
-  firstName,
-  lastName
+  name
 ) => {
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -18,7 +17,7 @@ export const createStudent = async (
     const user = await User.create({
       email,
       password: hashedPassword,
-      name: `${firstName} ${lastName}`,
+      name: name,
       role: "student",
     });
 
@@ -31,7 +30,7 @@ export const createStudent = async (
 
     console.log("Student created:", student);
 
-    console.log("student service", email, password, firstName, lastName);
+    console.log("student service", email, password, name);
     return resSuccess(res, "User added to the system success", student);
   } catch (error) {
     return resFailure(res, "registration error", error);

@@ -37,20 +37,19 @@ export const createRoleBasedUser = async (
   res,
   email,
   password,
-  firstName,
-  lastName,
+  name,
   userType
 ) => {
   try {
-    console.log("auth helper", email, password, firstName, lastName, userType);
+    console.log("auth helper", email, password, name, userType);
     switch (userType.toLowerCase()) {
       case "student":
-        await createStudent(res, email, password, firstName, lastName);
-        sendVerificationEmail(firstName + " " + lastName, email);
+        await createStudent(res, email, password, name);
+        sendVerificationEmail(name, email);
         return;
       case "teacher":
-        await createTeacher(res, email, password, firstName, lastName);
-        sendVerificationEmail(firstName + " " + lastName, email);
+        await createTeacher(res, email, password, name);
+        sendVerificationEmail(name, email);
         break;
       default:
         throw new Error(authErrors.INVALID_USER_TYPE);

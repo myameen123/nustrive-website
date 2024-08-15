@@ -6,6 +6,7 @@ import { TextField } from "@mui/material";
 function CustomTextField({
   label,
   placeholder,
+  name,
   variant = "outlined",
   fullWidth = true,
   value,
@@ -63,6 +64,7 @@ function CustomTextField({
   return (
     <TextField
       error={error}
+      name={name}
       type={type}
       // id="outlinded-error"
       label={label}

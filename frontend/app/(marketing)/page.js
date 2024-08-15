@@ -7,6 +7,7 @@ import HeroSection from "./_components/hero-section";
 import Services from "./_components/services";
 import CustomizeTest from "./_components/customizeTest";
 import Testimonials from "./_components/testimonials";
+import Teachers from "./_components/teachers";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       {/* <Features /> */}
       <Services />
       <CustomizeTest />
+      <Teachers/>
       <div className=" fixed bottom-6 right-8 z-10 flex flex-col items-center whatsapp">
         <Link
           href={`https://wa.me/${generalInfo.whatsapp}`}

@@ -22,6 +22,11 @@ const studentRoutes = [
     label: "Files",
     href: "/student/files",
   },
+  {
+    icon: Folder,
+    label: "Tests",
+    href: "/student/tests",
+  },
 ];
 const adminRoutes = [
   {

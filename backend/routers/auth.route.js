@@ -7,7 +7,11 @@ import {
 import { validateResult } from "../utils/validationResult.util.js";
 import {
   getMe,
+  getAll,
+  getUser,
   loginUser,
+  deleteUser,
+  updateUser,
   // refreshToken,
   registerUser,
   verifyEmailVerificationToken_,
@@ -40,5 +44,11 @@ authRouter.post(
 authRouter.get("/verify/:token", verifyEmailVerificationToken_);
 
 authRouter.get("/get-me", hasAuthToken, getMe);
+
+authRouter.get('/get-all', getAll);
+authRouter.get('/:id',getUser)
+authRouter.delete('/delete-user/:id', deleteUser);
+authRouter.put('/update-user/:id', updateUser);
+
 
 export default authRouter;

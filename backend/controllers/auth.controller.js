@@ -69,15 +69,9 @@ import {
   // getRoleBasedUserData,
 } from "./helpers/auth.helper.js";
 
-export const registerUser = async (req, res, next) => {
+export const registerUser = async (req, res) => {
   try {
-    const {
-      email,
-      password,
-      firstName,
-      lastName,
-      userType = "student",
-    } = req.body;
+    const { email, password, name, userType = "student" } = req.body;
 
     const existedUser = await User.findOne({ email });
 
@@ -86,10 +80,11 @@ export const registerUser = async (req, res, next) => {
     }
 
     // console.log("auth controller", req.body);
-    createRoleBasedUser(res, email, password, firstName, lastName, userType);
+    createRoleBasedUser(res, email, password, name, userType);
     // console.log(student, user);
   } catch (err) {
     logger.error(err);
+    console.log(err.message)
     if (err.message === authErrors.INVALID_USER_TYPE) {
       return resFailure(res, authErrors.INVALID_USER_TYPE);
     }
@@ -235,6 +230,16 @@ export const verifyEmailVerificationToken_ = async (req, res, next) => {
   }
 };
 
+export const getAll = async (req, res) => {
+  try {
+    const users = await User.find();
+    // console.log('users in controller:', users);
+    return res.json(users);
+  } catch (err) {
+    logger.error(err.message);
+  }
+};
+
 export const getMe = async (req, res, next) => {
   try {
     // const accessToken = req.cookie?.accessToken||req.headers.authorization.split(" ")[1];
@@ -267,5 +272,53 @@ export const getMe = async (req, res, next) => {
       return resFailure(res, authErrors.INVALID_USER_TYPE, {}, 401);
     }
     return resFailure(res, authErrors.UNAUTHORIZED, {}, 401);
+  }
+};
+
+export const getUser = async (req, res) => {
+  try {
+    const user = await User.findById({ _id: req.params.id });
+    if (!user) {
+      return res.status(400).json({ message: "User not found" });
+    }
+    return res.json(user);
+  } catch (err) {
+    return res.status(500).json({ message: "Server error occured." });
+  }
+};
+
+export const deleteUser = async (req, res) => {
+  try {
+    // const id = req.params.id;
+    const user = await User.findByIdAndDelete({ _id: req.params.id });
+    if (!user) {
+      return res.status(400).json({ message: "User not found" });
+    }
+    console.log("deleted");
+    return res.status(200).json({ message: "Successfully user deleted." });
+  } catch (err) {
+    console.log("err.message: ", err.message);
+  }
+};
+
+export const updateUser = async (req, res) => {
+  try {
+    const user = await User.findById({ _id: req.params.id });
+    if (!user) {
+      console.log("1.update");
+      return res.status(404).json({ message: "User not found." });
+    }
+    console.log("req.body", req.body);
+    const updateUser = await User.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    if (!updateUser) {
+      console.log("2.update");
+      return res.status(400).json({ message: "User not Updated" });
+    }
+    console.log("updated");
+    return res.json(updateUser);
+  } catch (err) {
+    console.log("err.message: ", err.message);
   }
 };

@@ -36,10 +36,7 @@ const TestPage = () => {
     }
   };
 
-  const handleEdit = (question) => {
-    setCurrentQuestion(question);
-    setIsEditModalOpen(true);
-  };
+
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -47,6 +44,11 @@ const TestPage = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const handleEdit = (question) => {
+    setCurrentQuestion(question);
+    setIsEditModalOpen(true);
   };
 
   const closeEditModal = () => {
@@ -58,7 +60,7 @@ const TestPage = () => {
     <>
       <div className="flex justify-end">
         <button
-          className="p-2 w-fit text-white rounded-[5px] transition-all my-4 bg-[#111256] hover:bg-[#111256]/90"
+          className="p-2 w-fit text-white rounded-[5px] transition-all my-4 bg-[#4463FB] hover:bg-[#4463FB]/90"
           onClick={openModal}
         >
           Add New Question

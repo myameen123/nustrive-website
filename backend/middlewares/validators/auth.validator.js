@@ -14,8 +14,8 @@ export const registerValidator = [
   //     /^(athlete|medico)$/,
   //     "i"
   //   ),
-  check("firstName", "First Name cannot be undefined").notEmpty(),
-  check("lastName", "Last Name cannot be undefined").notEmpty(),
+  check("name", "First Name cannot be undefined").notEmpty(),
+  // check("lastName", "Last Name cannot be undefined").notEmpty(),
 ];
 
 export const loginValidator = [

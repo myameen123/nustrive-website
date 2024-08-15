@@ -48,7 +48,7 @@ function HeroSection() {
           <p className=" text-black md:text-lg">  
             <span>and Full-Length Tests Free Trial Available!</span>
           </p>
-          <Button className=" bg-[#4463FB] text-white rounded-[7px] w-fit hover:bg-[#111256]/90">
+          <Button className=" bg-[#4463FB] text-white rounded-[7px] w-fit hover:bg-[#4463FB]/90">
             Get Started
           </Button>
         </div>

@@ -7,8 +7,7 @@ export const createTeacher = async (
   res,
   email,
   password,
-  firstName,
-  lastName
+  name
 ) => {
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -16,7 +15,7 @@ export const createTeacher = async (
     const user = await User.create({
       email,
       password: hashedPassword,
-      name: `${firstName} ${lastName}`,
+      name: name,
       role: "teacher",
     });
 
@@ -29,7 +28,7 @@ export const createTeacher = async (
 
     console.log("teacher created:", teacher);
 
-    console.log("teacher service", email, password, firstName, lastName);
+    console.log("teacher service", email, password, name);
     // return teacher;
     return resSuccess(res, "User added to the system success", teacher);
   } catch (error) {

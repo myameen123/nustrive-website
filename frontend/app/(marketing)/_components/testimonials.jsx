@@ -9,9 +9,9 @@ import { FreeMode, Pagination } from "swiper/modules";
 
 // import { RxArrowTopRight } from "react-icons/rx";
 // import { ServiceData } from "../constants";
-import { MoveUpRight } from "lucide-react";
+// import { MoveUpRight } from "lucide-react";
 import Testimonial from "./testimonial";
-import MainHeading from "./main-heading";
+// import MainHeading from "./main-heading";
 import StudentTestimonials from "@/constants/testimonials";
 
 const Testimonials = () => {

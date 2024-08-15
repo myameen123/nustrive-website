@@ -57,7 +57,7 @@ const Logout = () => {
 
   return (
     <button
-      className="p-2 w-fit text-white rounded-[5px] transition-all my-4 bg-[#111256] hover:bg-[#111256]/90"
+      className="p-2 w-fit text-white rounded-[5px] transition-all my-4 bg-[#4463FB] hover:bg-[#4463FB]/90"
       onClick={handleLogout}
     >
       Logout

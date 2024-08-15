@@ -1,18 +1,18 @@
 // import { Inter } from "next/font/google";
-import { Montserrat } from "next/font/google";
+// import { Montserrat } from "next/font/google";
 
 import Navbar from "./_components/Navbar";
 import Footer from "./_components/footer";
 import { ToasterProvider } from "@/components/providers/toast-provider";
 // import Navbar from "./(marketing)/_components/Navbar";
 // import Footer from "./footer";
-const montserrat = Montserrat({
-  weight: ["400", "700", "500", "800"],
-  style: ["normal", "italic"],
-  subsets: ["latin"],
-  display: "swap",
-  adjustFontFallback: true,
-});
+// const montserrat = Montserrat({
+//   weight: ["400", "700", "500", "800"],
+//   style: ["normal", "italic"],
+//   subsets: ["latin"],
+//   display: "swap",
+//   adjustFontFallback: true,
+// });
 export const metadata = {
   title: "NusTrive | NET/NBS online preparation",
   description: "Nust entry test Prepration website",

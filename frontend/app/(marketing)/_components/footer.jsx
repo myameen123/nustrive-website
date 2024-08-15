@@ -7,8 +7,8 @@ import  Image  from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="container mt-32   bg-[#ffffff]  text-black dark:bg-neutral-600">
-  <div className=" items-center grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-10 md:gap-10 ">
+    <footer className="w-full  mt-32    bg-[#ffffff]  text-black dark:bg-neutral-600">
+  <div className=" sm:mr-32 sm:ml-32 items-center grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-10 md:gap-10 ">
     <div>
       <div>
         <div className="flex justify-center sm:justify-start">
@@ -22,7 +22,7 @@ export default function Footer() {
           /> */}
           <h1 className="md:flex text-4xl  text-[#4463FB] ml-2">NUSTRive</h1>
         </div>
-        <p className="mt-4 sm:mt-0 text-sm md:text-base">
+        <p className="mt-4 sm:mt-0 text-sm md:text-base pl-2 pr-2 sm:pl-0 sm:pr-0">
           NUSTrive is a premier online platform dedicated to providing comprehensive
           training for university entry tests, including NET, GAT, SAT, and more.
           Our platform offers tailored study plans, interactive learning modules,
@@ -88,7 +88,7 @@ export default function Footer() {
   </div>
 
   {/* <!--Copyright section--> */}
-  <div className="items-center">
+  <div className="md:mr-32 md:ml-32 items-center">
   <hr   className="h-1 mt-8 bg-black " />
   </div>
   <div className="bg-[#ffffff] text-center text-black text-sm md:text-2xl mt-2">

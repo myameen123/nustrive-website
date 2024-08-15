@@ -30,7 +30,7 @@ function SidebarItem({ icon, label, href }) {
       </div>
       <div
         className={cn(
-          "ml-auto opacity-0 border-2 border-[#111256] h-full transition-all",
+          "ml-auto opacity-0 border-2 border-[#4463FB] h-full transition-all",
           isAtive && "opacity-100"
         )}
       />
