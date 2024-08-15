@@ -120,7 +120,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-
       {/* <!--Copyright section--> */}
       <div className="sm:mr-20 sm:ml-20 lg:mr-32 lg:ml-32 items-center">
         <hr className="h-1 mt-8 bg-black " />

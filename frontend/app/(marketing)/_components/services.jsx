@@ -1,7 +1,13 @@
-import { Grid } from "@mui/material";
+"use client";
 import React from "react";
 import Service from "./service";
 import MainHeading from "./main-heading";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/free-mode";
+import { FreeMode, Pagination } from "swiper/modules";
+
 const SERVICES = [
   {
     id: 1,
@@ -12,7 +18,7 @@ const SERVICES = [
   {
     id: 2,
     title: "Practice Questions !",
-    desc: "Review questions provided after each lecture to solidify your understanding.",
+    desc: "Review questions provided after each lecture to solidify your understanding and concepts.",
     imgSrc: "/questionIcon.svg",
   },
   {
@@ -30,40 +36,39 @@ const SERVICES = [
 ];
 function Services() {
   return (
-    <div className=" lg:mt-[150px] mt-20 mb-20">
-      <div className=" xl:w-[70%] lg:w-[85%] mx-auto w-[91%]">
+    <div className=" lg:mt-[50px] mt-20 mb-20">
+      <div className="lg:w-[90%] mx-auto w-[91%]">
         <MainHeading heading="Online Learning Designed To Ace Your Entry Tests" />
         {/* <h1>Online Learning Designed To Ace Your Entry Tests</h1> */}
-        <p className=" text-center text-[#000000]" >Comprehensive Courses, Practice Tests, and Expert Guidance to Ensure Your Success in Entry Exams</p>
-        <div className=" flex flex-col md:gap-8 mt-12 gap-4">
-          <div className=" flex md:flex-row flex-col justify-between gap-4">
-            <Service
-              annimationClass="animate-from-left"
-              title={SERVICES[0].title}
-              imgSrc={SERVICES[0].imgSrc}
-              desc={SERVICES[0].desc}
-            />
-            <Service
-              annimationClass="animate-from-right" 
-              title={SERVICES[1].title}
-              imgSrc={SERVICES[1].imgSrc}
-              desc={SERVICES[1].desc}
-            />
-          </div>
-          <div className=" flex md:flex-row flex-col justify-between gap-4">
-            <Service
-              annimationClass="animate-from-left"
-              title={SERVICES[2].title}
-              imgSrc={SERVICES[2].imgSrc}
-              desc={SERVICES[2].desc}
-            />
-            <Service
-              annimationClass="animate-from-right"
-              title={SERVICES[3].title}
-              imgSrc={SERVICES[3].imgSrc}
-              desc={SERVICES[3].desc}
-            />
-          </div>
+        <p className=" text-center text-[#000000]">
+          Comprehensive Courses, Practice Tests, and Expert Guidance to Ensure
+          Your Success in Entry Exams
+        </p>
+        <div className="flex items-center justify-center flex-col md:mt-6 mt-4 ">
+          <Swiper
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 15,
+              },
+              1000: {
+                slidesPerView: 3,
+                spaceBetween: 15,
+              },
+            }}
+            freeMode={true}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[FreeMode, Pagination]}
+            className="max-w-[90%] sm:max-w-[90%] md:max-w-[80%] lg:max-w-[80%] "
+          >
+            {SERVICES.map((service) => (
+              <SwiperSlide key={service.id}>
+                <Service  service={service} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </div>
     </div>

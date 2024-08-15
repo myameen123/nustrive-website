@@ -18,6 +18,11 @@ const ROUTES = [
     url: "/courses",
   },
   {
+    id: "5",
+    title: "Tutors",
+    url: "/tutors",
+  },
+  {
     id: "4",
     title: "Mock Test",
     url: "/mock-test",
@@ -36,8 +41,6 @@ function Navbar() {
     setToggleMenu(!toggleMenu);
     // console.log("hello");
   };
-
-
 
   return (
     <div
@@ -66,7 +69,7 @@ function Navbar() {
         ))}
       </div>
       <div className="sm:w-[9%] sm:flex hidden h-10 bg-[#4463FB] rounded-[7px] hover:bg-[#4463FB]/90 items-center justify-center">
-        <Link href={'/login'} className=" text-white pl-auto">
+        <Link href={"/login"} className=" text-white pl-auto">
           Sign In
         </Link>
       </div>
@@ -76,24 +79,45 @@ function Navbar() {
             className=" cursor-pointer transition-all ease-in-out duration-300"
             onClick={handleToggleMenu}
           >
-           <svg width="45" height="45" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <rect x="15" y="40" width="70" height="10" fill="#4463FB" transform="rotate(45 50 50)"></rect>
-            <rect x="15" y="40" width="70" height="10" fill="#4463FB" transform="rotate(-45 50 50)"></rect>
-          </svg>
-
- 
+            <svg
+              width="45"
+              height="45"
+              viewBox="0 0 100 100"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                x="15"
+                y="40"
+                width="70"
+                height="10"
+                fill="#4463FB"
+                transform="rotate(45 50 50)"
+              ></rect>
+              <rect
+                x="15"
+                y="40"
+                width="70"
+                height="10"
+                fill="#4463FB"
+                transform="rotate(-45 50 50)"
+              ></rect>
+            </svg>
           </button>
         ) : (
           <button
             className=" cursor-pointer transition-all ease-in-out duration-300"
             onClick={handleToggleMenu}
           >
-            <svg width="40" height="40" viewBox="0 0 90 80" xmlns="http://www.w3.org/2000/svg">
+            <svg
+              width="40"
+              height="40"
+              viewBox="0 0 90 80"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <rect width="100" height="12" fill="#4463FB"></rect>
               <rect y="24" width="100" height="12" fill="#4463FB"></rect>
               <rect y="48" width="100" height="12" fill="#4463FB"></rect>
             </svg>
-
           </button>
         )}
         {toggleMenu && (
@@ -112,6 +136,11 @@ function Navbar() {
               <li className=" border-b mb-2">
                 <Link href="/courses" onClick={handleToggleMenu}>
                   Courses
+                </Link>
+              </li>
+              <li className=" border-b mb-2">
+                <Link href="/tutors" onClick={handleToggleMenu}>
+                  Tutors
                 </Link>
               </li>
               <li className=" border-b mb-2">

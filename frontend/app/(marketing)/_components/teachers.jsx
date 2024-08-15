@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/free-mode";
 import { FreeMode, Pagination } from "swiper/modules";
-// import Link from "next/link";
+import Link from "next/link";
 
 const Teachers = () => {
   return (
@@ -19,10 +19,10 @@ const Teachers = () => {
         Connect with Top Educators for Entry Level Exams Success
       </p>
       <div>
-        {/* <div className="justify-between">
-            <h1 className="text-2xl">Top Certified Tutors</h1>
-            <Link href={'/#tutors'}>Show All Tutors</Link>
-        </div> */}
+        <div className="sm:mr-20 sm:ml-20 lg:mr-32 lg:ml-32 flex justify-between">
+              <h1 className="text-2xl">Top Certified Tutors</h1>
+              <Link href={'/tutors'} className="text-[#4463fb] hover:text-red-900">Show All Tutors</Link>
+        </div>
         <div className="flex items-center justify-center flex-col md:mt-6 mt-4 ">
           <Swiper
             breakpoints={{
