@@ -8,7 +8,7 @@ import  Image  from "next/image";
 export default function Footer() {
   return (
     <footer className="w-full  mt-32    bg-[#ffffff]  text-black dark:bg-neutral-600">
-  <div className=" sm:mr-32 sm:ml-32 items-center grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-10 md:gap-10 ">
+  <div className="mr-2 ml-2 sm:mr-20 sm:ml-20 lg:mr-32 lg:ml-32 items-center grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-10 md:gap-10 ">
     <div>
       <div>
         <div className="flex justify-center sm:justify-start">
@@ -88,7 +88,7 @@ export default function Footer() {
   </div>
 
   {/* <!--Copyright section--> */}
-  <div className="md:mr-32 md:ml-32 items-center">
+  <div className="sm:mr-20 sm:ml-20 lg:mr-32 lg:ml-32 items-center">
   <hr   className="h-1 mt-8 bg-black " />
   </div>
   <div className="bg-[#ffffff] text-center text-black text-sm md:text-2xl mt-2">

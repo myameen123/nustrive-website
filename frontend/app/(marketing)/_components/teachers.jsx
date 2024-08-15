@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/free-mode";
 import { FreeMode, Pagination } from "swiper/modules";
-import Link from "next/link";
+// import Link from "next/link";
 
 const Teachers = () => {
   return (
@@ -26,7 +26,7 @@ const Teachers = () => {
         <div className="flex items-center justify-center flex-col md:mt-6 mt-4 ">
           <Swiper
             breakpoints={{
-              750: {
+              640: {
                 slidesPerView: 2,
                 spaceBetween: 15,
               },
@@ -40,7 +40,7 @@ const Teachers = () => {
               clickable: true,
             }}
             modules={[FreeMode, Pagination]}
-            className="max-w-[95%] lg:max-w-[90%] "
+            className="max-w-[90%] sm:max-w-[90%] md:max-w-[80%] lg:max-w-[80%] "
           >
             {Tutors.map((teacher) => (
               <SwiperSlide key={teacher.id}>
