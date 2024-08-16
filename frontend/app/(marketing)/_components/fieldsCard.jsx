@@ -14,7 +14,7 @@ function FieldsCard({ test}) {
   };
 
   return (
-    <div className="mx-auto bg-[#4463FB] rounded-[10px] flex flex-col items-center"> {/* md:w-[33.33%] sm:w-[60%] w-[95%] */}
+    <div className="mx-auto bg-[#4463FB] rounded-[10px] flex flex-col items-center h-[600px]  md:w-[350px] w-[330px]"> {/* md:w-[33.33%] sm:w-[60%] w-[95%] */}
       <div>
         <Image src={examImg} alt="exam img" className=" w-[950px]" />
       </div>
@@ -22,9 +22,9 @@ function FieldsCard({ test}) {
         <h2 className=" text-xl font-bold text-[#030303]">{test.title}</h2>
         <p className=" text-white">{truncateText(test.desc, 20)}</p>
         <h3 className={`font-bold `}> Courses Offered </h3> {/*${id === 3 ? "mt-8" : ""}*/}
-        <ul className=" grid grid-cols-1  gap-2 text-[#ffffff]  w-full px- items-center"> {/*list-disc*/}
+        <ul className=" grid grid-cols-1  gap-2 text-[#ffffff]  w-full"> {/*list-disc*/}
           {test.courses.map((c, id) => (
-            <li key={id}>{c}</li>
+            <li key={id} className="text-center">{c}</li>
           ))}
         </ul>
       </div>

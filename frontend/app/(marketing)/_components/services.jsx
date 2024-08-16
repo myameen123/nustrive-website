@@ -36,15 +36,15 @@ const SERVICES = [
 ];
 function Services() {
   return (
-    <div className=" lg:mt-[50px] mt-20 mb-20">
-      <div className="lg:w-[90%] mx-auto w-[91%]">
-        <MainHeading heading="Online Learning Designed To Ace Your Entry Tests" />
-        {/* <h1>Online Learning Designed To Ace Your Entry Tests</h1> */}
-        <p className=" text-center text-[#000000]">
-          Comprehensive Courses, Practice Tests, and Expert Guidance to Ensure
-          Your Success in Entry Exams
-        </p>
-        <div className="flex items-center justify-center flex-col md:mt-6 mt-4 ">
+    <div className=" mt-8 mb-20 ">
+        <div className="">
+          <MainHeading heading="Online Learning Designed To Ace Your Entry Tests" />
+          <p className=" text-center text-[#000000]">
+            Comprehensive Courses, Practice Tests, and Expert Guidance to Ensure
+            Your Success in Entry Exams
+          </p>
+        </div>
+        <div className="flex items-center justify-center flex-col md:mt-6 mt-4">
           <Swiper
             breakpoints={{
               640: {
@@ -61,16 +61,15 @@ function Services() {
               clickable: true,
             }}
             modules={[FreeMode, Pagination]}
-            className="max-w-[90%] sm:max-w-[90%] md:max-w-[80%] lg:max-w-[80%] "
+            className="max-w-[90%] sm:max-w-[90%] md:max-w-[80%] lg:max-w-[80%]"
           >
             {SERVICES.map((service) => (
-              <SwiperSlide key={service.id}>
+              <SwiperSlide key={service.id} >
                 <Service  service={service} />
               </SwiperSlide>
             ))}
           </Swiper>
         </div>
-      </div>
     </div>
   );
 }

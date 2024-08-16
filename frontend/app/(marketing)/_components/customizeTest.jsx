@@ -38,15 +38,16 @@ const Disciplines = [
 
 function CustomizeTest() {
   return (
-    <div className=" mt-4">
-      <MainHeading
-        heading={`Customized Test Preparation To Navigate Your Path To Success`}
-      />
-      <p className=" text-center text-black">
-        Take Detailed Mock Tests With Various Subjects to Test Your Preparation
-        for Entry Levels.
-      </p>
-
+    <div className="mt-4">
+      <div className="">
+        <MainHeading
+          heading={`Customized Test Preparation To Navigate Your Path To Success`}
+        />
+        <p className=" text-center text-black">
+          Take Detailed Mock Tests With Various Subjects to Test Your
+          Preparation for Entry Levels.
+        </p>
+      </div>
       <div className="flex items-center justify-center flex-col md:mt-6 mt-4 ">
         <Swiper
           breakpoints={{

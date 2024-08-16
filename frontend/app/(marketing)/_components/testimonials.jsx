@@ -27,7 +27,7 @@ const Testimonials = () => {
       <div className="flex items-center justify-center flex-col md:mt-6 mt-4">
         <Swiper
           breakpoints={{
-            750: {
+            640: {
               slidesPerView: 2,
               spaceBetween: 15,
             },
