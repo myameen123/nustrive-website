@@ -14,10 +14,16 @@ const TestCard = ({field, test, onDelete, onEdit,setEdit }) => {
     onEdit(test);
   }
   
+  let url =  `/admin/engineering-test/${test._id}`;
+  if(field!=='engineering'){
+    url = `/admin/business-test/${test._id}`;
+  }
+  // field ==='engineering' ?( `/admin/engineering-test/${test._id}`):(`/admin/business-test/${test._id}`)
+  
   return (
     <div className="flex items-center justify-between p-4 h-16 w-full bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-lg transition-shadow">
       <div className="flex-1">
-        <Link href={field ==='engineering' ?( `/admin/engineering-test/${test._id}`):(`/admin/business-test/${test._id}`)}>
+        <Link href={url}>
           {test.title}
         </Link>
         <p className="text-gray-600">{test.description}</p>

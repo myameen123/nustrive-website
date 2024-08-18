@@ -3,7 +3,7 @@ import TestForm from "./testForm";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const EditTest = ({ edit, closeModal, test,fetchTests }) => {
+const EditTest = ({field, edit, closeModal, test,fetchTests }) => {
   const handleSubmit = async (data) => {
     try {
       const response = await axios.put(

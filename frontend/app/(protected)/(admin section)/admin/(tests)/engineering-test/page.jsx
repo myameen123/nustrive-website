@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import TestCard from "../_components/testCard";
-// import AddTestModal from "../_components/addTestModal";
 import ModalLayout from "@/components/modals/ModalLayout/modal-layout";
 import EditTest from "../_components/editTest";
 import NewTest from "../_components/newTest";
@@ -59,7 +58,6 @@ const TestList = () => {
   const handleEdit =  (test) => {
     try {
       setEdit(true);
-      // const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/test/engineering/getTest/${test._id}`);
       setCurrentTest(test)
       openModal()
     } catch (err) {
@@ -110,6 +108,7 @@ const TestList = () => {
               handleEdit={handleEdit}
               setTests={setTests}
               fetchTests={fetchTests}
+              field={'engineering'}
             />
           ) : (
             <NewTest

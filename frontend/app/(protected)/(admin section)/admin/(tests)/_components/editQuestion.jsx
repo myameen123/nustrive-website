@@ -4,12 +4,17 @@ import { useParams } from "next/navigation";
 import toast from "react-hot-toast";
 import axios from "axios";
 
-const EditQuestion = ({ edit, closeModal, question, fetchQuestions, handleEdit}) => {
+const EditQuestion = ({field, edit, closeModal, question, fetchQuestions, handleEdit}) => {
   const testId = useParams().Test;
+  
+  let url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/engineering/updateQuestion/${question._id}`;
+  if(field!=='engineering'){
+    url=`${process.env.NEXT_PUBLIC_BACKEND_URL}/question/business/updateQuestion/${question._id}`
+  }
+
   const handleSubmit = async (data) => {
     try {
-      const response = await axios.put(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/engineering/updateQuestion/${question._id}`,
+      const response = await axios.put(url,
         data
       );
       if (response) {

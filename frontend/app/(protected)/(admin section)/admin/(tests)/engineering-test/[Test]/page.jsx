@@ -136,31 +136,15 @@ const TestPage = () => {
             question={question}
             onDelete={handleDelete}
             onEdit={handleEdit}
+            field={'engineering'}
           />
         ))}
       </div>
-
-      {/* {modal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 mt-8">
-          <div className="bg-white rounded-xl shadow-2xl shadow-amber-200 w-1/2 h-[96%] overflow-y-auto">
-            <button onClick={closeModal} className="p-3 text-right text-xl">✖</button>
-            <NewEngineeringQuestion  />
-          </div>
-        </div>
-      )}
-      {isEditModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 mt-8">
-          <div className="bg-white rounded-xl shadow-2xl shadow-amber-200 w-1/2 h-[96%] overflow-y-auto">
-            <button onClick={closeEditModal} className="p-3 text-right text-xl">✖</button>
-            <EditEngineeringQuestion closeModal={closeEditModal} question={currentQuestion} fetchQuestions={fetchQuestions} />
-          </div>
-        </div>
-      )} */}
-
       {modal && (
         <ModalLayout open={true} onClose={closeModal}>
           {edit ? (
             <EditQuestion
+              field={'engineering'}
               edit={edit}
               fetchQuestions={fetchQuestions}
               closeModal={closeModal}

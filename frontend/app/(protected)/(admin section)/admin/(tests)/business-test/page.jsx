@@ -1,12 +1,16 @@
-'use client'
-import React, { useEffect, useState } from 'react';
-import TestCard from '../_components/businessTestCard';
-import AddTestModal from '../_components/addTestModal';
+"use client";
+import React, { useEffect, useState } from "react";
+import TestCard from "../_components/testCard";
+import ModalLayout from "@/components/modals/ModalLayout/modal-layout";
+import EditTest from "../_components/editTest";
+import NewTest from "../_components/newTest";
+import axios from "axios";
 
 const TestList = () => {
   const [tests, setTests] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentTest, setCurrentTest] = useState(null);
+  const [modal, setModal] = useState(false);
+  const [edit, setEdit] = useState(false);
+  const [currentTest, setCurrentTest] = useState({title:'', description:''});
 
   useEffect(() => {
     fetchTests();
@@ -14,90 +18,109 @@ const TestList = () => {
 
   const fetchTests = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/test/business/getTests`);
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/test/business/getTests`
+      );
       const data = await response.json();
       setTests(data);
     } catch (err) {
-      console.error('Error fetching tests:', err);
+      console.error("Error fetching tests:", err);
     }
   };
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/test/business/deleteTest/${id}`, {
-        method: 'DELETE',
-      });
-      setTests(tests.filter(test => test._id !== id));
+      await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/test/business/deleteTest/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      setTests(tests.filter((test) => test._id !== id));
     } catch (err) {
-      console.error('Error deleting test:', err);
+      console.error("Error deleting test:", err);
     }
   };
 
-  const handleAddTest = async (test) => {
+  const handleAdd = async (test) => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/test/business/addTest`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(test),
-      });
-      const newTest = await response.json();
-      setTests([...tests, newTest]);
+      setEdit(false)
+      console.log('test in handleAdd',test)
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/test/business/addTest`,test);
+      const newTest = await response.data;
+      fetchTests();
     } catch (err) {
-      console.error('Error adding test:', err);
+      console.error("Error adding test:", err);
     }
   };
 
-  const handleEditTest = async (test) => {
+ 
+  const handleEdit =  (test) => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/test/business/updateTest/${test._id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(test),
-      });
-      const updatedTest = await response.json();
-      setTests(tests.map(t => t._id === updatedTest._id ? updatedTest : t));
+      setEdit(true);
+      setCurrentTest(test)
+      openModal()
     } catch (err) {
-      console.error('Error updating test:', err);
+      console.error("Error updating test:", err);
     }
   };
 
-  const openAddModal = () => {
-    setCurrentTest(null);
-    setIsModalOpen(true);
+  const openModal = () => {
+    setModal(true);
   };
 
-  const openEditModal = (test) => {
-    setCurrentTest(test);
-    setIsModalOpen(true);
+  const closeModal = () => {
+    setModal(false);
+    setEdit(false)
   };
 
   return (
     <>
       <div className="flex justify-end">
         <button
-          className="p-2 w-fit text-white rounded-[5px] transition-all my-4 bg-[#111256] hover:bg-[#111256]/90"
-          onClick={openAddModal}
+          className="p-2 w-fit text-white rounded-[5px] transition-all my-4 bg-[#4463FB] hover:bg-[#4463FB]/90"
+          onClick={openModal}
         >
           Add Test
         </button>
       </div>
-      <div>business tests page
-        {/* <li>Test 1</li> */}
-        {tests.map(test => (
-          <TestCard key={test._id} test={test} onDelete={handleDelete} onEdit={openEditModal} />
+      <div>
+        {tests &&
+        tests.map((test) => (
+          <TestCard
+            setEdit={setEdit}
+            key={test._id}
+            field="business"
+            test={test}
+            onDelete={handleDelete}
+            onEdit={handleEdit}
+          />
         ))}
       </div>
-      <AddTestModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onAddTest={handleAddTest}
-        onEditTest={handleEditTest}
-        currentTest={currentTest}
-      />
+      {modal && (
+        <ModalLayout open={true} onClose={closeModal}>
+          {edit ? (
+            <EditTest
+              edit={edit}
+              closeModal={closeModal}
+              test={currentTest}
+              setCurrentTest={setCurrentTest}
+              handleEdit={handleEdit}
+              setTests={setTests}
+              fetchTests={fetchTests}
+              field={'business'}
+            />
+          ) : (
+            <NewTest
+              edit={edit}
+              closeModal={closeModal}
+              fetchTests={fetchTests}
+              handleAdd={handleAdd}
+              test={currentTest}
+            />
+          )}
+        </ModalLayout>
+      )}
     </>
   );
 };
