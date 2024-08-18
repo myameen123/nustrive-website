@@ -1,15 +1,18 @@
-'use client'
-import React, { useEffect, useState } from 'react';
-import QuestionCard from '../../_components/questionCard';
-import NewEngineeringQuestion from '../../_components/new-engineering-question';
-import EditEngineeringQuestion from '../../_components/edit-engineering-question';
-import { useParams } from 'next/navigation';
+"use client";
+import React, { useEffect, useState } from "react";
+import QuestionCard from "../../_components/questionCard";
+import { useParams } from "next/navigation";
+import ModalLayout from "@/components/modals/ModalLayout/modal-layout";
+import NewQuestion from "../../_components/newQuestion";
+import EditQuestion from "../../_components/editQuestion";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 const TestPage = () => {
   const params = useParams();
   const [questions, setQuestions] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [modal, setModal] = useState(false);
+  const [edit, setEdit] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(null);
 
   useEffect(() => {
@@ -18,42 +21,100 @@ const TestPage = () => {
 
   const fetchQuestions = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/question/engineering/getQuestion/${params.Test}`);
-      const data = await response.json();
-      console.log('question : ', data);
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/engineering/getQuestion/${params.Test}`
+      );
+      const data = await response.data;
       setQuestions(data);
-    } catch (err) {
-      console.error('Error fetching questions:', err);
+    } catch (error) {
+      toast.error(error.message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  };
+
+  const handleAdd = async (question) => {
+    try {
+      const data = await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/engineering/addEngineeringQuestion`,
+        question,
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      if (data) {
+        console.log("data: ", data);
+        fetchQuestions();
+      }
+    } catch (error) {
+      toast.error(error.message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   };
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/question/engineering/deleteQuestion/${id}`, { method: 'DELETE' });
-      setQuestions(questions.filter(question => question._id !== id));
-    } catch (err) {
-      console.error('Error deleting question:', err);
+      await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/engineering/deleteQuestion/${id}`,
+        { method: "DELETE" }
+      );
+      setQuestions(questions.filter((question) => question._id !== id));
+    } catch (error) {
+      toast.error(error.message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   };
 
-
-
   const openModal = () => {
-    setIsModalOpen(true);
+    setModal(true);
   };
 
   const closeModal = () => {
-    setIsModalOpen(false);
+    setEdit(false);
+    setModal(false);
   };
 
   const handleEdit = (question) => {
-    setCurrentQuestion(question);
-    setIsEditModalOpen(true);
-  };
-
-  const closeEditModal = () => {
-    setIsEditModalOpen(false);
-    setCurrentQuestion(null);
+    try {
+      setEdit(true);
+      openModal();
+      setCurrentQuestion(question);
+    } catch (error) {
+      toast.error(error.message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
   };
 
   return (
@@ -67,16 +128,23 @@ const TestPage = () => {
         </button>
       </div>
       <div>
-        <h1 className='p-4 text-2xl' >Engineering Questions</h1>
-        {questions.map(question => (
-          <QuestionCard key={question._id} question={question} onDelete={handleDelete} onEdit={handleEdit} />
+        <h1 className="p-4 text-2xl">Engineering Questions</h1>
+        {questions.map((question) => (
+          <QuestionCard
+            key={question._id}
+            setEdit={setEdit}
+            question={question}
+            onDelete={handleDelete}
+            onEdit={handleEdit}
+          />
         ))}
       </div>
-      {isModalOpen && (
+
+      {/* {modal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 mt-8">
           <div className="bg-white rounded-xl shadow-2xl shadow-amber-200 w-1/2 h-[96%] overflow-y-auto">
             <button onClick={closeModal} className="p-3 text-right text-xl">✖</button>
-            <NewEngineeringQuestion closeModal={closeModal} />
+            <NewEngineeringQuestion  />
           </div>
         </div>
       )}
@@ -87,6 +155,27 @@ const TestPage = () => {
             <EditEngineeringQuestion closeModal={closeEditModal} question={currentQuestion} fetchQuestions={fetchQuestions} />
           </div>
         </div>
+      )} */}
+
+      {modal && (
+        <ModalLayout open={true} onClose={closeModal}>
+          {edit ? (
+            <EditQuestion
+              edit={edit}
+              fetchQuestions={fetchQuestions}
+              closeModal={closeModal}
+              question={currentQuestion}
+              handleEdit={handleEdit}
+            />
+          ) : (
+            <NewQuestion
+              edit={edit}
+              closeModal={closeModal}
+              handleAdd={handleAdd}
+              fetchQuestions={fetchQuestions}
+            />
+          )}
+        </ModalLayout>
       )}
     </>
   );

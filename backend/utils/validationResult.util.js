@@ -2,7 +2,6 @@ import { validationResult } from "express-validator";
 
 export const validateResult = (req, res, next) => {
   console.log('in validateResult',req.body);
-  // console.log("in validateResult");
   const result = validationResult(req);
   console.log('1. result',result);
   if (!result.isEmpty()) {

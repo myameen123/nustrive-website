@@ -1,23 +1,24 @@
-'use client'
-
+"use client";
 import React, { useEffect, useState } from "react";
-import {  useSelector } from "react-redux"; //useDispatch,
-import {  useParams } from "next/navigation"; //redirect,
 import toast from "react-hot-toast";
 import { RotateCw } from "lucide-react";
-import axios from "axios";
+import { useSelector } from "react-redux"; //useDispatch,
 
-function NewEngineeringQuestion({ closeModal }) {
-  const params = useParams();
-  // const dispatch = useDispatch();
+// import {  useParams } from "next/navigation"; //redirect,
+
+function QuestionForm({
+  edit,
+  question,
+  testId,
+  closeModal,
+  handleSelectFile,
+  handleSubmit,
+}) {
   const { loading, success, error } = useSelector(
     (state) => state.addNewEngineeringQuestion
   );
-
-  const [file, setFile] = useState([]);
-
   const [dataForm, setDataForm] = useState({
-    test:params.Test,
+    test: testId || "",
     text: "",
     subject: "",
     option1: "",
@@ -26,95 +27,53 @@ function NewEngineeringQuestion({ closeModal }) {
     option4: "",
   });
   const [imagesPreview, setImagesPreview] = useState([]);
+  const [file, setFile] = useState([]);
 
   useEffect(() => {
-    if (error) {
-      toast.error(error, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-    }
-    if (success) {
-      toast.success("Question added Successfully", { duration: 5000 });
-      setImagesPreview([]);
-      setFile([]);
-      setDataForm({
-        text: "",
-        subject: "",
-        option1: "",
-        option2: "",
-        option3: "",
-        option4: "",
-      });
-      closeModal();
-    }
-  }, [error, success, closeModal]);//dispatch, 
+    setImagesPreview([]);
+    setFile([]);
+    setDataForm({
+      test: testId,
+      text: "" || question.text,
+      subject: "" || question.subject,
+      option1: "" || question.options[0],
+      option2: "" || question.options[1],
+      option3: "" || question.options[2],
+      option4: "" || question.options[3],
+    });
+  }, [question]);
+
+  const handeUpload = (e) => {
+    e.preventDefault();
+    const updatedQuestion = edit
+      ? {
+          text: dataForm.text,
+          options: [
+            dataForm.option1,
+            dataForm.option2,
+            dataForm.option3,
+            dataForm.option4,
+          ],
+          subject: dataForm.subject,
+        }
+      : dataForm;
+    handleSubmit(updatedQuestion);
+    closeModal();
+  };
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     setDataForm({ ...dataForm, [name]: value });
   };
 
-  const handleSelectFile = (e) => {
-    const files = Array.from(e.target.files);
-    setFile(files);
-    setImagesPreview([]);
-
-    files.forEach((file) => {
-      const reader = new FileReader();
-
-      reader.onload = () => {
-        if (reader.readyState === 2) {
-          setImagesPreview((old) => [...old, reader.result]);
-        }
-      };
-      reader.readAsDataURL(file);
-    });
-  };
-
-  const handleUpload = async (e) => {
-  try {
-    e.preventDefault();
-    const data = await axios.post(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/engineering/addEngineeringQuestion`,
-      dataForm,
-      {
-        headers:{'Content-Type':'application/json'},
-        withCredentials:true
-      }
-    )
-    if(data){
-      // redirect(`test/engineering-test/${param.Test}`)
-      closeModal()
-    }
-  } catch (error) {
-    toast.error(error.message, {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  }
-};
-
-  
-
   return (
     <>
-      <form onSubmit={handleUpload} className="md:w-2/3 w-full m-auto">
+      <form onSubmit={handeUpload} className="gap-6">
         <div>
-          <h1 className="text-xl my-4 text-center font-semibold">Add Question</h1>
-          <div className="w-full grid grid-cols-1 gap-6">
+          <h1 className="text-xl  text-center font-semibold">
+            {edit ? "Edit Question" : "Add Question"}
+          </h1>
+          <div className="">
             <div className="border-y rounded-[4px]">
               <textarea
                 onChange={onChangeHandler}
@@ -133,6 +92,7 @@ function NewEngineeringQuestion({ closeModal }) {
               </label>
               <input
                 type="file"
+                name="picture"
                 id="picture"
                 accept="image/*"
                 multiple
@@ -231,7 +191,7 @@ function NewEngineeringQuestion({ closeModal }) {
               <button
                 type="submit"
                 disabled={loading}
-                className={`py-2 px-6 rounded-lg bg-green-500 text-white hover:bg-green-400 ${
+                className={`py-2 px-6 mt-4 rounded-[10px] bg-[#4483fb] text-white hover:bg-[#4463fb] ${
                   loading && "bg-gray-500 cursor-not-allowed"
                 }`}
               >
@@ -245,4 +205,4 @@ function NewEngineeringQuestion({ closeModal }) {
   );
 }
 
-export default NewEngineeringQuestion;
+export default QuestionForm;

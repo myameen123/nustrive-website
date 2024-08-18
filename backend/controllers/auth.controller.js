@@ -1,49 +1,7 @@
-// import User from "../modals/user.modal.js";
-
-// export const loginUser = async (req, res) => {
-//   const { email, password } = req.body;
-//   const user = await User.findOne({
-//     email,
-//   }).select("+password");
-//   if (!user) {
-//     return res.status(400).json({
-//       success: false,
-//       error: {
-//         status: true,
-//         message: "Invalid email or password",
-//       },
-//       // message: "Invalid email or password",
-//     });
-//   }
-//   console.log(user);
-//   const isPasswordMatch = user.password === password;
-//   if (!isPasswordMatch) {
-//     return res.status(400).json({
-//       success: false,
-//       error: {
-//         status: true,
-//         message: "Invalid email or password",
-//       },
-//       // message: "Invalid email or password",
-//     });
-//   }
-
-//   res.status(200).json({
-//     success: true,
-//     message: "Login success",
-//     error: {
-//       status: false,
-//       message: "Invalid email or password",
-//     },
-//   });
-// };
-
 import { v4 } from "uuid";
 import bcrypt from "bcrypt";
 import { User } from "../models/user.model.js";
-
 import { logger } from "../config/winston.config.js";
-// import { resSuccess, resFailure } from "../utils/responseObject.util.js";
 import { resSuccess, resFailure } from "../utils/responseObject.utils.js";
 import {
   getUserByEmail,
@@ -54,20 +12,19 @@ import {
   generateTokens,
   verifyRefreshToken,
   verifyEmailVerificationToken,
-  // verifyAccessToken,
+  verifyAccessToken,
 } from "../utils/jwt.util.js";
 import {
   addRefreshTokenToDb,
-  // deleteRefreshToken,
+  deleteRefreshToken,
   getRefreshTokenById,
 } from "../services/auth.service.js";
-// import { hashToken } from "../utils/hashToken.util.js";
-
 import { authErrors } from "../errors/auth.error.js";
 import {
   createRoleBasedUser,
-  // getRoleBasedUserData,
+  getRoleBasedUserData,
 } from "./helpers/auth.helper.js";
+// import { hashToken } from "../utils/hashToken.util.js";
 
 export const registerUser = async (req, res) => {
   try {
@@ -204,9 +161,9 @@ export const refreshToken = async (req, res, next) => {
   }
 };
 
-export const verifyEmailVerificationToken_ = async (req, res, next) => {
+export const verifyEmailVerificationToken_ = async (req, res) => {
   try {
-    // console.log("inside verifyEmailVerificationToken_");
+    console.log("inside verifyEmailVerificationToken_",req.params);
     const { token } = req.params;
     const { email } = verifyEmailVerificationToken(token);
 
@@ -240,27 +197,24 @@ export const getAll = async (req, res) => {
   }
 };
 
+
 export const getMe = async (req, res, next) => {
   try {
     // const accessToken = req.cookie?.accessToken||req.headers.authorization.split(" ")[1];
     // const verifiedAccessToken = verifyAccessToken(accessToken);
-
     // const user = await getUserById(verifiedAccessToken.userId);
     // const allUsers = await User.find({});
     const user = req.user;
     if (!user) {
       return resFailure(res, authErrors.UNAUTHORIZED);
     }
-
     if (!user.isEmailVerified) {
       return resFailure(res, authErrors.EMAIL_NOT_VERIFIED);
     }
-
     // const roleBasedUserData = await getRoleBasedUserData(
     //   user.userType,
     //   user.id
     // );
-
     return resSuccess(res, "User data returned successfully", {
       user,
     });

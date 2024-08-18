@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import bcrypt from "bcrypt";
+// import bcrypt from "bcrypt";
 
 // Base User Schema
 const userSchema = new mongoose.Schema(
@@ -46,7 +46,50 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    grade: {
+      type: String,
+      required: false,
+    },
+    school: {
+      type: String,
+      required: false,
+    },
+    preparationLevel: {
+      type: String,
+      enum: ["beginner", "intermediate", "advanced"],
+      required: false,
+    },
+    targetScore: {
+      type: Number,
+      required: false,
+    },
+    subjects: {
+      type: [String],
+      required: false,
+    },
+    testDate: {
+      type: Date,
+      required: false,
+    },
+    yearsOfExperience: {
+      type: Number,
+      required: false,
+    },
+    nustPreparationExperience: {
+      type: Number,
+      required: false,
+    },
+    subjectsTutored: {
+      type: [String],
+      required: false,
+    },
+    successRate: {
+      type: Number,
+      required: false,
+    },
   },
+  
+
   {
     timestamps: true,
     // discriminatorKey: "role",

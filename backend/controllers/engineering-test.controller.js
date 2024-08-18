@@ -4,6 +4,7 @@ import EngineeringTest from "../models/engineering-test.model.js";
 export const addTest = async (req, res) => {
     try {
         const { title, description } = req.body;
+        console.log('req.body', req.body)
         const newTest = new EngineeringTest({ title, description });
         console.log('newTest: ', newTest);
         await newTest.save();

@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
 export const generateAccessToken = (user) => {
-  // console.log("generateAccessToken -> user", user);
+  console.log("generateAccessToken -> user", user);
   return jwt.sign(
     {
       userId: user.id,

@@ -1,10 +1,10 @@
 "use client";
-
 import CustomTextField from "@/components/inputs/TextField";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { RotateCw } from "lucide-react";
 
+// import { useSelector } from "react-redux";
+// import { Input } from "postcss";
 // import { useRouter } from "next/navigation";
 // import toast from "react-hot-toast";
 
@@ -25,7 +25,7 @@ const RegisterForm = ({ user, edit, handleSubmit }) => {
   useEffect(() => {
     if (user) {
       setState({
-        name: user.name||'',
+        name: user.name || "",
         email: user.email || "",
         password: user.password || "",
         role: user.role || "",
@@ -47,8 +47,11 @@ const RegisterForm = ({ user, edit, handleSubmit }) => {
   };
 
   return (
-    <div className="flex flex-col justify-center p-4 items-center border md:w-1/2 w-full mx-auto shadow-[8px]">
-      <h1 className="text-center font-bold text-2xl my-4"> {edit ? "Edit User" : "Register User"}</h1>
+    <div className="flex flex-col justify-center p-4 items-center border w-full mx-auto shadow-[8px]">
+      <h1 className="text-center font-bold text-2xl my-4">
+        {" "}
+        {edit ? "Edit User" : "Register User"}
+      </h1>
       <form className="flex flex-col gap-4 w-full ">
         <div>
           <div>
@@ -78,25 +81,26 @@ const RegisterForm = ({ user, edit, handleSubmit }) => {
             placeholder="example@gmail.com"
             onChange={handleChange}
             required
+            disabled={edit}
           />
         </div>
-        {!edit && (
-          <div>
-            <div className="mb-2 block">
-              <label htmlFor="password">User Password</label>
-            </div>
-            <CustomTextField
-              size="small"
-              id="password"
-              name="password"
-              type="password"
-              value={state.pasword}
-              placeholder="Password"
-              onChange={handleChange}
-              required
-            />
+        {/* {!edit && ( */}
+        <div>
+          <div className="mb-2 block">
+            <label htmlFor="password">User Password</label>
           </div>
-        )}
+          <CustomTextField
+            size="small"
+            id="password"
+            name="password"
+            type="password"
+            value={state.pasword}
+            placeholder="Password"
+            onChange={handleChange}
+            required
+          />
+        </div>
+        {/* )} */}
         <div>
           <div className="mb-2 block">
             <label htmlFor="role">User Role</label>
@@ -125,6 +129,8 @@ const RegisterForm = ({ user, edit, handleSubmit }) => {
               <RotateCw className="mr-2 h-4 w-4 animate-spin" />
               Please wait
             </>
+          ) : edit ? (
+            <span>Update</span>
           ) : (
             <span>Register</span>
           )}

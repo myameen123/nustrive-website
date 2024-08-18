@@ -28,10 +28,9 @@ const EditUser = ({ user, edit, fetchUsers, closeModal }) => {
   };
 
   return (
-    <div>
-      editUser
+    <>
       <RegisterForm user={user} edit={edit} handleSubmit={handleSubmit} />
-    </div>
+    </>
   );
 };
 

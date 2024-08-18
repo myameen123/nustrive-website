@@ -1,50 +1,3 @@
-// 'use client'
-
-// import React, {useEffect, useState} from 'react';
-// // import axios from 'axios'
-
-// const UsersPage = () => {
-//   const [users, setUsers] = useState([]);
-
-//   useEffect(()=>{
-//     console.log('in effect before')
-//     fetchUsers()
-//     console.log('in effect after')
-//   },[])
-
-//   const fetchUsers =async ()=>{
-//     try{
-//       console.log('1. in ')
-//       const response = await fetch(`http://localhost:4000/api/auth/get-all`) //${process.env.NEXT_PUBLIC_BACKEND_URL}
-//       console.log('response', response);
-//     if(!response.ok){
-//       throw new Error('Netword error is not ok');
-
-//     }
-//     console.log('2. in fetch')
-//     const users =  response.json()
-//     setUsers(users);
-//     console.log('users fetch',users)
-//     }catch(err){
-//       console.log(err.message);
-//     }
-//     console.log('3. in ')
-//   }
-
-//   console.log('users', users)
-//   return (
-//     <div> users page
-//       {users.map(user=>(
-//         <ul key={user.id}>
-//             <li>{user.name}</li>
-//         </ul>
-//       ))}
-//     </div>
-//   )
-// }
-
-// export default UsersPage
-
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -52,7 +5,6 @@ import UserCard from "../_components/UserCard";
 import axios from 'axios';
 import RegisterUser from "../_components/registerUser";
 import EditUser from "../_components/editUser";
-// import Modal from "../../(tests)/_components/modal";
 import ModalLayout from "@/components/modals/ModalLayout/modal-layout";
 
 const UsersPage = () => {
@@ -71,7 +23,7 @@ const UsersPage = () => {
     try {
       console.log("1. in fetchUsers");
       const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/get-all`);
-      console.log("response", response);
+      // console.log("response", response.json());
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
