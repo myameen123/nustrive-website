@@ -19,7 +19,7 @@ const TestList = () => {
   const fetchTests = async () => {
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/test/business/getTests`
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/test/business/get`
       );
       const data = await response.json();
       setTests(data);
@@ -31,12 +31,13 @@ const TestList = () => {
   const handleDelete = async (id) => {
     try {
       await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/test/business/deleteTest/${id}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/test/business/delete/${id}`,
         {
           method: "DELETE",
         }
       );
-      setTests(tests.filter((test) => test._id !== id));
+      // setTests(tests.filter((test) => test._id !== id));
+      fetchTests()
     } catch (err) {
       console.error("Error deleting test:", err);
     }
@@ -46,7 +47,7 @@ const TestList = () => {
     try {
       setEdit(false)
       console.log('test in handleAdd',test)
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/test/business/addTest`,test);
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/test/business/add`,test);
       const newTest = await response.data;
       fetchTests();
     } catch (err) {

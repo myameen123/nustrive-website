@@ -98,7 +98,7 @@ export const updateQuestion = async (req, res) => {
 // Controller function to delete a question by ID
 export const deleteQuestion = async (req, res) => {
   try {
-    const deletedQuestion = await Questions.findByIdAndDelete(req.params.id);
+    const deletedQuestion = await BusinessQuestions.findByIdAndDelete(req.params.id);
     if (!deletedQuestion) {
       return res.status(404).json({ error: "Question not found" });
     }

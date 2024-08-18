@@ -12,18 +12,18 @@ const upload = multer({});
 const router = express.Router();
 
 // Route to add a new question
-router.post("/engineering/addEngineeringQuestion", addEngineeringQuestion);
+router.post("/add", addEngineeringQuestion);
 
 // Route to get all questions
-router.get("/engineering/getQuestion/:testId", getAllQuestions);
+router.get("/get/:testId", getAllQuestions);
 
 // Route to get a question by ID
-router.get("/engineering/getQuestion/:id", getQuestionById);
+router.get("/get/:id", getQuestionById);
 
 // Route to update a question by ID
-router.put("/engineering/updateQuestion/:id", updateQuestion);
+router.put("/update/:id", updateQuestion);
 
 // Route to delete a question by ID
-router.delete("/engineering/deleteQuestion/:id", deleteQuestion);
+router.delete("/delete/:id", deleteQuestion);
 
 export default router;

@@ -4,12 +4,13 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const EditTest = ({field, edit, closeModal, test,fetchTests }) => {
+  let url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/test/engineering/update/${test._id}`
+  if(field!=='engineering'){
+    url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/test/business/update/${test._id}`
+  }
   const handleSubmit = async (data) => {
     try {
-      const response = await axios.put(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/test/engineering/updateTest/${test._id}`,
-        data
-      );
+      const response = await axios.put(url,data);
       if (response) {        
         closeModal();
         fetchTests()

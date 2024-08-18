@@ -48,8 +48,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/mock-test", mockTestRouter);
-app.use("/api/question", engineeringuqQestionRouter);
-app.use('/api/test', engineeringTestRouter)
+app.use("/api/question/engineering", engineeringuqQestionRouter);
+app.use('/api/test/engineering', engineeringTestRouter)
 app.use('/api/question/business', businessQuestioRouter)
 app.use('/api/test/business',businessTestRouter)
 console.log("in index.js");

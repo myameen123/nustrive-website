@@ -2,9 +2,7 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { RotateCw } from "lucide-react";
-import { useSelector } from "react-redux"; //useDispatch,
-
-// import {  useParams } from "next/navigation"; //redirect,
+import { useSelector } from "react-redux"; 
 
 function QuestionForm({
   edit,

@@ -18,7 +18,6 @@ const TestCard = ({field, test, onDelete, onEdit,setEdit }) => {
   if(field!=='engineering'){
     url = `/admin/business-test/${test._id}`;
   }
-  // field ==='engineering' ?( `/admin/engineering-test/${test._id}`):(`/admin/business-test/${test._id}`)
   
   return (
     <div className="flex items-center justify-between p-4 h-16 w-full bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-lg transition-shadow">

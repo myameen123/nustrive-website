@@ -22,7 +22,7 @@ const TestPage = () => {
   const fetchQuestions = async () => {
     try {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/business/getQuestion/${params.Test}`
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/business/get/${params.Test}`
       );
       const data = await response.data;
       setQuestions(data);
@@ -43,7 +43,7 @@ const TestPage = () => {
   const handleAdd = async (question) => {
     try {
       const data = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/business/addBusinessQuestion`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/business/add`,
         question,
         {
           headers: { "Content-Type": "application/json" },
@@ -71,7 +71,7 @@ const TestPage = () => {
   const handleDelete = async (id) => {
     try {
       await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/business/deleteQuestion/${id}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/business/delete/${id}`,
         { method: "DELETE" }
       );
       setQuestions(questions.filter((question) => question._id !== id));
