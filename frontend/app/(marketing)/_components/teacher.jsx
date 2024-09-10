@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 const Teacher = ({teacher}) => {
   return (
-    <div className="pb-2 mx-auto bg-[#ffffff]  rounded-[12px] flex flex-col items-start border border-2-[#E6E4FF] transition-shadow h-[490px]  md:w-[350px] w-[330px]">
+    <div className="pb-2 mx-auto bg-[#ffffff]  rounded-[12px] flex flex-col items-start border border-2-[#E6E4FF] transition-shadow "> {/*h-[490px]  md:w-[350px] w-[330px]*/}
       <div>
         <Image src={teacher.photo} alt="exam img" className="w-[950px]  rounded-[12px] " />
       </div>

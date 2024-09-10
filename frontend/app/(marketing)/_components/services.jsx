@@ -37,39 +37,20 @@ const SERVICES = [
 function Services() {
   return (
     <div className=" mt-8 mb-20 ">
-        <div className="">
-          <MainHeading heading="Online Learning Designed To Ace Your Entry Tests" />
-          <p className=" text-center text-[#000000]">
-            Comprehensive Courses, Practice Tests, and Expert Guidance to Ensure
-            Your Success in Entry Exams
-          </p>
+      <div className="">
+        <MainHeading heading="Online Learning Designed To Ace Your Entry Tests" />
+        <p className=" text-center text-[#000000]">
+          Comprehensive Courses, Practice Tests, and Expert Guidance to Ensure
+          Your Success in Entry Exams
+        </p>
+      </div>
+      <div className="flex  items-center justify-center  md:mt-6 mt-4 ">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 max-w-[90%] sm:max-w-[90%] md:max-w-[80%] lg:max-w-[80%]">
+          {SERVICES.map((service) => (
+              <Service key={service.id} service={service} />
+          ))}
         </div>
-        <div className="flex items-center justify-center flex-col md:mt-6 mt-4">
-          <Swiper
-            breakpoints={{
-              640: {
-                slidesPerView: 2,
-                spaceBetween: 15,
-              },
-              1000: {
-                slidesPerView: 3,
-                spaceBetween: 15,
-              },
-            }}
-            freeMode={true}
-            pagination={{
-              clickable: true,
-            }}
-            modules={[FreeMode, Pagination]}
-            className="max-w-[90%] sm:max-w-[90%] md:max-w-[80%] lg:max-w-[80%]"
-          >
-            {SERVICES.map((service) => (
-              <SwiperSlide key={service.id} >
-                <Service  service={service} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
+      </div>
     </div>
   );
 }
