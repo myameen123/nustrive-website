@@ -1,7 +1,8 @@
 "use client";
 // import Navbar from "@/app/(admin section)/_components/navbar";
 // import Sidebar from "@/app/(admin section)/_components/sidebar";
-import Loader from "@/components/misc/loader/loader";
+// import Loader from "@/components/misc/loader/loader.jsx";
+import Loader from "../../../../components/misc/loader/loader";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 // import Navbar from "../_components/navbar";
@@ -18,6 +19,7 @@ import Sidebar from "../../_components/sidebar";
 
 export default function StudentLayout({ children }) {
   const { user, isAuthenticated } = useSelector((state) => state.userLogin);
+  console.log('user->student: ', user)
   const router = useRouter();
   useEffect(() => {
     console.log(user);

@@ -30,6 +30,9 @@ function LoginForm() {
       if (user && user.role === "student") {
         router.push("/student");
       }
+      if (user && user.role === "teacher") {
+        router.push("/teacher");
+      }
     }
   }, [error, isAuthenticated, user, router, errorToastId]);
 

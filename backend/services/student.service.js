@@ -21,7 +21,7 @@ export const createStudent = async (
       role: "student",
     });
 
-    console.log("User created:", user);
+    console.log("Student created:", user);
 
     // Create the student with user id reference
     const student = await Student.create({

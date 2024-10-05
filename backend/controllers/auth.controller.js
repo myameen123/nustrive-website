@@ -28,7 +28,8 @@ import {
 
 export const registerUser = async (req, res) => {
   try {
-    const { email, password, name, userType = "student" } = req.body;
+    console.log('req.body', req.body)
+    const { email, password, name, role } = req.body;
 
     const existedUser = await User.findOne({ email });
 
@@ -37,7 +38,7 @@ export const registerUser = async (req, res) => {
     }
 
     // console.log("auth controller", req.body);
-    createRoleBasedUser(res, email, password, name, userType);
+    createRoleBasedUser(res, email, password, name, role);
     // console.log(student, user);
   } catch (err) {
     logger.error(err);
@@ -80,7 +81,7 @@ export const loginUser = async (req, res, next) => {
     };
 
     // const roleBasedUserData = await getRoleBasedUserData(
-    //   user.userType,
+    //   user.role,
     //   user.id
     // );
     // return resSuccess(res, "Login Successful", {
@@ -212,7 +213,7 @@ export const getMe = async (req, res, next) => {
       return resFailure(res, authErrors.EMAIL_NOT_VERIFIED);
     }
     // const roleBasedUserData = await getRoleBasedUserData(
-    //   user.userType,
+    //   user.role,
     //   user.id
     // );
     return resSuccess(res, "User data returned successfully", {
@@ -248,10 +249,10 @@ export const deleteUser = async (req, res) => {
     if (!user) {
       return res.status(400).json({ message: "User not found" });
     }
-    console.log("deleted");
+    // console.log("deleted");
     return res.status(200).json({ message: "Successfully user deleted." });
   } catch (err) {
-    console.log("err.message: ", err.message);
+    // console.log("err.message: ", err.message);
   }
 };
 
@@ -259,18 +260,18 @@ export const updateUser = async (req, res) => {
   try {
     const user = await User.findById({ _id: req.params.id });
     if (!user) {
-      console.log("1.update");
+      // console.log("1.update");
       return res.status(404).json({ message: "User not found." });
     }
-    console.log("req.body", req.body);
+    // console.log("req.body", req.body);
     const updateUser = await User.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
     if (!updateUser) {
-      console.log("2.update");
+      // console.log("2.update");
       return res.status(400).json({ message: "User not Updated" });
     }
-    console.log("updated");
+    // console.log("updated");
     return res.json(updateUser);
   } catch (err) {
     console.log("err.message: ", err.message);

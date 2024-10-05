@@ -24,8 +24,35 @@ const studentRoutes = [
   },
   {
     icon: Folder,
+    label: "Courses",
+    href: "/student/courses",
+  },
+  {
+    icon: Folder,
     label: "Tests",
     href: "/student/tests",
+  },
+];
+const teacherRoutes = [
+  {
+    icon: LayoutDashboard,
+    label: "Dashboard",
+    href: "/teacher",
+  },
+  {
+    icon: Folder,
+    label: "Files",
+    href: "/teacher/files",
+  },  
+  {
+    icon: Folder,
+    label: "Tests",
+    href: "/teacher/tests",
+  },
+  {
+    icon: Folder,
+    label: "Courses",
+    href: "/teacher/courses",
   },
 ];
 const adminRoutes = [
@@ -33,6 +60,11 @@ const adminRoutes = [
     icon: LayoutDashboard,
     label: "Dashboard",
     href: "/admin",
+  },
+  {
+    icon: LayoutDashboard,
+    label: "Courses",
+    href: "/admin/courses",
   },
   {
     icon: DraftingCompass,
@@ -53,7 +85,8 @@ const adminRoutes = [
 function SidebarRoutes() {
   const pathname = usePathname();
   const isStudentPage = pathname.includes("/student");
-  const routes = isStudentPage ? studentRoutes : adminRoutes;
+  const isTeacherPage = pathname.includes("/teacher")
+  const routes = isStudentPage ? studentRoutes : (isTeacherPage ? teacherRoutes : adminRoutes);
 
   return (
     <div className=" flex flex-col w-full gap-y-2">

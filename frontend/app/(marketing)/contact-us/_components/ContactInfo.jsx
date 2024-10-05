@@ -6,7 +6,7 @@ import { FaYoutube } from "react-icons/fa";
 import { FaFacebookF, FaWhatsapp } from "react-icons/fa";
 import { FiInstagram } from "react-icons/fi";
 
-import generalInfo from "@/constants/general-info";
+import generalInfo from "../../../../constants/general-info";
 
 function ContactInfo() {
   return (

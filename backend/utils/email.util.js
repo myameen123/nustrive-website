@@ -17,9 +17,10 @@ const transporter = nodemailer.createTransport({
 });
 
 const mailConfigurations = (name, to) => {
+  console.log('mail send name', name)
   console.log('mail send to ', to)
   const emailVerificationToken = generateEmailVerificationToken(to);
-  console.log(emailVerificationToken);
+  console.log('emailVericationToken',emailVerificationToken);
   const url = `http://${process.env.HOST}:${process.env.PORT}/api/auth/verify/${emailVerificationToken}`;
   console.log('url', url)
   return {

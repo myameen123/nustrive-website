@@ -15,9 +15,9 @@ import {
 } from "../../services/student.service.js";
 import { resFailure } from "../../utils/responseObject.utils.js";
 
-export const getRoleBasedUserData = async (userType, id) => {
+export const getRoleBasedUserData = async (role, id) => {
   let roleBasedUserData, clonedUserObject;
-  switch (userType) {
+  switch (role) {
     case "student":
       roleBasedUserData = await getStudentById(id);
       clonedUserObject = Object.assign({}, roleBasedUserData);
@@ -25,7 +25,9 @@ export const getRoleBasedUserData = async (userType, id) => {
       return roleBasedUserData;
     case "teacher":
       roleBasedUserData = await getTeacherById(id);
+      console.log('roleBasedUserData', roleBasedUserData)
       clonedUserObject = Object.assign({}, roleBasedUserData);
+      console.log('cloneUserObject',clonedUserObject)
       delete clonedUserObject.password;
       return roleBasedUserData;
     default:
@@ -38,11 +40,11 @@ export const createRoleBasedUser = async (
   email,
   password,
   name,
-  userType
+  role
 ) => {
   try {
-    console.log("auth helper", email, password, name, userType);
-    switch (userType.toLowerCase()) {
+    console.log("auth helper", email, password, name, role);
+    switch (role.toLowerCase()) {
       case "student":
         await createStudent(res, email, password, name);
         sendVerificationEmail(name, email);

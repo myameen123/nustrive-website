@@ -24,12 +24,15 @@ export default function RootLayout({ children }) {
   // console.log("main layout page : ", children)
   return (
     <html lang="en">
-      <body className={``} style={{
-  "fontFamily":[ "DM Sans", "sans-serif"],
-  "fontOpticalSizing": "auto",
-  "fontWeight": "400",
-  "fontStyle": "normal",
-}}>
+      <body
+        className={``}
+        style={{
+          fontFamily: ["DM Sans", "sans-serif"],
+          fontOpticalSizing: "auto",
+          fontWeight: "400",
+          fontStyle: "normal",
+        }}
+      >
         <ToasterProvider />
         <ReduxProviders>{children}</ReduxProviders>
       </body>

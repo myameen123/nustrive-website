@@ -10,6 +10,11 @@ import engineeringuqQestionRouter from "./routers/engineering-questions.route.js
 import engineeringTestRouter from './routers/engineering-test.route.js';
 import businessQuestioRouter from './routers/business-questions.route.js';
 import businessTestRouter from './routers/business-test.route.js'
+import SubjectTestRouter from './routers/subject-test.route.js'
+import SubjectFileRouter from './routers/subject-file.route.js'
+import FilesRouter from './routers/files.route.js'
+import CourseContentRouter from './routers/course-content.route.js'
+import CourseRouter from './routers/course.route.js';
 import cloudinary from "cloudinary";
 
 // import { cookie } from "express-validator";
@@ -54,6 +59,12 @@ app.use('/api/question/business', businessQuestioRouter)
 app.use('/api/test/business',businessTestRouter)
 console.log("in index.js");
 app.use("/api/auth", authRouter);
+app.use('/api/subject/test', SubjectTestRouter)
+app.use('/api/file', FilesRouter)
+app.use('/api/subject/file', SubjectFileRouter)
+app.use('/api/course',CourseRouter)
+app.use('/api/courseContent', CourseContentRouter)
+
 
 console.log("after authRouter");
 const PORT = process.env.PORT || 5000;

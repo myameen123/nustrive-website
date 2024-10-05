@@ -43,6 +43,7 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@types/node": "22.7.4",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "13.4.12",

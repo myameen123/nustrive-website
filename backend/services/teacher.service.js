@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt";
 import { Teacher, User } from "../models/user.model.js";
+import { resFailure, resSuccess } from "../utils/responseObject.utils.js";
 
 // import { db } from "../utils/db.util.js";
 
@@ -19,7 +20,7 @@ export const createTeacher = async (
       role: "teacher",
     });
 
-    console.log("User created:", user);
+    console.log("Teacher created:", user);
 
     // Create the teacher with user id reference
     const teacher = await Teacher.create({
@@ -28,7 +29,7 @@ export const createTeacher = async (
 
     console.log("teacher created:", teacher);
 
-    console.log("teacher service", email, password, name);
+    // console.log("teacher service", email, password, name);
     // return teacher;
     return resSuccess(res, "User added to the system success", teacher);
   } catch (error) {

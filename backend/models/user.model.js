@@ -63,6 +63,10 @@ const userSchema = new mongoose.Schema(
       type: Number,
       required: false,
     },
+    category:{
+      type:String,
+      required:false,
+    },
     subjects: {
       type: [String],
       required: false,
@@ -88,15 +92,12 @@ const userSchema = new mongoose.Schema(
       required: false,
     },
   },
-  
-
   {
     timestamps: true,
     // discriminatorKey: "role",
   }
 );
 
-const User = mongoose.model("User", userSchema);
 
 // Student Schema
 const studentSchema = new mongoose.Schema({
@@ -134,6 +135,11 @@ const studentSchema = new mongoose.Schema({
 
 // Teacher Schema
 const teacherSchema = new mongoose.Schema({
+  id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
   subject: {
     type: String,
     required: false,
@@ -145,6 +151,10 @@ const teacherSchema = new mongoose.Schema({
   nustPreparationExperience: {
     type: Number,
     required: false,
+  },
+  category:{
+    type:[String],
+    required:false,
   },
   subjectsTutored: {
     type: [String],
@@ -159,6 +169,7 @@ const teacherSchema = new mongoose.Schema({
 // Create the Student and Teacher models using discriminator
 // const Student = User.discriminator("student", studentSchema);
 // const Teacher = User.discriminator("teacher", teacherSchema);
+const User = mongoose.model("User", userSchema);
 const Student = mongoose.model("Student", studentSchema);
 const Teacher = mongoose.model("Teacher", teacherSchema);
 
