@@ -18,7 +18,7 @@ import Sidebar from "../../_components/sidebar";
 
 export default function TeacherLayout({ children }) {
   const { user, isAuthenticated } = useSelector((state) => state.userLogin);
-  console.log('user->teacher : ',user)
+  // console.log('user->teacher : ',user)
   const router = useRouter();
   useEffect(() => {
     // console.log(user);

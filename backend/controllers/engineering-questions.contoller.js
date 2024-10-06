@@ -21,8 +21,8 @@ export const addEngineeringQuestion = async (req, res) => {
       return res.status(400).json({ error: "All fields are required" });
     }
     console.log('req.body', req.body);
-    const imagesLinks = [];
     const options = [option1, option2, option3, option4];
+    const imagesLinks = [];
 
     if (req.files && req.files.length > 0) {
       const b64 = Buffer.from(req.files[0].buffer).toString("base64");

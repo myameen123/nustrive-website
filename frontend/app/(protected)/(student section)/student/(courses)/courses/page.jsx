@@ -16,7 +16,7 @@ const CourseListPage = () => {
   const fetchCourses = async () =>{
     try{
       const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/course/get`)
-      console.log('response: ', response)
+      console.log('response: ', response.data)
       setCourses(response.data)
       
     }catch(err){
@@ -26,10 +26,9 @@ const CourseListPage = () => {
 
   return (
     <div>
-      CourseListPage
       {courses &&
       courses.map((course) => (
-        <Link key={course.id} href={`courses/${course.id}`}>
+        <Link key={course.id} href={`courses/${course._id}`}>
           <CourseCard course={course} />
         </Link>
       ))

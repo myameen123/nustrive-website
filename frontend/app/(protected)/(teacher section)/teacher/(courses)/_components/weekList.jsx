@@ -24,8 +24,8 @@ const weeks = [
   { id: "20", name: "Week 20" },
 ];
 
-const WeekList = ({course}) => {
-  console.log('course: ', course)
+const WeekList = ({ course }) => {
+  console.log("course: ", course);
   return (
     <div className="bg-gray-100 p-6 rounded-lg shadow-md">
       <h2 className="text-2xl font-bold text-gray-800 mb-4">Week List</h2>

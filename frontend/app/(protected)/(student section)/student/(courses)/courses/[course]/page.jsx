@@ -6,7 +6,7 @@ import { useParams } from 'next/navigation'
 
 const CoursePage = () => {
   const params = useParams()
-  console.log('params in :', params.course)
+  console.log('params in :', params)
   const course = params.course
 
   return (

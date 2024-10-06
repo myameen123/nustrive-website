@@ -1,7 +1,7 @@
 import React from 'react'
 
 const CourseCard = ({ course }) => {
-    console.log('course',course)
+    // console.log('course',course)
   return (
     <div className="bg-white shadow-lg rounded-lg p-6 mb-4">
       <div className="space-y-4">
