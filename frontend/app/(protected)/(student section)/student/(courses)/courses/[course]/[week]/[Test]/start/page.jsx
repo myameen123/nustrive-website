@@ -1,9 +1,9 @@
 "use client";
-import { getBusinessTest } from "../../../../../../../../redux/test/get-business-test-slice";
+import {getBusinessTest} from '../../../../../../../../../../redux/test/get-business-test-slice'
 import React, { useEffect, useState } from "react";
 // import Test from "../../_components/test";
 import { useSelector, useDispatch } from "react-redux";
-import Questions from "../../../_components/Questions";
+import Questions from '../_components/Questions'
 // import { addTodo } from "@/redux/todo-slice";
 
 function EngineeringTestStart() {
