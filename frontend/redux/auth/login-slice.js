@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import api from "../../utils/api";
+// import axios from "axios";
+import api from '../../utils/api'
 let initialState = {
   loading: false,
   user: {},
@@ -16,6 +16,7 @@ export const loginUser = createAsyncThunk(
       const config = {
         headers: { "content-Type": "application/json" },
       };
+      console.log('userData: ', userData)
       const response = await api.post(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`,
         userData,
