@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 // import Sidebar from "../_components/sidebar";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
-import Loader from "@/components/misc/loader/loader";
+import Loader from "../../../../components/misc/loader/loader";
 import Navbar from "../../_components/navbar";
 import Sidebar from "../../_components/sidebar";
 

@@ -1,6 +1,6 @@
 "use client";
-import CustomTextField from "@/components/inputs/TextField";
-import { loginUser } from "@/redux/auth/login-slice";
+import CustomTextField from "../../../../components/inputs/TextField";
+import { loginUser } from "../../../../redux/auth/login-slice";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RotateCw } from "lucide-react";

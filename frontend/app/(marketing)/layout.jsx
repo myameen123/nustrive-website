@@ -3,7 +3,7 @@
 
 import Navbar from "./_components/Navbar";
 import Footer from "./_components/footer";
-import { ToasterProvider } from "@/components/providers/toast-provider";
+import { ToasterProvider } from "../../components/providers/toast-provider";
 // import Navbar from "./(marketing)/_components/Navbar";
 // import Footer from "./footer";
 // const montserrat = Montserrat({

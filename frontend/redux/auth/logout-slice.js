@@ -1,6 +1,6 @@
 // logout-slice.js
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import api from "@/utils/api";
+import api from "../../utils/api";
 // import { persistor } from "../store"; // Import the persistor from your store configuration
 import storage from "redux-persist/lib/storage";
 import { persistor } from "../store";

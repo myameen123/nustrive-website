@@ -5,7 +5,7 @@ import UserCard from "../_components/UserCard";
 import axios from 'axios';
 import RegisterUser from "../_components/registerUser";
 import EditUser from "../_components/editUser";
-import ModalLayout from "@/components/modals/ModalLayout/modal-layout";
+import ModalLayout from "../../../../../../components/modals/ModalLayout/modal-layout";
 
 const UsersPage = () => {
   const [users, setUsers] = useState([]);

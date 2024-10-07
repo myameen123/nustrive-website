@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Questions from "../../../_components/Questions";
-import { getEngineeringTest } from "@/redux/test/get-engineering-test-slice";
+import { getEngineeringTest } from "../../../../../../../../redux/test/get-engineering-test-slice";
 // import Test from "../../_components/test";
 // import { addTodo } from "@/redux/todo-slice";
 

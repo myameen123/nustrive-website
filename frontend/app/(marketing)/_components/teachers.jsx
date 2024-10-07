@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Teacher from "./teacher";
-import Tutors from "@/constants/teachers";
+import Tutors from "../../../constants/teachers";
 // import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";

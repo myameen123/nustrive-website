@@ -1,7 +1,7 @@
-import prithvi from "@/public/testimonials/prithvi.png";
-import yameen from "@/public/testimonials/yameen.png";
-import vishal from "@/public/testimonials/vishal.png";
-import mehran from "@/public/testimonials/mehran.png";
+import prithvi from "../public/testimonials/prithvi.png";
+import yameen from "../public/testimonials/yameen.png";
+import vishal from "../public/testimonials/vishal.png";
+import mehran from "../public/testimonials/mehran.png";
 const StudentTestimonials = [
   {
     id: 1,

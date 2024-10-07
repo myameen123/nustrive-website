@@ -1,4 +1,4 @@
-import generalInfo from "@/constants/general-info";
+import generalInfo from "../../../constants/general-info";
 import Link from "next/link";
 import React from "react";
 // import { FaFacebookF, FaWhatsapp } from "react-icons/fa6";

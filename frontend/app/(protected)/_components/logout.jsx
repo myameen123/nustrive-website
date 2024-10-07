@@ -1,7 +1,7 @@
 "use client";
 // Add this logic where you handle logout in your component or saga
 import { useDispatch, useSelector } from "react-redux";
-import { logoutUser, clearPersistedState } from "@/redux/auth/logout-slice";
+import { logoutUser, clearPersistedState } from "../../../redux/auth/logout-slice";
 import { unwrapResult } from "@reduxjs/toolkit";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";

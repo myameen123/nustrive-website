@@ -2,9 +2,9 @@
 import React, { useState, useEffect } from "react";
 import HeroCard from "./hero-card";
 import { useInView } from "react-intersection-observer";
-import { Button } from "@/components/ui/button";
+import { Button } from "../../../components/ui/button";
 // import FeaturedStudents from "@/app/constants/header-testimonials";
-import FeaturedStudents from "@/constants/testimonials";
+import FeaturedStudents from "../../../constants/testimonials";
 
 function HeroSection() {
   const [currentStudentIndex, setCurrentStudentIndex] = useState(0);

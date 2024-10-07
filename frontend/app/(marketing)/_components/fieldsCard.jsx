@@ -1,8 +1,10 @@
 import Image from "next/image";
 import React from "react";
-import examImg from "@/public/examImg.svg";
+// import examImg from "@/public/examImg.svg";
+import examImg from '../../../public/examImg.svg'
 // import { Button } from "@mui/material";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
+import { Button } from "../../../components/ui/button";
 function FieldsCard({ test}) {
 
   const truncateText = (text, limit) => {

@@ -1,4 +1,4 @@
-import teacher from '@/public/teachers/teacher.png'
+import teacher from '../public/teachers/teacher.png'
 const Tutors = [
     {
         id: 1,

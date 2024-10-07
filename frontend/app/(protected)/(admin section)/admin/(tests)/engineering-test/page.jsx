@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import TestCard from "../_components/testCard";
-import ModalLayout from "@/components/modals/ModalLayout/modal-layout";
+import ModalLayout from "../../../../../../components/modals/ModalLayout/modal-layout";
 import EditTest from "../_components/editTest";
 import NewTest from "../_components/newTest";
 import axios from "axios";

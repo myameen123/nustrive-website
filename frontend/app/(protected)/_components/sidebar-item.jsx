@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
+import { cn } from "../../../lib/utils";
 import { usePathname, useRouter } from "next/navigation";
 function SidebarItem({ icon, label, href }) {
   const Icon = icon;

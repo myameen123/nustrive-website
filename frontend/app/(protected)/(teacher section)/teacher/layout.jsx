@@ -1,7 +1,7 @@
 "use client";
 // import Navbar from "@/app/(admin section)/_components/navbar";
 // import Sidebar from "@/app/(admin section)/_components/sidebar";
-import Loader from "@/components/misc/loader/loader";
+import Loader from "../../../../components/misc/loader/loader";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 // import Navbar from "../_components/navbar";

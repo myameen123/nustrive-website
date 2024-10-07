@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import whatsappSvg from "@/public/whatsapp.svg";
-import generalInfo from "@/constants/general-info";
+import whatsappSvg from "../../public/whatsapp.svg";
+import generalInfo from "../../constants/general-info";
 import HeroSection from "./_components/hero-section";
 // import Features from "./_components/features";
 import Services from "./_components/services";

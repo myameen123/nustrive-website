@@ -3,8 +3,8 @@
 import "./globals.css";
 import Navbar from "./(marketing)/_components/Navbar";
 import Footer from "./(marketing)/_components/footer";
-import { ToasterProvider } from "@/components/providers/toast-provider";
-import { ReduxProviders } from "@/redux/Provider";
+import { ToasterProvider } from "../components/providers/toast-provider";
+import { ReduxProviders } from "../redux/Provider";
 
 // const inter = Inter({ subsets: ["latin"] });
 // const montserrat = Montserrat({ subsets: ["latin"] });

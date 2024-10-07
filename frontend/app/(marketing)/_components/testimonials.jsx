@@ -12,7 +12,7 @@ import { FreeMode, Pagination } from "swiper/modules";
 // import { MoveUpRight } from "lucide-react";
 import Testimonial from "./testimonial";
 // import MainHeading from "./main-heading";
-import StudentTestimonials from "@/constants/testimonials";
+import StudentTestimonials from "../../../constants/testimonials";
 
 const Testimonials = () => {
   return (

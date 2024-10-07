@@ -2,7 +2,8 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
+import {Button} from '../../../components/ui/button'
 import { Menu, SquareX } from "lucide-react";
 
 // import LoginModal from "@/components/modals/login-modal";

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import QuestionCard from "../../_components/questionCard";
 import { useParams } from "next/navigation";
-import ModalLayout from "@/components/modals/ModalLayout/modal-layout";
+import ModalLayout from "../../../../../../../components/modals/ModalLayout/modal-layout";
 import NewQuestion from "../../_components/newQuestion";
 import EditQuestion from "../../_components/editQuestion";
 import toast from "react-hot-toast";
