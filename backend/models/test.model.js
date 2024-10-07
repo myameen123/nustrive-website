@@ -1,3 +1,4 @@
+import { time } from "console";
 import mongoose from "mongoose";
 
 const TestSchema = mongoose.Schema({
@@ -14,6 +15,10 @@ const TestSchema = mongoose.Schema({
     enum: ["engineering", "business", "medical"],
   },
   description: { type: String },
+  period: {
+    hours: { type: Number, default: 0 },  // Store the hours part of the duration
+    minutes: { type: Number, default: 0 }, // Store the minutes part of the duration
+  },
   questions: [{ type: mongoose.Schema.Types.ObjectId, ref: "Question" }],
 });
 

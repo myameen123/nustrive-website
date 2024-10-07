@@ -3,14 +3,14 @@ import Tests from "../models/test.model.js";
 // Create a new test
 export const add = async (req, res) => {
     try {
-      const { title, course,week, category, description } = req.body;
+      const { title, course,week, category,period, description } = req.body;
   
       // Validate required fields
       if (!title || !course ||!week  || !category) {
         return res.status(400).json({ error: "Title, Subject, Week and Category are required" });
       }
   
-      const newTest = new Tests({ title, course, week, category, description });
+      const newTest = new Tests({ title, course, week, category,period, description });
       console.log('newTest: ', newTest);
       await newTest.save();
   
@@ -53,7 +53,7 @@ export const get = async (req, res) => {
 export const update = async (req, res) => {
     try {
       const { id } = req.params;
-      const { title, course, category, description } = req.body;
+      const { title, course, category,period, description } = req.body;
   
       // Validate category if it's provided
       const validCategories = ["engineering", "business", "medical"];
@@ -63,7 +63,7 @@ export const update = async (req, res) => {
   
       const updatedTest = await Tests.findByIdAndUpdate(
         id,
-        { title, course, category, description },
+        { title, course, category,period, description },
         { new: true }
       );
   
@@ -75,7 +75,7 @@ export const update = async (req, res) => {
       res.status(500).json({ error: err.message });
     }
   };
-  
+
 
 // Delete a test by ID
 export const Delete = async (req, res) => {

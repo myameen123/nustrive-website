@@ -133,7 +133,7 @@ const TestPage = () => {
         </button>
       </div>
       <div>
-        <h1 className="p-4 text-2xl">Engineering Questions</h1>
+        <h1 className="p-4 text-2xl">Test Questions</h1>
         {questions.map((question) => (
           <QuestionCard
             key={question._id}

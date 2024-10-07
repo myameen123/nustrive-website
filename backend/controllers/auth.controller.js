@@ -101,6 +101,7 @@ export const loginUser = async (req, res, next) => {
       });
   } catch (err) {
     logger.error(err);
+    console.log(err)
     if (err.message === authErrors.INVALID_USER_TYPE) {
       return resFailure(res, authErrors.INVALID_USER_TYPE);
     }
