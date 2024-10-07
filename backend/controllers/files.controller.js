@@ -1,4 +1,4 @@
-import Files from "../models/Files.model.js";
+import Files from "../models/general-files.model.js";
 
 // Add a new file
 export const add = async (req, res) => {
