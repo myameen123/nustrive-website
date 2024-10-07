@@ -16,13 +16,14 @@ export const loginUser = createAsyncThunk(
       const config = {
         headers: { "content-Type": "application/json" },
       };
-      console.log('userData: ', userData)
+      // console.log('userData: ', userData)
+
       const response = await api.post(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`,
         userData,
         config
       );
-
+      // console.log('response.data', response.data)
       return response.data;
     } catch (error) {
       console.log("in try of login slice", error);

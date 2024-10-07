@@ -18,11 +18,11 @@ function LoginForm() {
   const [errorToastId, setErrorToastId] = useState(null);
 
   useEffect(() => {
-    if (error) {
-      console.log("login form error", error)
-      toast.error(error.message);
-      // setErrorToastId(id);
-    }
+    // if (error) {
+    //   console.log("login form error", error)
+    //   // toast.error(error.message);
+    //   // setErrorToastId(id);
+    // }
     if (isAuthenticated) {
       if (user && user.role === "admin") {
         router.push("/admin");
