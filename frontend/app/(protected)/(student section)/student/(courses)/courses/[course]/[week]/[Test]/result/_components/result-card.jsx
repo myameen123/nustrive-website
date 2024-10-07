@@ -39,13 +39,6 @@ function ResultCard({ result }) {
   const router = useRouter();
   const rows = [
     createData("Mathematics", result.totalMathQuestions, result.mathScore),
-    createData("Physics", result.totalPhysicsQuestions, result.phusicsScore),
-    createData(
-      "Chemistry",
-      result.totalChemistryQuestions,
-      result.chemistryScore
-    ),
-
     createData("English", result.totalEnglishQuestions, result.englishScore),
     createData("Intelligence", result.totaliqQuestions, result.iqScore),
   ];
@@ -57,8 +50,8 @@ function ResultCard({ result }) {
   return (
     <div className="flex justify-center items-center md:items-start h-full">
       <div className="md:w-1/2 bg-white rounded-lg shadow-lg ">
-        <h1 className="text-2xl font-bold text-center my-6 underline">
-          Result OF NSUT MOCK TEST BY NusTrive
+        <h1 className="text-2xl font-bold text-center mt-6 mb-16 underline">
+          Result OF NSUT MOCK TEST BY NUSTRRIVE
         </h1>
         <TableContainer component={Paper}>
           <Table sx={{ width: "100%" }}>

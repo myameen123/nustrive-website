@@ -1,21 +1,11 @@
 "use client";
-// import Navbar from "@/app/(admin section)/_components/navbar";
-// import Sidebar from "@/app/(admin section)/_components/sidebar";
-// import Loader from "@/components/misc/loader/loader.jsx";
 import Loader from "../../../../components/misc/loader/loader";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-// import Navbar from "../_components/navbar";
-// import Sidebar from "../_components/sidebar";
 import { useSelector } from "react-redux";
 import Navbar from "../../_components/navbar";
 import Sidebar from "../../_components/sidebar";
-// import { useEffect } from "react";
 
-// export const metadata = {
-//   title: "NusTrive | Student",
-//   description: "Nust entry test Prepration website",
-// };
 
 export default function StudentLayout({ children }) {
   const { user, isAuthenticated } = useSelector((state) => state.userLogin);

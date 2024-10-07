@@ -3,19 +3,19 @@ import Link from "next/link";
 import React from "react";
 
 function TestModal({ test }) {
-  const subjects = test.subjects.join(", ");
+  // const subjects = test.subjects.join(", ");
   return (
     <div className=" border shadow-lg">
       <div className=" bg-[#111225] text-white p-2 ">
         <Typography>
-          {`Online Test for NET ( Nust Entrance Test) Preparation - ${test.type}`}
+          {`Online Test for NET ( Nust Entrance Test) Preparation - ${'fake'}`}
         </Typography>
       </div>
       <div className=" flex flex-col p-4 gap-1">
         <Typography variant="h7" className=" font-bold">
           Subjects included:
         </Typography>
-        <Typography> {subjects}</Typography>
+        <Typography> {'this fake'}</Typography>
         <div className=" flex flex-wrap gap-3 text-sm">
           <span>
             Total Marks: <span className=" font-bold">200</span>
@@ -30,10 +30,10 @@ function TestModal({ test }) {
             Type: <span className=" font-bold">Free</span>
           </span>
           <Link
-            href={test.url}
+            href={'/mock-test/business-test/instructions'}
             className=" bg-[#49ADE5] px-4 py-1 font-bold rounded-md"
           >
-            Start
+            Start Now
           </Link>
         </div>
       </div>

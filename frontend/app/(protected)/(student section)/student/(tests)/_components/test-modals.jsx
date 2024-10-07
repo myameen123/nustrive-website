@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import TestModal from "./test-modal";
 import axios from "axios";
+import { useParams } from "next/navigation";
+
 const TEST = [
   {
     id: "1",
@@ -23,17 +25,20 @@ const TEST = [
   },
 ];
 function TestModals() {
+  const params = useParams();
+  const id = params.Test;
+
   const [test, setTest] = useState(null)
 
   useEffect(()=>{
     const fetchTest = async()=>{
 
       try{
-        const response = axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/test/engineering/get`)
-        if((await response).status!==200){
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/test/get/${id}`)
+        if( response.status!==200){
           console.log('An error in occur in response')
         }
-        const tests = (await response).data
+        const tests = response.data
         setTest(tests)
       }catch(err){
         console.log(err.message)
@@ -47,9 +52,9 @@ function TestModals() {
   console.log('test: ', test)
   return (
     <div className=" mt-4 sm:p-8 p-4 md:w-[80%] mx-auto flex flex-col gap-8 ">
-      {TEST.map((t) => (
-        <TestModal test={t} key={t.id} />
-      ))}
+      {/* {test && test.map((t) => ( */}
+        <TestModal test={test}  />
+      {/* ))} */}
     </div>
   );
 }

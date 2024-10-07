@@ -1,5 +1,5 @@
 import React from "react";
-import InstructionModal from "../../_components/instruction-modal";
+import InstructionModal from "../../../_components/instruction-modal";
 
 function TestInstructions() {
   return (

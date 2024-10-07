@@ -3,20 +3,20 @@ import React, { useEffect, useState } from "react";
 import TestButton from "./test-button";
 import { IoArrowRedoSharp, IoArrowUndo } from "react-icons/io5";
 import { ImNext2, ImPrevious2 } from "react-icons/im";
-
 import { ClipboardList, Play, Save } from "lucide-react";
 import TimeCount from "./time-count";
-// import { getBusinessTest } from "@/redux/test/get-business-test-slice";
-import { useDispatch } from "react-redux";
-import { businessTestResponse } from "../../../../../../redux/test/bussiness-test-response-slice";
 import { useRouter } from "next/navigation";
 import Loader from "../../../../../../components/modals/loader";
-import { engineeringTestResponse } from "../../../../../../redux/test/engineering-test-response-slice";
-// import Image from "next/image";
 import { CldImage } from "next-cloudinary";
-import { getEngineeringTest } from "../../../../../../redux/test/get-engineering-test-slice";
-import { getBusinessTest } from "../../../../../../redux/test/get-business-test-slice";
-import { set } from "react-hook-form";
+import { useDispatch } from "react-redux";
+
+// import { businessTestResponse } from "../../../../../../redux/test/bussiness-test-response-slice";
+// import { engineeringTestResponse } from "../../../../../../redux/test/engineering-test-response-slice";
+// import Image from "next/image";
+// import { getEngineeringTest } from "../../../../../../redux/test/get-engineering-test-slice";
+// import { getBusinessTest } from "../../../../../../redux/test/get-business-test-slice";
+// import { set } from "react-hook-form";
+
 function Questions({ questions, title, category, sections }) {
   const router = useRouter();
   const [currentSection, setCurrentSection] = useState("math");

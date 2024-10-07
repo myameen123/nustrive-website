@@ -19,11 +19,11 @@ const studentRoutes = [
     label: "Dashboard",
     href: "/student",
   },
-  {
-    icon: Folder,
-    label: "Files",
-    href: "/student/files",
-  },
+  // {
+  //   icon: Folder,
+  //   label: "Files",
+  //   href: "/student/files",
+  // },
   {
     icon: School,
     label: "Courses",
