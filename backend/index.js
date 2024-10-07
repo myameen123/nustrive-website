@@ -25,13 +25,15 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// https://nustrive-website-backend.vercel.app/api //must add before push  
+// https://nustrive-website-backend.vercel.app/api //must add before push  frontend env file
 app.use(
   cors({
-    origin: "http://localhost:3000", // Allow requests from this origin
-    origin: process.env.FRONTEND_URL, // Allow requests from this origin
-    origin: "https://nustrive.vercel.app", // Allow requests from this origin
-    origin:"https://nustrive-website-backend.vercel.app/api",
+    origin: [
+      "http://localhost:3000",
+      process.env.FRONTEND_URL, // ensure this is correctly set
+      "https://nustrive.vercel.app", // add all allowed origins here
+      "https://nustrive-website-backend.vercel.app"
+    ],
     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
     optionsSuccessStatus: 200,
     exposedHeaders: ["Set-cookie"],

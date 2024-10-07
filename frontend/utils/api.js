@@ -1,6 +1,7 @@
 import axios from "axios";
 import store from "../redux/store";
 import { clearPersistedState, logoutUser } from "../redux/auth/logout-slice";
+
 const api = axios.create({
   baseURL: `${process.env.NEXT_PUBLIC_BACKEND_URL}`,
   withCredentials: true, // Include cookies in requests
