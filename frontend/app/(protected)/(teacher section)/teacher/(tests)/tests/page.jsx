@@ -8,18 +8,34 @@ import axios from "axios";
 
 const TestList = () => {
   const [tests, setTests] = useState([]);
+  const [courses, setCourses] = useState([])
   const [modal, setModal] = useState(false);
   const [edit, setEdit] = useState(false);
   const [currentTest, setCurrentTest] = useState({title:'', description:''});
+
+  useEffect(()=>{
+    fetchCourses()
+  },[])
 
   useEffect(() => {
     fetchTests();
   }, []);
 
+  const fetchCourses = async () => {
+    try{
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/course/get`)
+       console.log('response in testlist: ', response.data)
+       setCourses(response.data)
+       console.log('courses in testlist',courses)
+    }catch(err){
+      console.log('err.message',err.message)
+    }
+  }
+
   const fetchTests = async () => {
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/test/engineering/get`
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/test/get`
       );
       const data = await response.json();
       setTests(data);
@@ -31,7 +47,7 @@ const TestList = () => {
   const handleDelete = async (id) => {
     try {
       await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/test/engineering/delete/${id}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/test/delete/${id}`,
         {
           method: "DELETE",
         }
@@ -46,7 +62,7 @@ const TestList = () => {
     try {
       setEdit(false)
       console.log('test in handleAdd',test)
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/test/engineering/add`,test);
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/test/add`,test);
       const newTest = await response.data;
       fetchTests();
     } catch (err) {
@@ -76,21 +92,20 @@ const TestList = () => {
 
   return (
     <>
-      <div className="flex justify-end">
+      {/* <div className="flex justify-end">
         <button
           className="p-2 w-fit text-white rounded-[5px] transition-all my-4 bg-[#4463FB] hover:bg-[#4463FB]/90"
           onClick={openModal}
         >
           Add Test
         </button>
-      </div>
+      </div> */}
       <div>
         {tests &&
         tests.map((test) => (
           <TestCard
             setEdit={setEdit}
             key={test._id}
-            field="engineering"
             test={test}
             onDelete={handleDelete}
             onEdit={handleEdit}
@@ -108,7 +123,7 @@ const TestList = () => {
               handleEdit={handleEdit}
               setTests={setTests}
               fetchTests={fetchTests}
-              field={'engineering'}
+              courses={courses}
             />
           ) : (
             <NewTest
@@ -117,6 +132,7 @@ const TestList = () => {
               fetchTests={fetchTests}
               handleAdd={handleAdd}
               test={currentTest}
+              courses={courses}
             />
           )}
         </ModalLayout>

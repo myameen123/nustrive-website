@@ -1,17 +1,17 @@
 import React from "react";
-import ContentForm from "./contentForm";
+import TestForm from "./testForm";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const EditContent = ({ edit, closeModal, content, fetchContent,isFile }) => {
-  let url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/courseContent/get/${content._id}`;
+const EditTest = ({ edit, closeModal, test,fetchTests }) => {
+  let url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/test/update/${test._id}`
 
   const handleSubmit = async (data) => {
     try {
-      const response = await axios.put(url, data);
-      if (response) {
+      const response = await axios.put(url,data);
+      if (response) {        
         closeModal();
-        fetchContent();
+        // fetchTests()
       }
     } catch (error) {
       toast.error(error.message, {
@@ -26,17 +26,17 @@ const EditContent = ({ edit, closeModal, content, fetchContent,isFile }) => {
       });
     }
   };
+
   return (
     <div>
-      <ContentForm
+      <TestForm
         handleSubmit={handleSubmit}
         edit={edit}
         closeModal={closeModal}
-        course={course}
-        isFile={isFile}
+        test={test}
       />
     </div>
   );
 };
 
-export default EditContent;
+export default EditTest;

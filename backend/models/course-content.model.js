@@ -2,17 +2,15 @@ import mongoose from "mongoose";
 
 const courseContentSchema = mongoose.Schema({
     title:{type:String, required:true},
-    course:{type:mongoose.Schema.Types.ObjectId, refs:'Course',require:true},
+    course:{type:String ,require:true},
     week:{type:String,required:true},
-    // test:{type:mongoose.Schema.Types.ObjectId, refs:'SubjectTest', required:false},
-    test:{type:String, required:false},
-    // file:{type:String, required:false},
+    // test:{type:mongoose.Schema.Types.ObjectId, refs:'test', required:false},
     file: [
         {
           public_id: String,
           url: String,
-        //   required:false
         },
+        //   required:false
       ],
     link:{type:String, required:false},
 

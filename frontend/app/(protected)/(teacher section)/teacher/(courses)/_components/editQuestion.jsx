@@ -1,5 +1,5 @@
 import React from "react";
-import QuestionForm from "./QuestionForm";
+import QuestionForm from "./questionForm";
 import { useParams } from "next/navigation";
 import toast from "react-hot-toast";
 import axios from "axios";

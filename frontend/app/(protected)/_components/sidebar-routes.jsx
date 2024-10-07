@@ -4,9 +4,11 @@ import React from "react";
 import {
   LayoutDashboard,
   BookOpenCheck,
+  BookCheck,
   DraftingCompass,
   BriefcaseBusiness,
   Folder,
+  School
 } from "lucide-react";
 import SidebarItem from "./sidebar-item";
 import { usePathname } from "next/navigation";
@@ -23,12 +25,12 @@ const studentRoutes = [
     href: "/student/files",
   },
   {
-    icon: Folder,
+    icon: School,
     label: "Courses",
     href: "/student/courses",
   },
   {
-    icon: Folder,
+    icon: BookCheck,
     label: "Tests",
     href: "/student/tests",
   },
@@ -39,18 +41,18 @@ const teacherRoutes = [
     label: "Dashboard",
     href: "/teacher",
   },
+  // {
+  //   icon: Folder,
+  //   label: "Files",
+  //   href: "/teacher/files",
+  // },  
   {
-    icon: Folder,
-    label: "Files",
-    href: "/teacher/files",
-  },  
-  {
-    icon: Folder,
+    icon: BookCheck,
     label: "Tests",
     href: "/teacher/tests",
   },
   {
-    icon: Folder,
+    icon: School,
     label: "Courses",
     href: "/teacher/courses",
   },

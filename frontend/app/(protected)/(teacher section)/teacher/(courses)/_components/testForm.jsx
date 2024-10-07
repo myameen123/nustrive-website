@@ -1,42 +1,52 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useParams } from "next/navigation";
 
-const TestForm = ({ edit, closeModal, handleSubmit, test, courses }) => {
+const TestForm = ({ edit, closeModal, handleSubmit, test }) => {
+const params = useParams();
+console.log('params in testform: ', params);
+const courseId = params.course;
+const week = params.week;
+const [course, setCourse] = useState({name:'',course:'',category:'',description:''});
   const [state, setState] = useState({
     title: "",
-    subject: "",
-    category: "",
+    course: courseId,
+    week:week,
+    category: course.category,
     description: "",
   });
-  // const [courses, setCourses] = useState([]);
+
+  useEffect(()=>{
+      fetchCourse(courseId)
+  },[courseId])
 
   useEffect(() => {
-    // fetchCourses();
+
     setState({
       title: test.title || "",
-      subject: test.subject || "",
-      category: test.category || "",
+      course: courseId || '',
+      week:week || '',
+      category: course.category || '',
       description: test.description || "",
     });
-  }, [test]);
+  }, [test,week, course]);
 
-  // const fetchCourses = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       `${process.env.NEXT_PUBLIC_BACKEND_URL}/course/get`
-  //     );
-  //     console.log("response in testform: ", response);
-  //     setCourses(response.data);
-  //     console.log("courses in testform", courses);
-  //   } catch (err) {
-  //     console.log("err.message", err.message);
-  //   }
-  // };
+
+  const fetchCourse = async (courseId)=>{
+    try{
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/course/get/${courseId}`)
+        setCourse(response.data)
+    }catch(err){
+        console.log('err.message in testform: ', err.message)
+    }
+  }
+
+  console.log('course : ', course)
 
   const onSubmit = async (e) => {
     e.preventDefault();
-
+    console.log('state is ', state)
     handleSubmit(state);
     closeModal();
   };
@@ -45,6 +55,9 @@ const TestForm = ({ edit, closeModal, handleSubmit, test, courses }) => {
     const { name, value } = e.target;
     setState((prevState) => ({ ...prevState, [name]: value }));
   };
+
+
+  
 
   return (
     <div className="">
@@ -66,51 +79,38 @@ const TestForm = ({ edit, closeModal, handleSubmit, test, courses }) => {
             required
           />
         </div>
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label htmlFor="subject" className="block text-gray-700">
-            Select Subject
+            Subject
           </label>
-          <select
+          <input
             type="text"
             name="subject"
             id="subject"
             className="w-full p-2 border border-gray-300 rounded mt-2"
             value={state.subject}
             onChange={handleChange}
+            placeholder={course.name}
             required
-          >
-            <option value=""></option>
-            {courses && courses.length > 0 ? (
-              courses.map((course) => (
-                
-                <option key={course._id} value={course._id}>
-                  {course.name}
-                </option>
-              ))
-            ) : (
-              <option value="">No course found</option>
-            )}
-          </select>
+            disabled
+          />
         </div>
         <div className="mb-4">
           <label htmlFor="category" className="block text-gray-700">
-            Select Category
+            Category
           </label>
-          <select
+          <input
             type="text"
             name="category"
             id="category"
             className="w-full p-2 border border-gray-300 rounded mt-2"
             value={state.category}
             onChange={handleChange}
+            placeholder={course.category}
+            disabled
             required
-          >
-            <option value=""></option>
-            <option value="engineering">Engineering</option>
-            <option value="business">Business</option>
-            <option value="medical">Medical</option>
-          </select>
-        </div>
+          />
+        </div> */}
         <div className="mb-4">
           <label htmlFor="description" className="block text-gray-700">
             Description

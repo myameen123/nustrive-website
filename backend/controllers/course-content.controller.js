@@ -49,7 +49,7 @@ async function handleUpload(file) {
 
 // Add a new CourseContent entry
 const add = async (req, res) => {
-  const { title, course, week, test, link } = req.body;
+  const { title, course, week, link } = req.body;
   try {
     console.log('req.body: ', req.body);
 
@@ -72,7 +72,7 @@ const add = async (req, res) => {
     }
 
     // Create new course content
-    const newContent = new CourseContent({ title, course, week, file: filesLinks, test, link });
+    const newContent = new CourseContent({ title, course, week, file: filesLinks, link });
 
     // Save to the database
     await newContent.save();

@@ -4,16 +4,21 @@ import WeekContent from "../../../_components/WeekContent";
 import ModalLayout from "../../../../../../../../components/modals/ModalLayout/modal-layout";
 import EditContent from "../../../_components/editContent";
 import NewContent from "../../../_components/newContent";
+import EditTest from '../../../_components/editTest'
+import NewTest from '../../../_components/newTest'
 import axios from "axios";
 import { useParams } from "next/navigation";
 
 const WeekPage = () => {
   const params = useParams()
   console.log('params in weekPage: ', params)
+  const [isFile, setIsFile] = useState(false)
   const [content, setContent] = useState([]);
+  const [testModal, setTestModal] = useState(false);
   const [modal, setModal] = useState(false);
   const [edit, setEdit] = useState(false);
   const [currentContent, setCurrentContent] = useState({});
+  const [currentTest, setCurrentTest] = useState({})
 
   useEffect(() => {
     fetchContent();
@@ -21,34 +26,62 @@ const WeekPage = () => {
 
   const fetchContent = async () => {
     try {
-      const response = await fetch(
+      // Fetch course content
+      const responseContent = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/courseContent/get`
       );
-      const data = await response.json();
-      console.log('data :', data)
-
-      const filteredData = data.filter(item => (item.week === params.week) && (item.course === params.course));
+      const dataContent = await responseContent.json();
+  
+      // Fetch tests
+      const responseTest = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/test/get`);
+      const dataTest = await responseTest.json();
+  
+      // Combine the data arrays using concat
+      const data = dataContent.concat(dataTest);
+      console.log('Combined data:', data);
+  
+      // Filter the data based on params
+      const filteredData = data.filter(
+        (item) => item.week === params.week && item.course === params.course
+      );
       setContent(filteredData);
-      // setContent(data);
     } catch (err) {
       console.error("Error fetching content:", err);
     }
   };
+  
 
   const handleDelete = async (id) => {
     try {
+      
       await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/courseContent/delete/${id}`,
         {
           method: "DELETE",
         }
       );
+
+      await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/test/delete/${id}`,{method:"DELETE"})
       // setCourse(courses.filter((course) => course._id !== id));
       fetchContent();
     } catch (err) {
       console.error("Error deleting content:", err);
     }
   };
+  // const handleTestDelete = async (id) => {
+  //   try {
+  //     await fetch(
+  //       `${process.env.NEXT_PUBLIC_BACKEND_URL}/test/delete/${id}`,
+  //       {
+  //         method: "DELETE",
+  //       }
+  //     );
+  //     // setCourse(courses.filter((course) => course._id !== id));
+  //     fetchContent();
+  //   } catch (err) {
+  //     console.error("Error deleting content:", err);
+  //   }
+  // };
 
   const handleAdd = async (content) => {
     try {
@@ -74,22 +107,22 @@ const WeekPage = () => {
   };
   
 
-  // const handleAdd = async (content) => {
-  //   try {
-  //     setEdit(false);
-  //     console.log("content in handleAdd", content);
-  //     const response = await axios.post(
-  //       `${process.env.NEXT_PUBLIC_BACKEND_URL}/courseContent/add`,
-  //       content
-  //     );
-  //     console.log("response: ", response);
-  //     const newContent = await response.data;
-  //     console.log("newCourse : ", newContent);
-  //     fetchContent();
-  //   } catch (err) {
-  //     console.error("Error adding content:", err);
-  //   }
-  // };
+  const handleTestAdd = async (test) => {
+    try {
+      setEdit(false);
+      console.log("content in handleAdd", test);
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/test/add`,
+        test
+      );
+      console.log("response: ", response);
+      const newTest = await response.data;
+      console.log("newTest : ", newTest);
+      fetchContent();
+    } catch (err) {
+      console.error("Error adding Test:", err);
+    }
+  };
 
   const handleEdit = (content) => {
     try {
@@ -101,12 +134,36 @@ const WeekPage = () => {
     }
   };
 
+  const handleTestEdit = (test) => {
+    try {
+      setEdit(true);
+      setCurrentTest(test);
+      openTestModal();
+    } catch (err) {
+      console.error("Error updating test:", err);
+    }
+  };
+
   const openModal = () => {
     setModal(true);
+  };
+  const openFileModal = () => {
+    setModal(true);
+    setIsFile(true)
+  };
+
+  const openTestModal = () => {
+    setTestModal(true);
   };
 
   const closeModal = () => {
     setModal(false);
+    setEdit(false);
+    setIsFile(false);
+  };
+
+  const closeTestModal = () => {
+    setTestModal(false);
     setEdit(false);
   };
 
@@ -116,7 +173,7 @@ const WeekPage = () => {
     <div>
       <div className="flex space-x-4 mb-6">
         <button
-          onClick={openModal}
+          onClick={openTestModal}
           className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
         >
           Add Test
@@ -128,7 +185,7 @@ const WeekPage = () => {
           Add Link
         </button>
         <button
-          onClick={openModal}
+          onClick={openFileModal}
           className="px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600"
         >
           Add File
@@ -145,6 +202,7 @@ const WeekPage = () => {
             content={content}
             onDelete={handleDelete}
             onEdit={handleEdit}
+            // handleTestDelete = {handleTestDelete}
           />
         )) 
         }
@@ -160,6 +218,7 @@ const WeekPage = () => {
               handleEdit={handleEdit}
               setContent={setContent}
               fetchContent={fetchContent}
+              isFile={isFile}
               //   field={'business'}
             />
           ) : (
@@ -169,6 +228,31 @@ const WeekPage = () => {
               fetchContent={fetchContent}
               handleAdd={handleAdd}
               content={currentContent}
+              isFile={isFile}
+            />
+          )}
+        </ModalLayout>
+      )}
+      {testModal && (
+        <ModalLayout open={true} onClose={closeTestModal}>
+          {edit ? (
+            <EditTest
+              edit={edit}
+              closeModal={closeTestModal}
+              content={currentTest}
+              setCurrentTest={setCurrentTest}
+              handleEdit={handleTestEdit}
+              setContent={setContent}
+              fetchContent={fetchContent}
+
+            />
+          ) : (
+            <NewTest
+              edit={edit}
+              closeModal={closeTestModal}
+              fetchContent={fetchContent}
+              handleAdd={handleTestAdd}
+              test={currentTest}
             />
           )}
         </ModalLayout>

@@ -2,7 +2,7 @@
 // import { useParams } from "next/navigation";
 import React, { useState, useEffect } from "react";
 
-const ContentForm = ({ edit, closeModal, handleSubmit, content }) => {
+const ContentForm = ({ edit, closeModal, handleSubmit, content, isFile }) => {
     const [state, setState] = useState({
       title: '', course: content.course, week: content.week, test: '', file: '', link: ''
     });
@@ -22,19 +22,10 @@ const ContentForm = ({ edit, closeModal, handleSubmit, content }) => {
   
     const onSubmit = async (e) => {
       e.preventDefault();
-      const formData = new FormData();  // Create FormData to send multipart/form data
+
+      console.log('state in contentForm', state)
       
-      formData.append('title', state.title);
-      formData.append('course', state.course);
-      formData.append('week', state.week);
-      formData.append('test', state.test);
-      formData.append('link', state.link);
-      
-      if (file) {
-        formData.append('file', file);  // Add file to FormData
-      }
-  
-      handleSubmit(formData);  // Pass FormData to handleSubmit function
+      handleSubmit(state);  // Pass FormData to handleSubmit function
       closeModal();
     };
   
@@ -68,7 +59,7 @@ const ContentForm = ({ edit, closeModal, handleSubmit, content }) => {
               required
             />
           </div>
-  
+            {isFile &&
           <div className="mb-4">
             <label htmlFor="file" className="block text-gray-700">
               Select File:
@@ -80,10 +71,11 @@ const ContentForm = ({ edit, closeModal, handleSubmit, content }) => {
               type="file"
               placeholder="Select Content file"
               onChange={handleFileChange}  // Handle file change
-            />
+              />
           </div>
+            }
   
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <label htmlFor="test" className="block text-gray-700">
               Test
             </label>
@@ -96,8 +88,8 @@ const ContentForm = ({ edit, closeModal, handleSubmit, content }) => {
               value={state.test}
               onChange={handleChange}
             />
-          </div>
-  
+          </div> */}
+            {!isFile &&
           <div className="mb-4">
             <label htmlFor="link" className="block text-gray-700">
               Link
@@ -110,8 +102,9 @@ const ContentForm = ({ edit, closeModal, handleSubmit, content }) => {
               placeholder="Enter Content Link"
               value={state.link}
               onChange={handleChange}
-            />
+              />
           </div>
+            }
   
           <div className="flex justify-end">
             <button
