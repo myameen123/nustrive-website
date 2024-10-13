@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import ResultCard from "./_components/result-card";
 
 function TestFinish() {
-  const result = useSelector((state) => state.businessTestResponse);
+  const result = useSelector((state) => state.testResponse);
   // console.log(result);
   return (
     <div className=" h-screen px-4">

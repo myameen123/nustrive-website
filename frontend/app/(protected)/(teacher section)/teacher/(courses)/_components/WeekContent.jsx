@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-const WeekContent = ({ content, onEdit, onDelete }) => {
+const WeekContent = ({ content, onEdit, onEditTest, onDelete }) => {
   // Function to determine if the file is a PDF, DOC, PPT, etc.
   const renderFile = (fileUrl) => {
     const fileExtension = fileUrl.split(".").pop().toLowerCase();
@@ -39,7 +39,10 @@ const WeekContent = ({ content, onEdit, onDelete }) => {
       {/* Display title and description for questions */}
       {content.questions && (
         <div>
-          <Link href={`${content.week}/${content._id}`} className="text-gray-700 font-semibold">
+          <Link
+            href={`${content.week}/${content._id}`}
+            className="text-gray-700 font-semibold"
+          >
             {content.title}
           </Link>
           <p>{content.description}</p>
@@ -79,7 +82,11 @@ const WeekContent = ({ content, onEdit, onDelete }) => {
       <div className="mt-4 flex justify-end space-x-4">
         <button
           className="p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-          onClick={() => onEdit(content)}
+          onClick={() => {
+            {
+              onEdit(content);
+            }
+          }}
         >
           Edit
         </button>

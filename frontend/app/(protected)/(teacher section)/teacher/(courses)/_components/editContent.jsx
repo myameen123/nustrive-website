@@ -4,7 +4,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const EditContent = ({ edit, closeModal, content, fetchContent,isFile }) => {
-  let url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/courseContent/get/${content._id}`;
+  let url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/courseContent/update/${content._id}`;
 
   const handleSubmit = async (data) => {
     try {
@@ -32,7 +32,7 @@ const EditContent = ({ edit, closeModal, content, fetchContent,isFile }) => {
         handleSubmit={handleSubmit}
         edit={edit}
         closeModal={closeModal}
-        course={course}
+        content={content}
         isFile={isFile}
       />
     </div>

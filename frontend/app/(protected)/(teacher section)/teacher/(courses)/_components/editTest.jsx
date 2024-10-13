@@ -3,15 +3,15 @@ import TestForm from "./testForm";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const EditTest = ({ edit, closeModal, test,fetchTests }) => {
-  let url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/test/update/${test._id}`
+const EditTest = ({ edit, closeModal, content,fetchContent }) => { //fetchTests
+  let url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/test/update/${content._id}`
 
   const handleSubmit = async (data) => {
     try {
       const response = await axios.put(url,data);
       if (response) {        
         closeModal();
-        // fetchTests()
+        fetchContent()
       }
     } catch (error) {
       toast.error(error.message, {
@@ -33,7 +33,7 @@ const EditTest = ({ edit, closeModal, test,fetchTests }) => {
         handleSubmit={handleSubmit}
         edit={edit}
         closeModal={closeModal}
-        test={test}
+        test={content}
       />
     </div>
   );

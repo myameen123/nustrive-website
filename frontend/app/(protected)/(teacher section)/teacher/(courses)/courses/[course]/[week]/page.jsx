@@ -18,7 +18,7 @@ const WeekPage = () => {
   const [modal, setModal] = useState(false);
   const [edit, setEdit] = useState(false);
   const [currentContent, setCurrentContent] = useState({});
-  const [currentTest, setCurrentTest] = useState({})
+  // const [currentTest, setCurrentTest] = useState({})
 
   useEffect(() => {
     fetchContent();
@@ -68,20 +68,7 @@ const WeekPage = () => {
       console.error("Error deleting content:", err);
     }
   };
-  // const handleTestDelete = async (id) => {
-  //   try {
-  //     await fetch(
-  //       `${process.env.NEXT_PUBLIC_BACKEND_URL}/test/delete/${id}`,
-  //       {
-  //         method: "DELETE",
-  //       }
-  //     );
-  //     // setCourse(courses.filter((course) => course._id !== id));
-  //     fetchContent();
-  //   } catch (err) {
-  //     console.error("Error deleting content:", err);
-  //   }
-  // };
+
 
   const handleAdd = async (content) => {
     try {
@@ -125,24 +112,25 @@ const WeekPage = () => {
   };
 
   const handleEdit = (content) => {
+    
     try {
+      {content.questions ? openTestModal(): openModal() }
       setEdit(true);
       setCurrentContent(content);
-      openModal();
     } catch (err) {
       console.error("Error updating content:", err);
     }
   };
 
-  const handleTestEdit = (test) => {
-    try {
-      setEdit(true);
-      setCurrentTest(test);
-      openTestModal();
-    } catch (err) {
-      console.error("Error updating test:", err);
-    }
-  };
+  // const handleTestEdit = (content) => {
+  //   try {
+  //     setEdit(true);
+  //     setCurrentContent(content);
+  //     openTestModal();
+  //   } catch (err) {
+  //     console.error("Error updating test:", err);
+  //   }
+  // };
 
   const openModal = () => {
     setModal(true);
@@ -196,12 +184,13 @@ const WeekPage = () => {
         {content &&
         content.map((content) => (
           <WeekContent
-            setEdit={setEdit}
+            setEdit={setEdit} 
             key={content._id}
             // field="business"
             content={content}
             onDelete={handleDelete}
             onEdit={handleEdit}
+            // onEditTest = {handleTestEdit}
             // handleTestDelete = {handleTestDelete}
           />
         )) 
@@ -239,12 +228,12 @@ const WeekPage = () => {
             <EditTest
               edit={edit}
               closeModal={closeTestModal}
-              content={currentTest}
-              setCurrentTest={setCurrentTest}
-              handleEdit={handleTestEdit}
+              content={currentContent}
+              setCurrentTest={setCurrentContent}
               setContent={setContent}
               fetchContent={fetchContent}
-
+              // setCurrentContent={setCurrentContent}
+              handleEdit={handleEdit}
             />
           ) : (
             <NewTest
@@ -252,7 +241,7 @@ const WeekPage = () => {
               closeModal={closeTestModal}
               fetchContent={fetchContent}
               handleAdd={handleTestAdd}
-              test={currentTest}
+              test={currentContent}
             />
           )}
         </ModalLayout>

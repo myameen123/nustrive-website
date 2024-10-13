@@ -42,7 +42,7 @@ const [course, setCourse] = useState({name:'',course:'',category:'',description:
     }
   }
 
-  console.log('course : ', course)
+  console.log('course : ', course) 
 
   const onSubmit = async (e) => {
     e.preventDefault();

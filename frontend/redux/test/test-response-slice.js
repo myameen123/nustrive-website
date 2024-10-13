@@ -13,17 +13,19 @@ if (typeof window !== "undefined") {
     initialState.result = JSON.parse(storedInfo);
   }
 }
-export const businessTestResponse = createAsyncThunk(
-  "test/response",
+export const testResponse = createAsyncThunk(
+  "test/testResponse",
   async (_, { rejectWithValue }) => {
     try {
-      const savedQuestions = JSON.parse(localStorage.getItem("test"));
+      const savedQuestions = JSON.parse(
+        localStorage.getItem("test")
+      );
       // console.log(savedQuestions);
       const config = {
         withCredentials: true,
       };
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/mock-test/businessTestResponse`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/TestResponse`,
         savedQuestions,
         config
       );
@@ -36,15 +38,15 @@ export const businessTestResponse = createAsyncThunk(
   }
 );
 
-export const businessTestResponseSlice = createSlice({
-  name: "businessTestResponse",
+export const testResponseSlice = createSlice({
+  name: "testResponse",
   initialState,
   // reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(businessTestResponse.pending, (state) => {
+    builder.addCase(testResponse.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(businessTestResponse.fulfilled, (state, action) => {
+    builder.addCase(testResponse.fulfilled, (state, action) => {
       state.loading = false;
       state.result = action.payload.result || action.payload;
       state.error = "";
@@ -55,7 +57,7 @@ export const businessTestResponseSlice = createSlice({
         );
       }
     });
-    builder.addCase(businessTestResponse.rejected, (state, action) => {
+    builder.addCase(testResponse.rejected, (state, action) => {
       state.loading = false;
       state.result = [];
       state.error = action.payload?.message || action.error.message;
@@ -63,4 +65,4 @@ export const businessTestResponseSlice = createSlice({
   },
 });
 
-export default businessTestResponseSlice.reducer;
+export default testResponseSlice.reducer;

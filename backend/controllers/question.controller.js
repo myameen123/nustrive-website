@@ -1,5 +1,7 @@
 import Questions from "../models/question.model.js";
 import cloudinary from "cloudinary";
+import shuffle from "lodash/shuffle.js";
+
 
 // Controller function to add a new question
 async function handleUpload(file) {
@@ -146,3 +148,185 @@ export const Delete = async (req, res) => {
     }
   };
   
+
+
+  
+// export const businessTestResponse = async (req, res) => {
+//   try {
+//     const Business_Questions = await BusinessQuestions.find();
+//     const questions = req.body;
+//     const subjects = ["math", "english", "iq"];
+//     const subjectQuestions = subjects.map((subject) =>
+//       Business_Questions.filter((question) => question.subject === subject)
+//     );
+//     const correctAnswers = subjectQuestions.map((questions) =>
+//       questions.map((question) => question.options[0])
+//     );
+//     const solvedQuestions = subjects.map((subject) =>
+//       questions.filter((question) => question.subject === subject)
+//     );
+//     const subjectResults = subjectQuestions.map((questions, index) =>
+//       solvedQuestions[index].map(
+//         (question, i) => question.selectedOption === correctAnswers[index][i]
+//       )
+//     );
+//     const scores = subjectResults.map(
+//       (results) => results.filter((result) => result).length
+//     );
+//     const totalScore = scores.reduce((acc, score) => acc + score, 0);
+
+//     res.status(200).json({
+//       message: "Successfully",
+//       result: {
+//         totalScore,
+//         mathScore: scores[0],
+//         englishScore: scores[1],
+//         iqScore: scores[2],
+//         totalQuestions: questions.length,
+//         totalMathQuestions: subjectQuestions[0].length,
+//         totalEnglishQuestions: subjectQuestions[1].length,
+//         totaliqQuestions: subjectQuestions[2].length,
+//         resultPersentage: (totalScore / questions.length) * 100,
+//       },
+//     });
+//   } catch (error) {
+//     res.status(500).json({
+//       error: error.message,
+//     });
+//   }
+// };
+
+// export const getTest = async (req, res) => {
+//   try {
+//     // Extract the subject from the query or request body
+//     const { subject } = req.query; // or req.body
+
+//     if (!subject) {
+//       return res.status(400).json({ message: "Subject is required" });
+//     }
+
+//     // Fetch questions for the specified subject
+//     const questions = await Questions.find({ subject }).limit(10); // Adjust limit as needed
+
+//     const shuffledQuestions = questions.map((question) => {
+//       const shuffledOptions = shuffle(question.options);
+//       return {
+//         ...question._doc,
+//         options: shuffledOptions,
+//       };
+//     });
+
+//     res.status(200).json({
+//       message: "Successfully fetched",
+//       questions: shuffledQuestions,
+//     });
+//   } catch (error) {
+//     res.status(500).json({ error: error.message });
+//   }
+// };
+
+
+export const getTest = async (req, res) => {
+  try {
+    // Shuffle options of each question in Business_Questions array
+    const {testId} = req.params;
+    console.log('testId', testId)
+    const mathQuestions = await Questions.find({test:testId})
+      
+    //   {
+    //   subject: "math",
+    // }).limit(6);
+    // const physicsQuestions = await Questions.find({
+    //   subject: "physics",
+    // }).limit(5);
+    // const chemistryQuestions = await Questions.find({
+    //   subject: "chemistry",
+    // }).limit(5);
+    // const englishQuestions = await Questions.find({
+    //   subject: "english",
+    // }).limit(4);
+
+    // const iqQuestions = await Questions.find({
+    //   subject: "iq",
+    // }).limit(3);
+
+    // Organize questions into an array in the specified order
+    const questionsArray = [
+      ...mathQuestions,
+      // ...physicsQuestions,
+      // ...chemistryQuestions,
+      // ...englishQuestions,
+      // ...iqQuestions,
+    ];
+
+    const shuffledQuestions = questionsArray.map((question) => {
+      // Shuffle the options array using lodash shuffle function
+      const shuffledOptions = shuffle(question.options);
+
+      // Return the question object with shuffled options
+      return {
+        ...question._doc, // Use ._doc to get the document object without mongoose metadata
+        // ...question, // Use ._doc to get the document object without mongoose metadata
+        options: shuffledOptions,
+      };
+    });
+
+    res.status(200).json({
+      message: "Successfully",
+      questions: shuffledQuestions,
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: error.message,
+    });
+  }
+};
+
+export const TestResponse = async (req, res) => {
+  try {
+    const d_Questions = await Questions.find();
+    const questions = req.body;
+    const subjects = ["math", "physics", "chemistry", "english", "iq"];
+    const subjectQuestions = subjects.map((subject) =>
+      d_Questions.filter((question) => question.subject === subject)
+    );
+    const correctAnswers = subjectQuestions.map((questions) =>
+      questions.map((question) => question.options[0])
+    );
+    const solvedQuestions = subjects.map((subject) =>
+      questions.filter((question) => question.subject === subject)
+    );
+    const subjectResults = subjectQuestions.map((questions, index) =>
+      solvedQuestions[index].map(
+        (question, i) => question.selectedOption === correctAnswers[index][i]
+      )
+    );
+    const scores = subjectResults.map(
+      (results) => results.filter((result) => result).length
+    );
+    const totalScore = scores.reduce((acc, score) => acc + score, 0);
+
+    res.status(200).json({
+      message: "Successfully",
+      result: {
+        totalScore,
+        mathScore: scores[0],
+        phusicsScore: scores[1],
+        chemistryScore: scores[2],
+        englishScore: scores[3],
+        iqScore: scores[4],
+        totalQuestions: questions.length,
+        totalMathQuestions: subjectQuestions[0].length,
+        totalPhysicsQuestions: subjectQuestions[1].length,
+        totalChemistryQuestions: subjectQuestions[2].length,
+        totalEnglishQuestions: subjectQuestions[3].length,
+        totaliqQuestions: subjectQuestions[4].length,
+        resultPersentage: (totalScore / questions.length) * 100,
+      },
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: error.message,
+    });
+  }
+};

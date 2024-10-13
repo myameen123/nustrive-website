@@ -1,68 +1,13 @@
-// "use client";
-// import React, { useEffect, useState } from "react";
-// import QuestionCard from "../../../../_components/questionCard";
-// import { useParams } from "next/navigation";
-// import toast from "react-hot-toast";
-// import axios from "axios";
-
-// const TestPage = () => {
-//   const params = useParams();
-//   console.log("params: ", params)
-//   const [questions, setQuestions] = useState([]);
-
-
-//   useEffect(() => {
-//     fetchQuestions();
-//   }, []);
- 
-
-//   const fetchQuestions = async () => {
-//     try {
-//       const response = await axios.get(
-//         `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/get/${params.Test}`
-//       );
-//       const data = await response.data;
-//       setQuestions(data);
-//     } catch (error) {
-//       toast.error(error.message, {
-//         position: "top-right",
-//         autoClose: 5000,
-//         hideProgressBar: false,
-//         closeOnClick: true,
-//         pauseOnHover: true,
-//         draggable: true,
-//         progress: undefined,
-//         theme: "light",
-//       });
-//     }
-//   };
-
-
-//   return (
-//     <>
-//       <div>
-//         <h1 className="p-4 text-2xl">Test Questions</h1>
-//         {questions.map((question) => (
-//           <QuestionCard
-//             key={question._id}
-//             question={question}
-//           />
-//         ))}
-//       </div>
-//     </>
-//   );
-// };
-
-// export default TestPage;
-
-
 "use client";
 import { Button } from "../../../../../../../../../components/ui/button";
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import React, { useState } from "react";
 
 function InstructionModal() {
+  const params = useParams()
+  const testId = params.Test
   const [isChecked, setIsChecked] = useState(false);
 
   const onCheckHandler = (e) => {
@@ -160,7 +105,7 @@ function InstructionModal() {
               disabled={!isChecked}
               className=" bg-[#49ADE5] hover:bg-[#49ADE5]"
             >
-              <Link href="/start">Start Test</Link>
+              <Link href={`${testId}/start`} >Start Test</Link>
             </Button>
         
         </div>

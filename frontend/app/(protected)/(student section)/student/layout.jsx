@@ -9,10 +9,10 @@ import Sidebar from "../../_components/sidebar";
 
 export default function StudentLayout({ children }) {
   const { user, isAuthenticated } = useSelector((state) => state.userLogin);
-  console.log('user->student: ', user)
+  // console.log('user->student: ', user)
   const router = useRouter();
   useEffect(() => {
-    console.log(user);
+    // console.log(user);
     if (!isAuthenticated) {
       router.push("/login");
     }

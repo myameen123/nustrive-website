@@ -19,8 +19,11 @@ import loginUserSlice from "./auth/login-slice";
 import logoutSlice from "./auth/logout-slice";
 import userInfoSlice from "./user/user-info-slice";
 
+import  getTestSlice  from "./test/get-test-slice";
+
 // Create the root reducer
 const rootReducer = combineReducers({
+  getTest:getTestSlice,
   getBusinessTest: getBusinessTestSlice,
   getEngineeringTest: getEngineeringTest,
   todo: todoSlice,
