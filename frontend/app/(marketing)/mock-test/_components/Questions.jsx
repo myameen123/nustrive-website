@@ -41,56 +41,56 @@ function Questions({ questions, title, category, sections }) {
 
   const [check, setCheck] = useState(false);
 
-  const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState([]);
-  const [error, setError] = useState("");
+  // const [loading, setLoading] = useState(false);
+  // const [result, setResult] = useState([]);
+  // const [error, setError] = useState("");
 
-  // Load from localStorage on component mount
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const storedInfo = localStorage.getItem("result");
-      if (storedInfo) {
-        setResult(JSON.parse(storedInfo));
-      }
-    }
-  }, []); // Empty dependency array means this runs once when the component mounts
+  // // Load from localStorage on component mount
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     const storedInfo = localStorage.getItem("result");
+  //     if (storedInfo) {
+  //       setResult(JSON.parse(storedInfo));
+  //     }
+  //   }
+  // }, []); // Empty dependency array means this runs once when the component mounts
 
 
-  const fetchEngineeringTestResponse = async () => {
-    try {
-      const savedQuestions = JSON.parse(localStorage.getItem("engineeringTest"));
-      const config = {
-        withCredentials: true,
-      };
+  // const fetchEngineeringTestResponse = async () => {
+  //   try {
+  //     const savedQuestions = JSON.parse(localStorage.getItem("engineeringTest"));
+  //     const config = {
+  //       withCredentials: true,
+  //     };
 
-      setLoading(true);
-      console.log('savedQuestion:', savedQuestions);
+  //     setLoading(true);
+  //     console.log('savedQuestion:', savedQuestions);
 
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/engineering/get/testResponse/${testId}`,
-        savedQuestions,
-        config
-      );
+  //     const response = await axios.post(
+  //       `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/engineering/get/testResponse/${testId}`,
+  //       savedQuestions,
+  //       config
+  //     );
 
-      const responseData = response.data;
-      setResult(responseData.result || responseData);
-      setError("");
+  //     const responseData = response.data;
+  //     setResult(responseData.result || responseData);
+  //     setError("");
 
-      // Save result to localStorage
-      if (typeof window !== "undefined") {
-        localStorage.setItem(
-          "result",
-          JSON.stringify(responseData.result || responseData)
-        );
-      }
-    } catch (error) {
-      console.log("error", error);
-      setError(error.response?.data?.message || error.message);
-      setResult([]);
-    } finally {
-      setLoading(false);
-    }
-  };
+  //     // Save result to localStorage
+  //     if (typeof window !== "undefined") {
+  //       localStorage.setItem(
+  //         "result",
+  //         JSON.stringify(responseData.result || responseData)
+  //       );
+  //     }
+  //   } catch (error) {
+  //     console.log("error", error);
+  //     setError(error.response?.data?.message || error.message);
+  //     setResult([]);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   // return { loading, result, error, fetchEngineeringTestResponse };
 

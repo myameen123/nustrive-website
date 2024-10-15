@@ -62,7 +62,7 @@ function ResultCard({ result }) {
     <div className="flex justify-center items-center md:items-start h-full">
       <div className="md:w-1/2 bg-white rounded-lg shadow-lg ">
         <h1 className="text-2xl font-bold text-center my-6 underline">
-          Result OF NSUT MOCK TEST BY NusTrive
+          Result OF NUST MOCK TEST BY NusTrive
         </h1>
         <TableContainer component={Paper}>
           <Table sx={{ width: "100%" }}>

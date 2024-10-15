@@ -14,7 +14,7 @@ import { ToasterProvider } from "../../components/providers/toast-provider";
 //   adjustFontFallback: true,
 // });
 export const metadata = {
-  title: "NusTrive | NET/NBS online preparation",
+  title: "NusTrive |  By Nowsherwan Khan | NET/NBS online preparation",
   description: "Nust entry test Prepration website",
 };
 

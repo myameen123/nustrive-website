@@ -16,8 +16,8 @@ import { ReduxProviders } from "../redux/Provider";
 //   adjustFontFallback: true,
 // });
 export const metadata = {
-  title: "NusTrive | NET/NBS online preparation",
-  description: "Nust entry test Prepration website",
+  title: "NusTrive | By Nowsherwan Khan ",
+  description: "NET/NBS online preparation. NUST entry test Prepration website",
 };
 
 export default function RootLayout({ children }) {
