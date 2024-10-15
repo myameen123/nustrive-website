@@ -16,6 +16,8 @@ router.get("/get/:testId", getAll);
 
 router.get('/getTest/:testId', getTest)
 
+router.get('/getResponse/:testId')
+
 router.get("/get/:id", get);
 
 router.put("/update/:id", update);

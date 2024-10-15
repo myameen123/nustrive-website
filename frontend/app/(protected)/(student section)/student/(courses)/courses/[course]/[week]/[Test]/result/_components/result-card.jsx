@@ -100,13 +100,13 @@ function ResultCard({ result }) {
         <div className=" my-8 flex justify-between px-4">
           <button
             className=" bg-[#111256] py-2 px-4 w-fit text-white rounded-[5px] hover:bg-[#111256]/90"
-            onClick={() => onClickHandler("/")}
+            onClick={() => onClickHandler("/student")}
           >
             Go to Home
           </button>
           <button
             className=" bg-[#111256] py-2 px-4 w-fit text-white rounded-[5px] hover:bg-[#111256]/90"
-            onClick={() => onClickHandler("/mock-test")}
+            onClick={() => onClickHandler("/student")}
           >
             Try Again
           </button>

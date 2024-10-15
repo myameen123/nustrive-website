@@ -3,9 +3,10 @@ import mongoose from "mongoose";
 const engineeringTestSchema = mongoose.Schema({
   title: { type: String, required: true },
   description: { type: String },
-  questions: [
-    { type: mongoose.Schema.Types.ObjectId, ref: "EngineeringQuestions" },
-  ],
+  subjects: [{type:String, enum:['maths','physics','english','iq','chemistry'],
+    default:['maths','physics','english','iq','chemistry']
+  }],
+  category:{type:String, default:'engineering'}
 });
 
 const EngineeringTest = mongoose.model(

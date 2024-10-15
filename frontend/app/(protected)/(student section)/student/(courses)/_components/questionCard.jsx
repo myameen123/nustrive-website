@@ -30,16 +30,16 @@ const QuestionCard = ({ setEdit, question, onDelete, onEdit }) => {
     });
   }, [question]);
 
-  const handleDelete = () => {
-    if (confirm("Are you sure you want to delete this question?")) {
-      onDelete(question._id);
-    }
-  };
+  // const handleDelete = () => {
+  //   if (confirm("Are you sure you want to delete this question?")) {
+  //     onDelete(question._id);
+  //   }
+  // };
 
-  const handleEdit = () => {
-    setEdit(false);
-    onEdit(question);
-  };
+  // const handleEdit = () => {
+  //   setEdit(false);
+  //   onEdit(question);
+  // };
 
   return (
     <div className="border border-gray-300 p-4 mb-2 rounded-lg shadow-sm">
@@ -47,7 +47,7 @@ const QuestionCard = ({ setEdit, question, onDelete, onEdit }) => {
       <h3 className="text-lg font-semibold mb-2" ref={questionTextRef}>
         {question.text}
       </h3>
-
+      <img src={`https://res.cloudinary.com/dgdkjf9ng/image/upload/v1715367002/BusinessQuestions/dzpfc6a5sqzc6qih4flu.png`} alt="Question Imaage" />
       {/* Options List */}
       <ul className="list-disc list-inside mb-4">
         {question.options.map((option, index) => (

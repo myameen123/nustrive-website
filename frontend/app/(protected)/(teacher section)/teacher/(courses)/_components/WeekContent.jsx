@@ -56,6 +56,7 @@ const WeekContent = ({ content, onEdit, onEditTest, onDelete }) => {
           {content.file.map((fileItem, index) => (
             <div key={index} className="mb-4">
               <p className="text-gray-600">File {index + 1}:</p>
+              {/* <Link href={`https://res.cloudinary.com/dgdkjf9ng/image/upload/v1715367002/BusinessQuestons/dzpfc6a5sqzc6qih4flu.png`}>PDF</Link> */}
               {renderFile(fileItem.url)}
             </div>
           ))}

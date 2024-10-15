@@ -11,7 +11,7 @@ import { useParams } from "next/navigation";
 
 const WeekPage = () => {
   const params = useParams()
-  console.log('params in weekPage: ', params)
+  // console.log('params in weekPage: ', params)
   const [isFile, setIsFile] = useState(false)
   const [content, setContent] = useState([]);
   const [testModal, setTestModal] = useState(false);

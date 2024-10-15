@@ -12,7 +12,7 @@ const QuestionSchema = mongoose.Schema({
   subject: {
     type: String,
     required: [true, "Subject is required"],
-    enum: ["english", "maths", "iq",'physics','chemistry','computer science'],
+    // enum: ["english", "maths", "iq",'physics','chemistry','computer science'],
   },
   correctAnswer: String,
   isSaved: {

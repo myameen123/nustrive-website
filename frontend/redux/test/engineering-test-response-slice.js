@@ -15,7 +15,7 @@ if (typeof window !== "undefined") {
 }
 export const engineeringTestResponse = createAsyncThunk(
   "test/engineeringTestResponse",
-  async (_, { rejectWithValue }) => {
+  async (testId, { rejectWithValue }) => {
     try {
       const savedQuestions = JSON.parse(
         localStorage.getItem("engineeringTest")
@@ -25,7 +25,7 @@ export const engineeringTestResponse = createAsyncThunk(
         withCredentials: true,
       };
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/mock-test/engineeringTestResponse`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/engineering/get/testResponse/${testId}`,
         savedQuestions,
         config
       );

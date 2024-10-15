@@ -8,6 +8,7 @@ const engineeringQuestionSchema = mongoose.Schema({
     },
   ],
   test:{type: mongoose.Schema.Types.ObjectId, ref:'EngineeringTest'},
+  // test:{type: String, required:false},
   options: [String],
   subject: {
     type: String,

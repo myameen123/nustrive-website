@@ -3,9 +3,11 @@
 import { Button } from "../../../../components/ui/button";
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import React, { useState } from "react";
 
-function InstructionModal({ type }) {
+function InstructionModal({ category }) {
+  const params = useParams()
   const [isChecked, setIsChecked] = useState(false);
 
   const onCheckHandler = (e) => {
@@ -98,12 +100,12 @@ function InstructionModal({ type }) {
               of not adhering to the exam instructions.
             </label>
           </div>
-          {type == "enginerring" ? (
+          {category == "enginerring" ? (
             <Button
               disabled={!isChecked}
               className=" bg-[#49ADE5] hover:bg-[#49ADE5]"
             >
-              <Link href="/mock-test/engineering-test/start">Start Test</Link>
+              <Link href={`/mock-test/${params.test}/start`}>Start Test</Link>
             </Button>
           ) : (
             <Button

@@ -1,5 +1,7 @@
 import EngineeringQuestions from "../models/enginering-questions.model.js";
 import cloudinary from "cloudinary";
+import shuffle from "lodash/shuffle.js";
+
 
 // Controller function to upload an image
 async function handleUpload(file) {
@@ -62,7 +64,8 @@ export const addEngineeringQuestion = async (req, res) => {
 export const getAllQuestions = async (req, res) => {
   try {
     console.log('req in controller', req.params.testId)
-    const questions = await EngineeringQuestions.find({test:req.params.testId});
+    const testId = req.params.testId;
+    const questions = await EngineeringQuestions.find({test:testId});
     res.json(questions);
     console.log('in get all question')
   } catch (err) {
@@ -110,5 +113,117 @@ export const deleteQuestion = async (req, res) => {
     res.json(deletedQuestion);
   } catch (err) {
     res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+
+export const getEngineeringTest = async (req, res) => {
+  try {
+    // Shuffle options of each question in Business_Questions array
+    const testId = req.params.testId
+
+    const mathQuestions = await EngineeringQuestions.find({subject:'maths', test:testId}).limit(80);
+    const physicsQuestions = await EngineeringQuestions.find({
+      subject: "physics", test:testId
+    }).limit(60);
+    const chemistryQuestions = await EngineeringQuestions.find({
+      subject: "chemistry",test:testId
+    }).limit(30);
+    const englishQuestions = await EngineeringQuestions.find({
+      subject: "english",test:testId
+    }).limit(20);
+    const iqQuestions = await EngineeringQuestions.find({
+      subject: "iq",test:testId
+    }).limit(10);
+    
+    
+    console.log('mathsquestions:', mathQuestions)
+    console.log('physics question:', physicsQuestions)
+    console.log('chemistry question', chemistryQuestions)
+    console.log('english question',englishQuestions)
+    console.log('iq questions', iqQuestions)
+
+    // Organize questions into an array in the specified order
+    const questionsArray = [
+      ...mathQuestions,
+      ...physicsQuestions,
+      ...chemistryQuestions,
+      ...englishQuestions,
+      ...iqQuestions,
+    ];
+
+    const shuffledQuestions = questionsArray.map((question) => {
+      // Shuffle the options array using lodash shuffle function
+      const shuffledOptions = shuffle(question.options);
+
+      // Return the question object with shuffled options
+      return {
+        ...question._doc, // Use ._doc to get the document object without mongoose metadata
+        // ...question, // Use ._doc to get the document object without mongoose metadata
+        options: shuffledOptions,
+      };
+    });
+
+    res.status(200).json({
+      message: "Successfully",
+      questions: shuffledQuestions,
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: error.message,
+    });
+    console.log('error: ',error)
+  }
+};
+
+export const engineeringTestResponse = async (req, res) => {
+  try {
+    const testId = req.params.testId;
+    const Engineering_Questions = await EngineeringQuestions.find({test:testId});
+    const questions = req.body;
+    console.log('questions :',questions)
+    const subjects = ["maths", "physics", "chemistry", "english", "iq"];
+    const subjectQuestions = subjects.map((subject) =>
+      Engineering_Questions.filter((question) => question.subject === subject)
+    );
+    const correctAnswers = subjectQuestions.map((questions) =>
+      questions.map((question) => question.options[0])
+    );
+    const solvedQuestions = subjects.map((subject) =>
+      questions.filter((question) => question.subject === subject)
+    );
+    console.log('solvedQuestions', solvedQuestions)
+    const subjectResults = subjectQuestions.map((questions, index) =>
+      solvedQuestions[index].map(
+        (question, i) => question.selectedOption === correctAnswers[index][i]
+      )
+    );
+    const scores = subjectResults.map(
+      (results) => results.filter((result) => result).length
+    );
+    const totalScore = scores.reduce((acc, score) => acc + score, 0);
+
+    res.status(200).json({
+      message: "Successfully",
+      result: {
+        totalScore,
+        mathScore: scores[0],
+        phusicsScore: scores[1],
+        chemistryScore: scores[2],
+        englishScore: scores[3],
+        iqScore: scores[4],
+        totalQuestions: questions.length,
+        totalMathQuestions: subjectQuestions[0].length,
+        totalPhysicsQuestions: subjectQuestions[1].length,
+        totalChemistryQuestions: subjectQuestions[2].length,
+        totalEnglishQuestions: subjectQuestions[3].length,
+        totaliqQuestions: subjectQuestions[4].length,
+        resultPersentage: (totalScore / questions.length) * 100,
+      },
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: error.message,
+    });
   }
 };

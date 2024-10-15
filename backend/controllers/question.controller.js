@@ -229,8 +229,8 @@ export const Delete = async (req, res) => {
 export const getTest = async (req, res) => {
   try {
     // Shuffle options of each question in Business_Questions array
-    const {testId} = req.params;
-    console.log('testId', testId)
+    // const {testId} = req.params;
+    // console.log('testId', testId)
     const mathQuestions = await Questions.find({test:testId})
       
     //   {
@@ -284,9 +284,9 @@ export const getTest = async (req, res) => {
 
 export const TestResponse = async (req, res) => {
   try {
-    const d_Questions = await Questions.find();
+    const d_Questions = await Questions.find({test:testId});
     const questions = req.body;
-    const subjects = ["math", "physics", "chemistry", "english", "iq"];
+    // const subjects = ["math", "physics", "chemistry", "english", "iq"];
     const subjectQuestions = subjects.map((subject) =>
       d_Questions.filter((question) => question.subject === subject)
     );

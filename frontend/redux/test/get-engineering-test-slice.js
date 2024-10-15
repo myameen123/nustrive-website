@@ -20,7 +20,7 @@ const saveCurrentTime = () => {
 
 export const getEngineeringTest = createAsyncThunk(
   "test/getEngineeringTest",
-  async (_, { rejectWithValue }) => {
+  async (testId, { rejectWithValue }) => {
     try {
       // Check if questions already exist in local storage
       const storedQuestions = localStorage.getItem("engineeringTest");
@@ -35,11 +35,14 @@ export const getEngineeringTest = createAsyncThunk(
       const config = {
         withCredentials: true,
       };
+      console.log('testId in get-engineering-test-slice:',testId)
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/mock-test/getEngineeringTest`,
+        // `${process.env.NEXT_PUBLIC_BACKEND_URL}/mock-test/getEngineeringTest`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/engineering/get/test/${testId}`,
         config
       );
 
+      console.log('response.data in get-engineering-test-slice: ', response.data)
       return response.data;
     } catch (error) {
       console.log("error", error);
@@ -59,6 +62,7 @@ export const getEngineeringTestSlice = createSlice({
     builder.addCase(getEngineeringTest.fulfilled, (state, action) => {
       state.loading = false;
       state.questions = action.payload.questions || action.payload;
+      // console.log('1.fulfilled')
       state.error = "";
       // Update localStorage on the client-side
       if (typeof window !== "undefined") {
@@ -70,6 +74,7 @@ export const getEngineeringTestSlice = createSlice({
     });
     builder.addCase(getEngineeringTest.rejected, (state, action) => {
       state.loading = false;
+      // console.log('2.rejected')
       state.questions = [];
       state.error = action.payload?.message || action.error.message;
     });

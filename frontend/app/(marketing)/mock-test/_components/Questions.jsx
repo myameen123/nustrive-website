@@ -1,25 +1,29 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import TestButton from "./test-button";
 import { IoArrowRedoSharp, IoArrowUndo } from "react-icons/io5";
 import { ImNext2, ImPrevious2 } from "react-icons/im";
-
 import { ClipboardList, Play, Save } from "lucide-react";
 import TimeCount from "./time-count";
-// import { getBusinessTest } from "@/redux/test/get-business-test-slice";
 import { useDispatch } from "react-redux";
 import { businessTestResponse } from "../../../../redux/test/bussiness-test-response-slice";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Loader from "../../../../components/modals/loader";
 import { engineeringTestResponse } from "../../../../redux/test/engineering-test-response-slice";
-// import Image from "next/image";
 import { CldImage } from "next-cloudinary";
 import { getEngineeringTest } from "../../../../redux/test/get-engineering-test-slice";
 import { getBusinessTest } from "../../../../redux/test/get-business-test-slice";
 import { set } from "react-hook-form";
+import renderMathInElement from 'katex/dist/contrib/auto-render';
+import 'katex/dist/katex.min.css';
+
+
 function Questions({ questions, title, category, sections }) {
+  const params = useParams()
+  const testId = params.test;
+
   const router = useRouter();
-  const [currentSection, setCurrentSection] = useState("math");
+  const [currentSection, setCurrentSection] = useState("maths");
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [filteredQuestions, setFilteredQuestions] = useState([]);
   const [isFirstSection, setIsFirstSection] = useState(true);
@@ -39,6 +43,9 @@ function Questions({ questions, title, category, sections }) {
   const [check, setCheck] = useState(false);
   const dispatch = useDispatch();
 
+    const questionTextRef = useRef();
+  const optionsRef = useRef([]);
+
   useEffect(() => {
     // console.log("questions", questions);
     // Filter questions based on the current section
@@ -55,6 +62,29 @@ function Questions({ questions, title, category, sections }) {
     // Check if the current section is the last section
     setIsLastSection(sections.indexOf(currentSection) === sections.length - 1);
   }, [currentSection, questionsUpdated, questions, currentQuestionIndex]);
+
+useEffect(() => {
+  // Render LaTeX for the question text and options
+  if (questionTextRef.current) {
+    renderMathInElement(questionTextRef.current, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false },
+      ],
+    });
+  }
+
+  optionsRef.current.forEach((optionRef) => {
+    if (optionRef) {
+      renderMathInElement(optionRef, {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "$", right: "$", display: false },
+        ],
+      });
+    }
+  });
+}, [currentQuestionIndex, filteredQuestions]);
 
   // Function to handle moving to the next question
   const questionIndex = () => {
@@ -152,6 +182,7 @@ function Questions({ questions, title, category, sections }) {
 
       return question;
     });
+
     // localStorage.setItem(
     //   category === "Business" ? "businessTest" : "engineeringTest",
     //   JSON.stringify(updatedQuestions)
@@ -188,12 +219,6 @@ function Questions({ questions, title, category, sections }) {
       return question;
     });
 
-    // Save the updated questions array back to local storage
-    // localStorage.setItem(
-    //   category === "Business" ? "businessTest" : "engineeringTest",
-    //   JSON.stringify(updatedQuestions)
-    // );
-    // dispatch(getEngineeringTest());
 
     if (category === "Business") {
       localStorage.setItem("businessTest", JSON.stringify(updatedQuestions));
@@ -206,13 +231,11 @@ function Questions({ questions, title, category, sections }) {
   };
 
   useEffect(() => {
-    // console.log("currentQuestionIndex", currentQuestionIndex);
     if (
       filteredQuestions.length > 0 &&
       filteredQuestions[currentQuestionIndex].isSaved
     ) {
-      // console.log("saved");
-      // console.log(filteredQuestions[currentQuestionIndex].selectedOption);
+
       setSelectedOption(filteredQuestions[currentQuestionIndex].selectedOption);
       if (!filteredQuestions[currentQuestionIndex].isReviewed) {
         setIsReviewDisabled(false);
@@ -226,16 +249,16 @@ function Questions({ questions, title, category, sections }) {
   const onFinishHandler = () => {
     setCheck(true);
     if (category === "Business") {
-      dispatch(businessTestResponse());
+      dispatch(businessTestResponse(testId));
       localStorage.removeItem("startTime");
       localStorage.removeItem("businessTest");
 
-      router.push("/mock-test/business-test/result");
+      router.push(`/mock-test/${testId}/result`);
     } else {
-      dispatch(engineeringTestResponse());
+      dispatch(engineeringTestResponse(testId));
       localStorage.removeItem("startTime");
       localStorage.removeItem("engineeringTest");
-      router.push("/mock-test/engineering-test/result");
+      router.push(`/mock-test/${testId}/result`);
     }
   };
   const handleFinsheValue = (val) => {
@@ -273,11 +296,8 @@ function Questions({ questions, title, category, sections }) {
                 <div className=" p-1  bg-[#F0F8FF] pt-2">
                   <span className=" font-semibold">Question</span>
                   {filteredQuestions[currentQuestionIndex].image.length > 0 ? (
-                    <div className=" flex flex-col justify-center items-center p-1 border border-black">
-                      <p className=" text-base font-semibold my-2">
-                        {filteredQuestions[currentQuestionIndex].text}
-                      </p>
-
+                    <div className=" flex flex-col justify-center items-center p-1 border border-black" ref={questionTextRef}>
+                             {filteredQuestions[currentQuestionIndex].text}
                       <CldImage
                         width="500"
                         height="500"
@@ -288,18 +308,18 @@ function Questions({ questions, title, category, sections }) {
                       />
                     </div>
                   ) : (
-                    <textarea
+                    <div
                       name=""
                       id=""
                       cols="110"
                       rows="6"
-                      className="bg-white w-full border border-[#111256] p-1"
+                      className="bg-white w-full h-[8rem] border border-[#111256] p-1"
                       readOnly
-                      // defaultValue={filteredQuestions[currentQuestionIndex].text} // Use defaultValue to set the initial value
-                      value={filteredQuestions[currentQuestionIndex].text}
-                    />
+                      ref={questionTextRef}
+                    >
+                      {filteredQuestions[currentQuestionIndex].text}
+                    </div>
                   )}
-                  {/* <p>{filteredQuestions[currentQuestionIndex].text}</p> */}
                 </div>
               </div>
               <div className=" bg-[#BCDEF5] w-[15%] p-2 md:flex flex-col hidden">
@@ -337,11 +357,12 @@ function Questions({ questions, title, category, sections }) {
                     onChange={handleOptionSelect}
                   />
                   <label
-                    htmlFor={`option${index}`}
-                    className=" w-full border border-black px-2 py-2"
-                  >
-                    {option}
-                  </label>
+                      htmlFor={`option${index}`}
+                      className="w-full border border-black px-2 py-2"
+                      ref={(el) => (optionsRef.current[index] = el)}
+                    >
+                      {option}
+                     </label>
                 </div>
               )
             )}

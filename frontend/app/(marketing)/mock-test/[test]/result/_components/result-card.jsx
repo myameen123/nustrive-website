@@ -1,3 +1,4 @@
+'use client'
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
@@ -7,7 +8,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.MuiTableCell-head`]: {
@@ -36,6 +37,9 @@ function createData(subject, totalMarks, marksObtained) {
 
 // ];
 function ResultCard({ result }) {
+  const params = useParams();
+  const testId = params.test;
+
   const router = useRouter();
   const rows = [
     createData("Mathematics", result.totalMathQuestions, result.mathScore),
@@ -113,7 +117,7 @@ function ResultCard({ result }) {
           </button>
           <button
             className=" bg-[#111256] py-2 px-4 w-fit text-white rounded-[5px] hover:bg-[#111256]/90"
-            onClick={() => onClickHandler("/mock-test")}
+            onClick={() => onClickHandler(`/mock-test/${testId}`)}
           >
             Try Again
           </button>

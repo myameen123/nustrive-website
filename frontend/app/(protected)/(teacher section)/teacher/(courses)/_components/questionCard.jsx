@@ -3,8 +3,6 @@
 // import renderMathInElement from 'katex/dist/contrib/auto-render';
 // import 'katex/dist/katex.min.css';
 
-
-
 // const QuestionCard = ({ setEdit, question, onDelete, onEdit }) => {
 //   const katexTextRef = useRef();
 
@@ -62,11 +60,10 @@
 
 // export default QuestionCard;
 
-
-'use client'
+"use client";
 import React, { useRef, useEffect } from "react";
-import renderMathInElement from 'katex/dist/contrib/auto-render';
-import 'katex/dist/katex.min.css';
+import renderMathInElement from "katex/dist/contrib/auto-render";
+import "katex/dist/katex.min.css";
 
 const QuestionCard = ({ setEdit, question, onDelete, onEdit }) => {
   const questionTextRef = useRef();
@@ -76,19 +73,19 @@ const QuestionCard = ({ setEdit, question, onDelete, onEdit }) => {
     if (questionTextRef.current) {
       renderMathInElement(questionTextRef.current, {
         delimiters: [
-          { left: '$$', right: '$$', display: true },
-          { left: '$', right: '$', display: false },
+          { left: "$$", right: "$$", display: true },
+          { left: "$", right: "$", display: false },
         ],
       });
     }
 
     // Render LaTeX for each option
-    optionsRef.current.forEach(optionRef => {
+    optionsRef.current.forEach((optionRef) => {
       if (optionRef) {
         renderMathInElement(optionRef, {
           delimiters: [
-            { left: '$$', right: '$$', display: true },
-            { left: '$', right: '$', display: false },
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false },
           ],
         });
       }
@@ -106,6 +103,7 @@ const QuestionCard = ({ setEdit, question, onDelete, onEdit }) => {
     onEdit(question);
   };
 
+  console.log('question in question Card: ',question);
   return (
     <div className="border border-gray-300 p-4 mb-2 rounded-lg shadow-sm">
       {/* Question Text */}
@@ -114,12 +112,17 @@ const QuestionCard = ({ setEdit, question, onDelete, onEdit }) => {
       </h3>
 
       {/* Options List */}
+      <img
+        // src={`https://res.cloudinary.com/dgdkjf9ng/image/upload/v1715419915/EngineeringQuestions/vzmgsd0wghuztjvowaml.png`}
+        src={`${question.image.url}`}
+        alt="Sample Image"
+      ></img>
       <ul className="list-disc list-inside mb-4">
         {question.options.map((option, index) => (
           <li
             key={index}
             className="text-gray-700"
-            ref={el => (optionsRef.current[index] = el)} // Store ref for each option
+            ref={(el) => (optionsRef.current[index] = el)} // Store ref for each option
           >
             {option}
           </li>

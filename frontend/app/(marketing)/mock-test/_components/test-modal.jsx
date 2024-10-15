@@ -8,7 +8,7 @@ function TestModal({ test }) {
     <div className=" border shadow-lg">
       <div className=" bg-[#111225] text-white p-2 ">
         <Typography>
-          {`Online Test for NET ( Nust Entrance Test) Preparation - ${test.type}`}
+          {`Online Test for NET ( Nust Entrance Test) Preparation - ${test.category}`}
         </Typography>
       </div>
       <div className=" flex flex-col p-4 gap-1">
@@ -30,7 +30,7 @@ function TestModal({ test }) {
             Type: <span className=" font-bold">Free</span>
           </span>
           <Link
-            href={test.url}
+            href={`mock-test/${test._id}`}
             className=" bg-[#49ADE5] px-4 py-1 font-bold rounded-md"
           >
             Start

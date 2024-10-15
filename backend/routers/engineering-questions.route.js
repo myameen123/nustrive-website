@@ -5,7 +5,10 @@ import {
   deleteQuestion, 
   updateQuestion, 
   getAllQuestions, 
-  getQuestionById } 
+  getQuestionById,
+  getEngineeringTest,
+  engineeringTestResponse,  
+} 
   from "../controllers/engineering-questions.contoller.js";
 
 const upload = multer({});
@@ -25,5 +28,9 @@ router.put("/update/:id", updateQuestion);
 
 // Route to delete a question by ID
 router.delete("/delete/:id", deleteQuestion);
+
+router.get('/get/test/:testId', getEngineeringTest)
+
+router.get('/get/testResponse/:testId', engineeringTestResponse)
 
 export default router;

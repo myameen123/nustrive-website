@@ -3,7 +3,7 @@ import EngineeringTest from "../models/engineering-test.model.js";
 // Create a new test
 export const addTest = async (req, res) => {
     try {
-        const { title, description } = req.body;
+        const { title, subjects, description } = req.body;
         console.log('req.body', req.body)
         const newTest = new EngineeringTest({ title, description });
         console.log('newTest: ', newTest);
@@ -18,7 +18,7 @@ export const addTest = async (req, res) => {
 // Get all tests
 export const getTests = async (req, res) => {
     try {
-        const tests = await EngineeringTest.find().populate('questions');
+        const tests = await EngineeringTest.find();
         res.status(200).json(tests);
     } catch (err) {
         console.log('err.message',err.message);
@@ -30,7 +30,7 @@ export const getTests = async (req, res) => {
 export const getTestById = async (req, res) => {
     try {
         const { id } = req.params;
-        const test = await EngineeringTest.findById(id).populate('questions');
+        const test = await EngineeringTest.findById(id);
         if (!test) return res.status(404).json({ error: "Test not found" });
         res.status(200).json(test);
     } catch (err) {

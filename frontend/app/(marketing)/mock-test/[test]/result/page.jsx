@@ -5,7 +5,7 @@ import ResultCard from "./_components/result-card";
 
 function TestFinish() {
   const result = useSelector((state) => state.engineeringTestResponse);
-  // console.log(result);
+  console.log('result', result);
   return (
     <div className=" min-h-screen px-4">
       {!result.loading ? (

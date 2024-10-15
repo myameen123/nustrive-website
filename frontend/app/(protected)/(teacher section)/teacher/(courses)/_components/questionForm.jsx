@@ -3,22 +3,27 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { RotateCw } from "lucide-react";
 import { useSelector } from "react-redux"; 
+import { useParams } from "next/navigation";
 
 function QuestionForm({
   edit,
   question,
-  testId,
+  // testId,
   closeModal,
   handleSelectFile,
   handleSubmit,
 }) {
+  const params = useParams()
+  // console.log('params in question form: ', params)
+
   const { loading, success, error } = useSelector(
     (state) => state.addNewEngineeringQuestion
   );
   const [dataForm, setDataForm] = useState({
-    test: testId || "",
+    test: params.Test || "",
     text: "",
-    subject: "",
+    image:"",
+    subject: params.course || "",
     option1: "",
     option2: "",
     option3: "",
@@ -31,9 +36,10 @@ function QuestionForm({
     setImagesPreview([]);
     setFile([]);
     setDataForm({
-      test: testId,
+      test: params.Test,
       text: "" || question.text,
-      subject: "" || question.subject,
+      image: question.image || '',
+      subject: params.course || "",
       option1: "" || question.options[0],
       option2: "" || question.options[1],
       option3: "" || question.options[2],
@@ -46,15 +52,17 @@ function QuestionForm({
     const updatedQuestion = edit
       ? {
           text: dataForm.text,
+          image:question.image,
           options: [
             dataForm.option1,
             dataForm.option2,
             dataForm.option3,
             dataForm.option4,
           ],
-          subject: dataForm.subject,
+          subject: params.course,
         }
       : dataForm;
+      // console.log('update question: ', updatedQuestion)
     handleSubmit(updatedQuestion);
     closeModal();
   };
@@ -86,13 +94,13 @@ function QuestionForm({
               />
             </div>
             <div className="flex flex-col gap-2">
-              <label htmlFor="picture" className="font-semibold underline">
+              <label htmlFor="image" className="font-semibold underline">
                 Add picture (if needed):
               </label>
               <input
                 type="file"
-                name="picture"
-                id="picture"
+                name="image"
+                id="image"
                 accept="image/*"
                 multiple
                 onChange={handleSelectFile}
@@ -172,7 +180,7 @@ function QuestionForm({
                 </div>
               </div>
             </div>
-            <div className="w-full">
+            {/* <div className="w-full">
               <label htmlFor="subject" className="font-semibold underline">
                 Select Subject:
               </label>
@@ -193,7 +201,7 @@ function QuestionForm({
                 <option value="computer science">Computer Science</option>
                 <option value="english">English</option>
               </select>
-            </div>
+            </div> */}
             <div className="flex w-full justify-center">
               <button
                 type="submit"

@@ -1,11 +1,20 @@
 "use client";
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import ResultCard from "./_components/result-card";
+import { useParams } from "next/navigation";
 
 function TestFinish() {
+  const params = useParams()
   const result = useSelector((state) => state.testResponse);
-  // console.log(result);
+
+  const dispatch = useDispatch()
+  const testId = params.Test
+  useEffect(()=>{
+    dispatch(testResponse(testId))
+  },[testId])
+
+  console.log(result);
   return (
     <div className=" h-screen px-4">
       {!result.loading ? (

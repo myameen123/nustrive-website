@@ -11,7 +11,7 @@ import axios from "axios";
 
 const TestPage = () => {
   const params = useParams();
-  console.log("params: ", params)
+  // console.log("params: ", params)
   const [questions, setQuestions] = useState([]);
   const [modal, setModal] = useState(false);
   const [edit, setEdit] = useState(false);
@@ -47,6 +47,7 @@ const TestPage = () => {
 
   const handleAdd = async (question) => {
     try {
+      console.log('question in handle add: ', question)
       const data = await axios.post(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/add`,
         question,

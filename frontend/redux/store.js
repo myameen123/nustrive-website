@@ -24,8 +24,8 @@ import  getTestSlice  from "./test/get-test-slice";
 // Create the root reducer
 const rootReducer = combineReducers({
   getTest:getTestSlice,
-  getBusinessTest: getBusinessTestSlice,
   getEngineeringTest: getEngineeringTest,
+  getBusinessTest: getBusinessTestSlice,
   todo: todoSlice,
   businessTestResponse: businessTestResponse,
   engineeringTestResponse: engineeringTestResponse,
