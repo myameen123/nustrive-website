@@ -31,6 +31,6 @@ router.delete("/delete/:id", deleteQuestion);
 
 router.get('/get/test/:testId', getEngineeringTest)
 
-router.get('/get/testResponse/:testId', engineeringTestResponse)
+router.post('/get/testResponse/:testId', engineeringTestResponse)
 
 export default router;

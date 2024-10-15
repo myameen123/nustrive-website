@@ -1,59 +1,80 @@
 "use client";
-// import { getBusinessTest } from "../../../../../redux/test/get-business-test-slice";
 import React, { useEffect, useState } from "react";
-// import Test from "../../_components/test";
-import { useSelector, useDispatch } from "react-redux";
 import Questions from "../../_components/Questions";
 import axios from "axios";
-import { getEngineeringTest } from "../../../../../redux/test/get-engineering-test-slice";
 import { useParams } from "next/navigation";
-// import { addTodo } from "@/redux/todo-slice";
 
 function EngineeringTestStart() {
-  const [engineeringTest, setEngineeringTest] = useState([])
+  const params = useParams();
 
-  const params = useParams()
+  const testId = params.test;
+  const [loading, setLoading] = useState(false);
+  const [questions, setQuestions] = useState([]);
+  const [error, setError] = useState("");
 
-  const testId = params.test
+  const saveCurrentTime = () => {
+    const currentTime = new Date().getTime();
+    localStorage.setItem("startTime", currentTime);
+  };
 
-  useEffect(()=>{
-    fetchQuestion(testId)
-  },[testId])
+  // Load questions from localStorage or fetch from backend when component mounts
+  useEffect(() => {
+    fetchEngineeringTest(testId);
+  }, [testId]); // Runs whenever `testId` changes
 
+  // Fetch test questions from localStorage or backend
+  const fetchEngineeringTest = async (testId) => {
+    try {
+      setLoading(true);
+      // Check if questions exist in localStorage
+      const storedQuestions = localStorage.getItem("engineeringTest");
+      if (storedQuestions) {
+        setQuestions(JSON.parse(storedQuestions));
+        setLoading(false);
+        return;
+      }
 
-  const fetchQuestion = async (testId) =>{
-    try{
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/question/engineering/get/test/${testId}`)
+      // Fetch from the backend if not in localStorage
+      saveCurrentTime();
+      const config = {
+        withCredentials: true,
+      };
 
-      // console.log('response in start', response.data)
-      setEngineeringTest(response.data)
-    }catch(err){
-      console.log(err.message)
+      console.log("Fetching questions for testId:", testId);
+
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/engineering/get/test/${testId}`,
+        config
+      );
+
+      console.log("Response data:", response.data);
+
+      setQuestions(response.data.questions || response.data);
+      setError("");
+
+      // Save to localStorage
+      localStorage.setItem(
+        "engineeringTest",
+        JSON.stringify(response.data.questions || response.data)
+      );
+    } catch (error) {
+      console.log("Error fetching questions:", error);
+      setError(error.response?.data?.message || error.message);
+      setQuestions([]);
+    } finally {
+      setLoading(false);
     }
-  }
+  };
 
-//   const params = useParams()
-//   const testId = params.test
-//   const engineeringTest = useSelector((state) => state.getEngineeringTest);
-//   const dispatch = useDispatch();
-
-//   console.log('testId in start: ', params)
-  
-//   useEffect(() => {
-//     dispatch(getEngineeringTest(testId));
-//   }, [dispatch,testId]);
-  
-// console.log("engineeringTest in page start",engineeringTest)
-
-
+  console.log("engineeringTest in page start", questions);
 
   return (
     <div className=" min-h-screen">
       {/* <Test /> */}
-      {engineeringTest.questions && (
+      {questions && (
         // <QuestionDisplay questions={questions.questions} />
         <Questions
-          questions={engineeringTest.questions}
+          questions={questions}
           sections={["maths", "physics", "chemistry", "english", "iq"]}
           title="Engineering/Computer Science/BS Mathematics (With Chemistry)"
           category="Chemistry"

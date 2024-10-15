@@ -180,19 +180,31 @@ export const engineeringTestResponse = async (req, res) => {
   try {
     const testId = req.params.testId;
     const Engineering_Questions = await EngineeringQuestions.find({test:testId});
+
     const questions = req.body;
-    console.log('questions :',questions)
+    // console.log('req.data',req.data)
+
+    // console.log('Engineering_Questions:', Engineering_Questions)
+    console.log('questions in engineeringTestResponse:',questions)
     const subjects = ["maths", "physics", "chemistry", "english", "iq"];
     const subjectQuestions = subjects.map((subject) =>
       Engineering_Questions.filter((question) => question.subject === subject)
     );
+
+    // console.log('subjectQuestion', subjectQuestions)
+
     const correctAnswers = subjectQuestions.map((questions) =>
       questions.map((question) => question.options[0])
     );
+
+    // console.log('correctAnswers: ',correctAnswers)
+
     const solvedQuestions = subjects.map((subject) =>
       questions.filter((question) => question.subject === subject)
     );
+
     console.log('solvedQuestions', solvedQuestions)
+    
     const subjectResults = subjectQuestions.map((questions, index) =>
       solvedQuestions[index].map(
         (question, i) => question.selectedOption === correctAnswers[index][i]

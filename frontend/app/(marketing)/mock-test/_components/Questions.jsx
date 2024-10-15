@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState,useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import TestButton from "./test-button";
 import { IoArrowRedoSharp, IoArrowUndo } from "react-icons/io5";
 import { ImNext2, ImPrevious2 } from "react-icons/im";
@@ -14,12 +14,11 @@ import { CldImage } from "next-cloudinary";
 import { getEngineeringTest } from "../../../../redux/test/get-engineering-test-slice";
 import { getBusinessTest } from "../../../../redux/test/get-business-test-slice";
 import { set } from "react-hook-form";
-import renderMathInElement from 'katex/dist/contrib/auto-render';
-import 'katex/dist/katex.min.css';
-
+import renderMathInElement from "katex/dist/contrib/auto-render";
+import "katex/dist/katex.min.css";
 
 function Questions({ questions, title, category, sections }) {
-  const params = useParams()
+  const params = useParams();
   const testId = params.test;
 
   const router = useRouter();
@@ -41,9 +40,65 @@ function Questions({ questions, title, category, sections }) {
   );
 
   const [check, setCheck] = useState(false);
+
+  const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState([]);
+  const [error, setError] = useState("");
+
+  // Load from localStorage on component mount
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedInfo = localStorage.getItem("result");
+      if (storedInfo) {
+        setResult(JSON.parse(storedInfo));
+      }
+    }
+  }, []); // Empty dependency array means this runs once when the component mounts
+
+
+  const fetchEngineeringTestResponse = async () => {
+    try {
+      const savedQuestions = JSON.parse(localStorage.getItem("engineeringTest"));
+      const config = {
+        withCredentials: true,
+      };
+
+      setLoading(true);
+      console.log('savedQuestion:', savedQuestions);
+
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/engineering/get/testResponse/${testId}`,
+        savedQuestions,
+        config
+      );
+
+      const responseData = response.data;
+      setResult(responseData.result || responseData);
+      setError("");
+
+      // Save result to localStorage
+      if (typeof window !== "undefined") {
+        localStorage.setItem(
+          "result",
+          JSON.stringify(responseData.result || responseData)
+        );
+      }
+    } catch (error) {
+      console.log("error", error);
+      setError(error.response?.data?.message || error.message);
+      setResult([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // return { loading, result, error, fetchEngineeringTestResponse };
+
+
+
   const dispatch = useDispatch();
 
-    const questionTextRef = useRef();
+  const questionTextRef = useRef();
   const optionsRef = useRef([]);
 
   useEffect(() => {
@@ -63,28 +118,28 @@ function Questions({ questions, title, category, sections }) {
     setIsLastSection(sections.indexOf(currentSection) === sections.length - 1);
   }, [currentSection, questionsUpdated, questions, currentQuestionIndex]);
 
-useEffect(() => {
-  // Render LaTeX for the question text and options
-  if (questionTextRef.current) {
-    renderMathInElement(questionTextRef.current, {
-      delimiters: [
-        { left: "$$", right: "$$", display: true },
-        { left: "$", right: "$", display: false },
-      ],
-    });
-  }
-
-  optionsRef.current.forEach((optionRef) => {
-    if (optionRef) {
-      renderMathInElement(optionRef, {
+  useEffect(() => {
+    // Render LaTeX for the question text and options
+    if (questionTextRef.current) {
+      renderMathInElement(questionTextRef.current, {
         delimiters: [
           { left: "$$", right: "$$", display: true },
           { left: "$", right: "$", display: false },
         ],
       });
     }
-  });
-}, [currentQuestionIndex, filteredQuestions]);
+
+    optionsRef.current.forEach((optionRef) => {
+      if (optionRef) {
+        renderMathInElement(optionRef, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false },
+          ],
+        });
+      }
+    });
+  }, [currentQuestionIndex, filteredQuestions]);
 
   // Function to handle moving to the next question
   const questionIndex = () => {
@@ -219,7 +274,6 @@ useEffect(() => {
       return question;
     });
 
-
     if (category === "Business") {
       localStorage.setItem("businessTest", JSON.stringify(updatedQuestions));
       dispatch(getBusinessTest());
@@ -235,7 +289,6 @@ useEffect(() => {
       filteredQuestions.length > 0 &&
       filteredQuestions[currentQuestionIndex].isSaved
     ) {
-
       setSelectedOption(filteredQuestions[currentQuestionIndex].selectedOption);
       if (!filteredQuestions[currentQuestionIndex].isReviewed) {
         setIsReviewDisabled(false);
@@ -250,6 +303,7 @@ useEffect(() => {
     setCheck(true);
     if (category === "Business") {
       dispatch(businessTestResponse(testId));
+
       localStorage.removeItem("startTime");
       localStorage.removeItem("businessTest");
 
@@ -264,10 +318,12 @@ useEffect(() => {
   const handleFinsheValue = (val) => {
     setTimeFinished(val);
   };
+
   if (timeFinshed) {
     onFinishHandler();
     setTimeFinished(false);
   }
+
   return (
     <div className=" mb-4 p-2 ">
       {filteredQuestions.length > 0 ? (
@@ -296,8 +352,11 @@ useEffect(() => {
                 <div className=" p-1  bg-[#F0F8FF] pt-2">
                   <span className=" font-semibold">Question</span>
                   {filteredQuestions[currentQuestionIndex].image.length > 0 ? (
-                    <div className=" flex flex-col justify-center items-center p-1 border border-black" ref={questionTextRef}>
-                             {filteredQuestions[currentQuestionIndex].text}
+                    <div
+                      className=" flex flex-col justify-center items-center p-1 border border-black"
+                      ref={questionTextRef}
+                    >
+                      {filteredQuestions[currentQuestionIndex].text}
                       <CldImage
                         width="500"
                         height="500"
@@ -357,12 +416,12 @@ useEffect(() => {
                     onChange={handleOptionSelect}
                   />
                   <label
-                      htmlFor={`option${index}`}
-                      className="w-full border border-black px-2 py-2"
-                      ref={(el) => (optionsRef.current[index] = el)}
-                    >
-                      {option}
-                     </label>
+                    htmlFor={`option${index}`}
+                    className="w-full border border-black px-2 py-2"
+                    ref={(el) => (optionsRef.current[index] = el)}
+                  >
+                    {option}
+                  </label>
                 </div>
               )
             )}

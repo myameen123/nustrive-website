@@ -24,6 +24,7 @@ export const engineeringTestResponse = createAsyncThunk(
       const config = {
         withCredentials: true,
       };
+      console.log('savedQuestion:', savedQuestions)
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/engineering/get/testResponse/${testId}`,
         savedQuestions,
