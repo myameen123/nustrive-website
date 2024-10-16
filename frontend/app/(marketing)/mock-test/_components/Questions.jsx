@@ -326,8 +326,12 @@ function Questions({ questions, title, category, sections }) {
 
   return (
     <div className=" mb-4 p-2 ">
+      
       {filteredQuestions.length > 0 ? (
         <div className=" border border-[#111256] sm:w-[95%  ] mx-auto mt-2 relative text-sm">
+          <div className=" w-full border-b flex flex-col sm:flex-row justify-between items-center p-2 border-[#111256]">
+            <h1>NUSTRive LMS - Free Mock Test By Nowsherwan</h1>
+          </div>
           <div className=" w-full border-b flex flex-col sm:flex-row justify-between items-center p-2 border-[#111256]">
             <span className=" text-green-700 font-semibold">{category}</span>
             <span className=" text-red-700 font-bold">{title}</span>
