@@ -1,9 +1,10 @@
-// logout-slice.js
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import api from "../../utils/api";
-// import { persistor } from "../store"; // Import the persistor from your store configuration
+// import { persistor } from "../store"; 
+// Import the persistor from your store configuration
 import storage from "redux-persist/lib/storage";
 import { persistor } from "../store";
+
 const initialState = {
   loading: false,
   message: "",
@@ -46,6 +47,7 @@ const logoutUserSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(logoutUser.fulfilled, (state, action) => {
+      console.log('a')
       state.loading = false;
       state.message = action.payload.message;
       state.error = null;

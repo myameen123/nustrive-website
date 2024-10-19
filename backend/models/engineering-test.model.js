@@ -6,7 +6,8 @@ const engineeringTestSchema = mongoose.Schema({
   subjects: [{type:String, enum:['maths','physics','english','iq','chemistry'],
     default:['maths','physics','english','iq','chemistry']
   }],
-  category:{type:String, default:'engineering'}
+  category:{type:String, default:'engineering'},
+  duration:{type:Number, required:false}
 });
 
 const EngineeringTest = mongoose.model(

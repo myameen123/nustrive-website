@@ -3,7 +3,7 @@ import {
   combineReducers,
   getDefaultMiddleware,
 } from "@reduxjs/toolkit";
-import { persistStore, persistReducer } from "redux-persist";
+import { persistStore, persistReducer,} from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import todoSlice from "./todo-slice";
 
@@ -50,7 +50,8 @@ const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: {
+      serializableCheck: 
+      {
         // Ignore these action types
         ignoredActions: [
           "persist/PERSIST",

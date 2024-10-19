@@ -8,7 +8,7 @@ const initialState = {
 };
 
 if (typeof window !== "undefined") {
-  const storedInfo = localStorage.getItem("test");
+  const storedInfo = localStorage.getItem("businessTest");
   if (storedInfo) {
     initialState.questions = JSON.parse(storedInfo);
   }
@@ -19,12 +19,12 @@ const saveCurrentTime = () => {
   console.log("this is the current time", currentTime);
 };
 
-export const getTest = createAsyncThunk(
+export const getBusinessTest = createAsyncThunk(
   "test",
-  async (_, { rejectWithValue }) => {
+  async (testId, { rejectWithValue }) => {
     try {
       // Check if questions already exist in local storage
-      const storedQuestions = localStorage.getItem("test");
+      const storedQuestions = localStorage.getItem("businessTest");
       if (storedQuestions) {
         console.log("this is in local storage", JSON.parse(storedQuestions));
         return JSON.parse(storedQuestions);
@@ -37,7 +37,7 @@ export const getTest = createAsyncThunk(
         withCredentials: true,
       };
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/test/get`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/business/get/test/${testId}`,
         config
       );
 
@@ -49,27 +49,27 @@ export const getTest = createAsyncThunk(
   }
 );
 
-export const getTestSlice = createSlice({
-  name: "test",
+export const getBusinessTestSlice = createSlice({
+  name: "businessTest",
   initialState,
   // reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getTest.pending, (state) => {
+    builder.addCase(getBusinessTest.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(getTest.fulfilled, (state, action) => {
+    builder.addCase(getBusinessTest.fulfilled, (state, action) => {
       state.loading = false;
       state.questions = action.payload.questions || action.payload;
       state.error = "";
       // Update localStorage on the client-side
       if (typeof window !== "undefined") {
         localStorage.setItem(
-          "test",
+          "businessTest",
           JSON.stringify(action.payload.questions || action.payload)
         );
       }
     });
-    builder.addCase(getTest.rejected, (state, action) => {
+    builder.addCase(getBusinessTest.rejected, (state, action) => {
       state.loading = false;
       state.questions = [];
       state.error = action.payload?.message || action.error.message;
@@ -77,4 +77,4 @@ export const getTestSlice = createSlice({
   },
 });
 
-export default getTestSlice.reducer;
+export default getBusinessTestSlice.reducer;

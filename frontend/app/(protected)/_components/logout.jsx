@@ -1,5 +1,4 @@
 "use client";
-// Add this logic where you handle logout in your component or saga
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser, clearPersistedState } from "../../../redux/auth/logout-slice";
 import { unwrapResult } from "@reduxjs/toolkit";
@@ -40,13 +39,15 @@ const Logout = () => {
       }
     }
   }, [error, errorToastId]);
+  
   const router = useRouter();
+
   const handleLogout = async () => {
     try {
-      const resultAction = await dispatch(logoutUser(user?._id));
+      const resultAction =  dispatch(logoutUser(user?._id));
       const originalPromiseResult = unwrapResult(resultAction);
       // If the logout is successful, dispatch clearPersistedState
-      await dispatch(clearPersistedState());
+       dispatch(clearPersistedState());
       window.location.reload();
       router;
     } catch (error) {

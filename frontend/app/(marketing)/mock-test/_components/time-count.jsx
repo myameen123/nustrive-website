@@ -3,7 +3,7 @@ import { LuClock12 } from "react-icons/lu";
 import React, { useEffect, useState } from "react";
 
 function TimeCount({ handleFinsheValue }) {
-  const [timeRemaining, setTimeRemaining] = useState(30 * 60);
+  const [timeRemaining, setTimeRemaining] = useState(70 * 60);
   const getTimeFromLocalStorage = () => {
     const startTime = parseInt(localStorage.getItem("startTime"));
     const startDate = new Date(startTime);
@@ -20,7 +20,7 @@ function TimeCount({ handleFinsheValue }) {
       const startTime = parseInt(localStorage.getItem("startTime"));
       const currentTime = new Date().getTime();
       const elapsedTimeInSeconds = (currentTime - startTime) / 1000;
-      const remainingTimeInSeconds = 30 * 60 - elapsedTimeInSeconds;
+      const remainingTimeInSeconds = 70 * 60 - elapsedTimeInSeconds;
 
       if (remainingTimeInSeconds <= 0) {
         clearInterval(interval);

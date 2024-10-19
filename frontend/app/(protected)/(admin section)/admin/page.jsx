@@ -2,7 +2,7 @@
 import { userInfo } from "../../../../redux/user/user-info-slice";
 import React, { useEffect } from "react";
 
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 // import { logoutUser } from "@/redux/auth/logout-slice";
 // import Logout from "../_components/logout";
 import logout from '../../_components/logout';

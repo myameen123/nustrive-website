@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 
 const TestForm = ({ edit, closeModal, handleSubmit, test }) => {
-  const [state, setState] = useState({ title: "", description: "" });
+  const [state, setState] = useState({ title: "", description: "", duration: "" });
 
   useEffect(() => {
     setState({
       title: test.title || "",
       description: test.description || "",
+      duration:test.duration || ""
     });
   }, [test]);
 
@@ -42,6 +43,21 @@ const TestForm = ({ edit, closeModal, handleSubmit, test }) => {
             className="w-full p-2 border border-gray-300 rounded mt-2"
             value={state.title}
             onChange={handleChange}
+            placeholder="Test Title"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="duration" className="block text-gray-700">
+            Test Duration
+          </label>
+          <input
+            type="text"
+            name="duration"
+            className="w-full p-2 border border-gray-300 rounded mt-2"
+            value={state.duration}
+            onChange={handleChange}
+            placeholder="Time duration in minute i.e 60 or 75"
             required
           />
         </div>
@@ -53,6 +69,7 @@ const TestForm = ({ edit, closeModal, handleSubmit, test }) => {
             name="description"
             className="w-full p-2 border border-gray-300 rounded mt-2"
             value={state.description}
+            placeholder="Description"
             onChange={handleChange}
           />
         </div>
