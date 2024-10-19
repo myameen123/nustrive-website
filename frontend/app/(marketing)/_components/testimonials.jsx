@@ -16,22 +16,27 @@ import StudentTestimonials from "../../../constants/testimonials";
 
 const Testimonials = () => {
   return (
-    <div className="bg-[#4463FB]  py-4">
-      <h1 className=" text-center font-bold text-3xl mt-4 text-[#00000] mx-4">
-       Hear what our students says
+    <div className="bg-[#4463FB]  py-12">
+      <h1 className=" text-center font-bold text-3xl mt-4 text-[#00000] mx-4 mb-2">
+        Hear what our students says
       </h1>
-      <p className=" text-center  text-[#ffffff] mb-4">
-      Students who took the NUSTrive training program excelled in their NET exams, 
-      showcasing significant improvements in their understanding and test performance.
+      <p className="text-center text-[#ffffff] max-w-[700px] mx-auto ">
+        Students who took the NUSTrive training program excelled in their NET
+        exams, showcasing significant improvements in their understanding and
+        test performance.
       </p>
       <div className="flex items-center justify-center flex-col md:mt-6 mt-4">
         <Swiper
           breakpoints={{
+            300: {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
             640: {
               slidesPerView: 2,
-              spaceBetween: 15,
+              spaceBetween: 10,
             },
-            1000: {
+            1024: {
               slidesPerView: 3,
               spaceBetween: 15,
             },
@@ -41,7 +46,7 @@ const Testimonials = () => {
             clickable: true,
           }}
           modules={[FreeMode, Pagination]}
-          className="max-w-[95%] lg:max-w-[90%] "
+          className="max-w-[80%] lg:max-w-[80%]"
         >
           {StudentTestimonials.map((item) => (
             <SwiperSlide key={item.id}>
@@ -53,5 +58,21 @@ const Testimonials = () => {
     </div>
   );
 };
-
 export default Testimonials;
+const Testimoniaccls = () => {
+  return (
+      <div className="flex items-center justify-center flex-col md:mt-8 mt-6">
+        <Swiper
+          
+        
+          className="w-full px-4 max-w-[90%] m-4"
+        >
+          {StudentTestimonials.map((item) => (
+            <SwiperSlide key={item.id}>
+              <Testimonial testimonial={item} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+  );
+};

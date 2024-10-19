@@ -14,6 +14,7 @@ const Disciplines = [
     title: "Engineering NET",
     desc: "Build engineering expertise with our thorough test preparation. Covering fundamental concepts and language skills, prepare yourself for success in entrance exams.",
     courses: ["Maths", "Physics", "Chemistry", "English", "Intelligence"],
+    url:'/mock-test'
   },
 
   {
@@ -27,12 +28,14 @@ const Disciplines = [
       "English",
       "Intelligence",
     ],
+    url:'/mock-test'
   },
   {
     id: 3,
     title: "Business & Social Sciences",
     desc: "Excel in social sciences exams by enhancing your mathematical abilities, refining communication skills, fostering analytical thinking, and participating thoughtfully for outstanding performance.",
-    courses: ["Basic Math", "English", "Intelligence", "-", "- "],
+    courses: ["Basic Math", "English", "Intelligence", "-", '-'],
+    url:'/mock-test'
   },
 ];
 
@@ -51,11 +54,15 @@ function CustomizeTest() {
       <div className="flex items-center justify-center flex-col md:mt-6 mt-4 ">
         <Swiper
           breakpoints={{
+            300:{
+              slidesPerView:1,
+              spaceBetween:10,
+            },
             640: {
               slidesPerView: 2,
               spaceBetween: 15,
             },
-            1000: {
+            1024: {
               slidesPerView: 3,
               spaceBetween: 15,
             },

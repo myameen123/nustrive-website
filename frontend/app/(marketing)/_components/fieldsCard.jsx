@@ -1,10 +1,9 @@
 import Image from "next/image";
 import React from "react";
-// import examImg from "@/public/examImg.svg";
 import examImg from '../../../public/examImg.svg'
-// import { Button } from "@mui/material";
-// import { Button } from "@/components/ui/button";
-import { Button } from "../../../components/ui/button";
+// import { Button } from "../../../components/ui/button";
+import Link from "next/link";
+
 function FieldsCard({ test}) {
 
   const truncateText = (text, limit) => {
@@ -16,7 +15,7 @@ function FieldsCard({ test}) {
   };
 
   return (
-    <div className="mx-auto bg-[#4463FB] rounded-[10px] flex flex-col items-center h-[600px]  md:w-[350px] w-[330px]"> {/* md:w-[33.33%] sm:w-[60%] w-[95%] */}
+    <div className="mx-auto bg-[#4463FB] rounded-[10px] flex flex-col items-center h-[40rem]  justify-between"> {/* md:w-[33.33%] sm:w-[60%] w-[95%]   h-[600px]  md:w-[350px] w-[330px]*/}
       <div>
         <Image src={examImg} alt="exam img" className=" w-[950px]" />
       </div>
@@ -30,11 +29,13 @@ function FieldsCard({ test}) {
           ))}
         </ul>
       </div>
-      <Button className="mb-4 bg-[#ffffff] hover:bg-[#ffffff]/90 rounded-[7px] text-black w-[90%]">
-        TAKE A TRAIL
-      </Button>
+      <div className="w-full flex justify-center mb-4 text-center  ">
+        <Link href={test.url} className="bg-[#ffffff] hover:bg-[#ffffff]/90 rounded-[7px] text-black w-[90%] h-10 content-center">
+        TAKE A TRIAL
+      </Link>
+    </div>
     </div>
   );
 }
 
-export default FieldsCard;
+export default FieldsCard; 

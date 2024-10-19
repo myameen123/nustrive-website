@@ -11,48 +11,48 @@ const Tutors = [
     {
         id: 1,
         name: "Fatima Tariq",
-        title:"Assistan Professor",
+        title:"Lecturer",
         subjects: ['Intelligence Question'],
         photo: Fatima
     },{
         id: 2,
         name: "Safeer Butt",
-        title:"Assistan Professor",
+        title:"Lecturer",
         subjects: ['English'],
         photo: Safeer
     },
     {
         id: 3,
         name: "Safia Naz",
-        title:"Assistan Professor",
+        title:"Lecturer",
         subjects: ['Biology'],
         photo: Safia
     },
     {
         id: 4,
         name: "Khadija Tul Kubra",
-        title:"Assistan Professor",
+        title:"Lecturer",
         subjects: ['Chemistry'],
         photo: Khadija
     },
     {
         id: 5,
         name: "Zaryab Khan",
-        title:"Assistan Professor",
+        title:"Lecturer",
         subjects: ['Biology'],
         photo: Zaryab
     },
     {
         id: 6,
         name: "Ishraq Khan",
-        title:"Assistan Professor",
+        title:"Lecturer",
         subjects: ['Physics','Maths'],
         photo: Ishraq
     },
     {
         id: 7,
         name: "Umer Farooq",
-        title:"Assistan Professor",
+        title:"Lecturer",
         subjects: ['Maths'],
         photo: Umer
     }
