@@ -19,15 +19,17 @@ function TestModal({ test }) {
         <Typography>
           {`Online Test for NET ( Nust Entrance Test) Preparation - ${test.category}`}
         </Typography>
+        <Typography> {test.description}</Typography>
       </div>
       <div className=" flex flex-col p-4 gap-1">
         <Typography variant="h7" className=" font-bold">
           Subjects included:
         </Typography>
         <Typography> {subjects}</Typography>
+
         <div className=" flex flex-wrap gap-3 text-sm">
           <span>
-            Total Marks: <span className=" font-bold">200</span>
+            Total Marks: <span className=" font-bold">{200}</span>
           </span>
           <span>
             Marks/Question: <span className=" font-bold">1</span>

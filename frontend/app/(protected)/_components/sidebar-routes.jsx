@@ -70,14 +70,14 @@ const adminRoutes = [
   },
   {
     icon: DraftingCompass,
-    label: "Engineering Test",
-    href: "/admin/engineering-test",
+    label: "Tests",
+    href: "/admin/tests",
   },
-  {
-    icon: BriefcaseBusiness,
-    label: "Business Test",
-    href: "/admin/business-test",
-  },
+  // {
+  //   icon: BriefcaseBusiness,
+  //   label: "Business Test",
+  //   href: "/admin/business-test",
+  // },
   {
     icon: BriefcaseBusiness,
     label: "Users",

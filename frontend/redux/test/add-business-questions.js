@@ -19,7 +19,7 @@ export const addBuisnessQuestion = createAsyncThunk(
       //     // console.log(pair[0] + " - " + pair[1]);
       //   }
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/addBusinessQuestion`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/mock-question/add`,
         data,
         config
       );

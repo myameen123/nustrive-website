@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 
 const Logout = () => {
   const { user } = useSelector((state) => state.userLogin);
-  const { error, loading } = useSelector((state) => state.logout);
+  const { loading,message, error } = useSelector((state) => state.logout);
   const [toastId, setToastId] = useState(null);
   const [errorToastId, setErrorToastId] = useState(null);
   const dispatch = useDispatch();

@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const Teachers = ({  }) => {
   return (
-    <div className="mt-12">
+    <div className="mt-12 mx-10 ">
       <div>
         <h1 className=" text-center font-bold text-3xl mt-4 text-black mx-4">
           Find Your Perfect Tutor at NUSTrive
@@ -15,22 +15,20 @@ const Teachers = ({  }) => {
           Connect with Top Educators for Entry Level Exams Success
         </p>
       </div>
-      <div className=" ">
-        <div className="mr-10 ml-10 sm:mr-20 sm:ml-20 lg:mr-32 lg:ml-32 block sm:flex justify-between max-w-[80%] sm:max-w-[90%] md:max-w-[80%] lg:max-w-[75%] ">
+      <div className="mx-auto max-w-[1200px]">
+        <div className="block sm:flex justify-between">
           <h1 className="text-2xl">Top Certified Tutors</h1>
-          <Link href={"/tutors"} className="text-[#4463fb] hover:text-red-900 hidden sm:flex">
+          <Link href={"/tutors"} className="text-[#4463fb] hover:text-red-900 sm:flex">
             Show All Tutors
           </Link>
         </div>
-        <div className="flex items-center justify-center flex-col md:mt-6 mt-4 ">
           <div 
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 max-w-[90%] sm:max-w-[90%] md:max-w-[80%] lg:max-w-[80%] "
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 sm:gap-x-20 md:gap-x-12 lg:gap-x-16 xl:gap-x-32 !justify-between  mt-4 md:mt-6"
           >
             {Tutors.map((teacher) => (
                 <Teacher key={teacher.id} teacher={teacher} />
               ))}
           </div>
-        </div>
       </div>
     </div>
   );

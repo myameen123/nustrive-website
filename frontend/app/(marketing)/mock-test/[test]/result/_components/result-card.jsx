@@ -37,6 +37,7 @@ function createData(subject, totalMarks, marksObtained) {
 
 // ];
 function ResultCard({ result }) {
+  
   const params = useParams();
   const testId = params.test;
 

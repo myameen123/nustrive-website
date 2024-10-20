@@ -9,7 +9,7 @@ const NewTest = ({ edit, closeModal, handleAdd, fetchTests}) => {
         edit={edit}
         closeModal={closeModal}
         // fetchTests={fetchTests}
-        test={{title:'',description:''}}
+        test={{title:'', duration:'', description:''}}
       />
     </div>
   );

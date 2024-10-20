@@ -3,14 +3,14 @@ import TestForm from "./testForm";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const EditTest = ({field, edit, closeModal, test,fetchTests }) => {
-  let url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/test/engineering/update/${test._id}`
-  if(field!=='engineering'){
-    url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/test/business/update/${test._id}`
-  }
+const EditTest = ({ edit, closeModal, test, fetchTests }) => {
+  const testId = test._id
+  // if(field!=='engineering'){
+  //   url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/test/business/update/${test._id}`
+  // }
   const handleSubmit = async (data) => {
     try {
-      const response = await axios.put(url,data);
+      const response = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URL}/mock-test/update/${testId}`,data);
       if (response) {        
         closeModal();
         fetchTests()

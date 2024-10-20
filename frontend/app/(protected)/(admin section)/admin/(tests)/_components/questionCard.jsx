@@ -69,6 +69,7 @@ import renderMathInElement from 'katex/dist/contrib/auto-render';
 import 'katex/dist/katex.min.css';
 
 const QuestionCard = ({ setEdit, question, onDelete, onEdit }) => {
+  console.log('question in questionCard: ', question)
   const questionTextRef = useRef();
   const optionsRef = useRef([]);
 
@@ -112,8 +113,8 @@ const QuestionCard = ({ setEdit, question, onDelete, onEdit }) => {
       <h3 className="text-lg font-semibold mb-2" ref={questionTextRef}>
         {question.text}
       </h3>
-      
-      <img src={`https://res.cloudinary.com/dgdkjf9ng/image/upload/v1715367002/BusinessQuestions/dzpfc6a5sqzc6qih4flu.png`} alt="Question Imaage" />
+      {/*       <img src={`https://res.cloudinary.com/dgdkjf9ng/image/upload/v1715367002/BusinessQuestions/dzpfc6a5sqzc6qih4flu.png`} alt="Question Imaage" />
+ */}
       {/* Options List */}
       <ul className="list-disc list-inside mb-4">
         {question.options.map((option, index) => (

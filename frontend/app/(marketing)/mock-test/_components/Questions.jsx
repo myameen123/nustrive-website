@@ -6,18 +6,17 @@ import { ImNext2, ImPrevious2 } from "react-icons/im";
 import { ClipboardList, Play, Save } from "lucide-react";
 import TimeCount from "./time-count";
 import { useDispatch } from "react-redux";
-import { businessTestResponse } from "../../../../redux/test/bussiness-test-response-slice";
 import { useParams, useRouter } from "next/navigation";
 import Loader from "../../../../components/modals/loader";
-import { engineeringTestResponse } from "../../../../redux/test/engineering-test-response-slice";
+import { testResponse } from "../../../../redux/test/test-response-slice";
 import { CldImage } from "next-cloudinary";
-import { getEngineeringTest } from "../../../../redux/test/get-engineering-test-slice";
-import { getBusinessTest } from "../../../../redux/test/get-business-test-slice";
-import { set } from "react-hook-form";
+import { getTest } from "../../../../redux/test/get-test-slice";
 import renderMathInElement from "katex/dist/contrib/auto-render";
 import "katex/dist/katex.min.css";
+// import { set } from "react-hook-form";
 
 function Questions({ questions, title, category, sections }) {
+  console.log('questions,',questions)
   const params = useParams();
   const testId = params.test;
 
@@ -220,9 +219,7 @@ function Questions({ questions, title, category, sections }) {
   const onSaveHandler = (id) => {
     const storedQuestions =
       JSON.parse(
-        localStorage.getItem(
-          category === "Business" ? "businessTest" : "engineeringTest"
-        )
+        localStorage.getItem("Test")
       ) || [];
     // console.log("simple", storedQuestions);
     const updatedQuestions = storedQuestions.map((question) => {
@@ -243,13 +240,9 @@ function Questions({ questions, title, category, sections }) {
     //   JSON.stringify(updatedQuestions)
     // );
 
-    if (category === "Business") {
-      localStorage.setItem("businessTest", JSON.stringify(updatedQuestions));
-      dispatch(getBusinessTest());
-    } else {
-      localStorage.setItem("engineeringTest", JSON.stringify(updatedQuestions));
-      dispatch(getEngineeringTest());
-    }
+      localStorage.setItem("Test", JSON.stringify(updatedQuestions));
+      dispatch(getTest(testId));
+   
     // Set state variable to trigger re-render after questions update
 
     setIsSaveDisabled(true);
@@ -260,9 +253,7 @@ function Questions({ questions, title, category, sections }) {
     // Retrieve questions array from local storage
     const storedQuestions =
       JSON.parse(
-        localStorage.getItem(
-          category === "Business" ? "businessTest" : "engineeringTest"
-        )
+        localStorage.getItem("Test")
       ) || [];
 
     // Find the question with the corresponding ID
@@ -274,13 +265,9 @@ function Questions({ questions, title, category, sections }) {
       return question;
     });
 
-    if (category === "Business") {
-      localStorage.setItem("businessTest", JSON.stringify(updatedQuestions));
-      dispatch(getBusinessTest());
-    } else {
-      localStorage.setItem("engineeringTest", JSON.stringify(updatedQuestions));
-      dispatch(getEngineeringTest());
-    }
+      localStorage.setItem("Test", JSON.stringify(updatedQuestions));
+      dispatch(getTest(testId));
+   
     setIsReviewDisabled(true);
   };
 
@@ -301,19 +288,12 @@ function Questions({ questions, title, category, sections }) {
 
   const onFinishHandler = () => {
     setCheck(true);
-    if (category === "Business") {
-      dispatch(businessTestResponse(testId));
-
+      dispatch(testResponse(testId));
       localStorage.removeItem("startTime");
-      localStorage.removeItem("businessTest");
+      localStorage.removeItem("Test");
 
       router.push(`/mock-test/${testId}/result`);
-    } else {
-      dispatch(engineeringTestResponse(testId));
-      localStorage.removeItem("startTime");
-      localStorage.removeItem("engineeringTest");
-      router.push(`/mock-test/${testId}/result`);
-    }
+  
   };
   const handleFinsheValue = (val) => {
     setTimeFinished(val);

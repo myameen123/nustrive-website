@@ -8,7 +8,7 @@ const initialState = {
 };
 
 if (typeof window !== "undefined") {
-  const storedInfo = localStorage.getItem("test");
+  const storedInfo = localStorage.getItem("Test");
   if (storedInfo) {
     initialState.questions = JSON.parse(storedInfo);
   }
@@ -23,10 +23,8 @@ export const getTest = createAsyncThunk(
   async (testId, { rejectWithValue }) => {
     try {
       // Check if questions already exist in local storage
-      console.log('1. get-test-slice')
-      const storedQuestions = localStorage.getItem("test");
+      const storedQuestions = localStorage.getItem("Test");
       if (storedQuestions) {
-        console.log('2. get-test-slice')
         // console.log("this is in local storage", JSON.parse(storedQuestions));
         return JSON.parse(storedQuestions);
       }
@@ -37,18 +35,15 @@ export const getTest = createAsyncThunk(
       const config = {
         withCredentials: true,
       };
-      console.log('3. get-test-slice')
+      console.log('testId in get-test-slice:',testId)
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/getTest/${testId}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/mock-question/getTest/${testId}`,
         config
       );
 
-      const data = response.data;
-      // const response = d_response.filter(item=>item.test===testId)
-      console.log('response.data in get-test-slice', data)
-      return data;
+      console.log('response.data in get-test-slice: ', response.data)
+      return response.data;
     } catch (error) {
-      console.log('4. get-test-slice')
       console.log("error", error);
       return rejectWithValue(error.response.data);
     }
@@ -62,24 +57,23 @@ export const getTestSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getTest.pending, (state) => {
       state.loading = true;
-      console.log('5. get-test-slice')
     });
     builder.addCase(getTest.fulfilled, (state, action) => {
       state.loading = false;
       state.questions = action.payload.questions || action.payload;
+      // console.log('1.fulfilled')
       state.error = "";
       // Update localStorage on the client-side
-      console.log('6. get-test-slice')
       if (typeof window !== "undefined") {
         localStorage.setItem(
-          "test",
+          "Test",
           JSON.stringify(action.payload.questions || action.payload)
         );
       }
     });
     builder.addCase(getTest.rejected, (state, action) => {
-      console.log('7. get-test-slice')
       state.loading = false;
+      // console.log('2.rejected')
       state.questions = [];
       state.error = action.payload?.message || action.error.message;
     });

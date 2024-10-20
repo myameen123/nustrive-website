@@ -14,9 +14,9 @@ const CourseCard = ({field, course, onDelete, onEdit,setEdit }) => {
     onEdit(course);
   }
   
-  let url =  `/admin/course/${course._id}`;
+  let url =  `/admin/courses/${course._id}`;
   if(field!=='engineering'){
-    url = `/admin/course/${course._id}`;
+    url = `/admin/courses/${course._id}`;
   }
   
   return (

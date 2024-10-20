@@ -229,7 +229,7 @@ export const Delete = async (req, res) => {
 export const getTest = async (req, res) => {
   try {
     // Shuffle options of each question in Business_Questions array
-    // const {testId} = req.params;
+    const {testId} = req.params;
     // console.log('testId', testId)
     const mathQuestions = await Questions.find({test:testId})
       
@@ -239,16 +239,7 @@ export const getTest = async (req, res) => {
     // const physicsQuestions = await Questions.find({
     //   subject: "physics",
     // }).limit(5);
-    // const chemistryQuestions = await Questions.find({
-    //   subject: "chemistry",
-    // }).limit(5);
-    // const englishQuestions = await Questions.find({
-    //   subject: "english",
-    // }).limit(4);
-
-    // const iqQuestions = await Questions.find({
-    //   subject: "iq",
-    // }).limit(3);
+ 
 
     // Organize questions into an array in the specified order
     const questionsArray = [
@@ -284,7 +275,7 @@ export const getTest = async (req, res) => {
 
 export const TestResponse = async (req, res) => {
   try {
-    const d_Questions = await Questions.find({test:testId});
+    const d_Questions = await Questions.find({test:req.params});
     const questions = req.body;
     // const subjects = ["math", "physics", "chemistry", "english", "iq"];
     const subjectQuestions = subjects.map((subject) =>

@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useParams } from "next/navigation";
 
 const initialState = {
   loading: false,
@@ -14,26 +13,24 @@ if (typeof window !== "undefined") {
     initialState.result = JSON.parse(storedInfo);
   }
 }
-
-// const params = useParams();
-
 export const testResponse = createAsyncThunk(
   "test/testResponse",
   async (testId, { rejectWithValue }) => {
     try {
       const savedQuestions = JSON.parse(
-        localStorage.getItem("test")
+        localStorage.getItem("Test")
       );
       // console.log(savedQuestions);
       const config = {
         withCredentials: true,
       };
+      console.log('savedQuestion:', savedQuestions)
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/testResponse/${testId}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/mock-question/testResponse/${testId}`,
         savedQuestions,
         config
       );
-      console.log('response in test-response-slice: ', response.data)
+
       return response.data;
     } catch (error) {
       console.log("error", error);

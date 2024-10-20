@@ -174,9 +174,9 @@ function QuestionForm({
             </div>
             <div className="w-full">
               <label htmlFor="subject" className="font-semibold underline">
-                Subject:
+                Selcet Subject:
               </label>
-              <input
+              <select
                 onChange={onChangeHandler}
                 required
                 value={dataForm.subject}
@@ -184,7 +184,14 @@ function QuestionForm({
                 type="text"
                 placeholder="Subject"
                 className="w-full border border-black p-1 rounded-[5px]"
-              />
+              >
+                <option value=""></option>
+                <option value="maths">Maths</option>
+                <option value="physics">Physics</option>
+                <option value="chemistry">Chemistry</option>
+                <option value="english">English</option>
+                <option value="iq">IQ</option>
+              </select>
             </div>
             <div className="flex w-full justify-center">
               <button

@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-const TestCard = ({field, test, onDelete, onEdit,setEdit }) => {
+const TestCard = ({ test, onDelete, onEdit,setEdit }) => {
   
   const handleDelete = () => {
     if (confirm('Are you sure you want to delete this test?')) {
@@ -14,17 +14,18 @@ const TestCard = ({field, test, onDelete, onEdit,setEdit }) => {
     onEdit(test);
   }
   
-  let url =  `/admin/engineering-test/${test._id}`;
-  if(field!=='engineering'){
-    url = `/admin/business-test/${test._id}`;
-  }
+  let url =  `/admin/tests/${test._id}`;
+  // if(field!=='engineering'){
+  //   url = `/admin/business-test/${test._id}`;
+  // }
   
   return (
-    <div className="flex items-center justify-between p-4 h-16 w-full bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-lg transition-shadow">
+    <div className="flex items-center justify-between p-4 h-20 my-3 w-full bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-lg transition-shadow">
       <div className="flex-1">
         <Link href={url}>
           {test.title}
         </Link>
+        <p className="text-gray-600">{test.category}</p>
         <p className="text-gray-600">{test.description}</p>
       </div>
       <div className="flex space-x-4">

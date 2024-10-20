@@ -3,14 +3,14 @@ import Tests from "../models/test.model.js";
 // Create a new test
 export const add = async (req, res) => {
     try {
-      const { title, course,week, category,period, description } = req.body;
+      const { title, course,week, category,duration, description } = req.body;
   
       // Validate required fields
-      if (!title || !course ||!week  || !category) {
-        return res.status(400).json({ error: "Title, Subject, Week and Category are required" });
+      if (!title || !course ||!week  || !category || duration) {
+        return res.status(400).json({ error: "Title, Subject, Week, Category and duration are required" });
       }
   
-      const newTest = new Tests({ title, course, week, category,period, description });
+      const newTest = new Tests({ title, course, week, category,duration, description });
       console.log('newTest: ', newTest);
       await newTest.save();
   

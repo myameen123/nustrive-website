@@ -22,19 +22,19 @@ function EngineeringTestStart() {
   localStorage.setItem('duration', duration)
 
   useEffect(()=>{
-    fetchTest(testId)
+    fetchTestById(testId)
   },[testId])
 
   // Load questions from localStorage or fetch from backend when component mounts
   useEffect(() => {
-    fetchEngineeringTest(testId);
+    fetchTests(testId);
     
   }, [testId]); // Runs whenever `testId` changes
   
-  const fetchTest = async (id) =>{
+  const fetchTestById = async (id) =>{
     try{
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/test/engineering/get/${id}`)
-      console.log('response.data int start: ',response.data.duration)
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/mock-test/get/${id}`)
+      console.log('response.data in start: ',response.data.duration)
       setDuration(response.data.duration)
     }catch(error){
       console.log('error in start: ', error.message)
@@ -42,15 +42,15 @@ function EngineeringTestStart() {
   }
 
   // Fetch test questions from localStorage or backend
-  const fetchEngineeringTest = async (testId) => {
+  const fetchTests = async (testId) => {
     try {
       setLoading(true);
       // Check if questions exist in localStorage
-      const storedQuestions = localStorage.getItem("engineeringTest");
+      const storedQuestions = localStorage.getItem("Test");
       if (storedQuestions) {
         setQuestions(JSON.parse(storedQuestions));
         setLoading(false);
-        // return;
+        // return JSON.parse(storedQuestions);
       }
 
       // Fetch from the backend if not in localStorage
@@ -62,7 +62,7 @@ function EngineeringTestStart() {
       console.log("Fetching questions for testId:", testId);
 
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/engineering/get/test/${testId}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/mock-question/getTest/${testId}`,
         config
       );
 
@@ -73,7 +73,7 @@ function EngineeringTestStart() {
 
       // Save to localStorage
       localStorage.setItem(
-        "engineeringTest",
+        "Test",
         JSON.stringify(response.data.questions || response.data)
       );
     } catch (error) {

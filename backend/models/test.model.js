@@ -15,9 +15,8 @@ const TestSchema = mongoose.Schema({
     enum: ["engineering", "business", "medical"],
   },
   description: { type: String },
-  period: {
-    hours: { type: Number, default: 0 },  // Store the hours part of the duration
-    minutes: { type: Number, default: 0 }, // Store the minutes part of the duration
+  duration: { 
+    type: Number, required:true 
   },
   questions: [{ type: mongoose.Schema.Types.ObjectId, ref: "Question" }],
 });

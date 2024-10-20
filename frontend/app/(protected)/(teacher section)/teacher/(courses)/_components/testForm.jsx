@@ -8,11 +8,12 @@ const params = useParams();
 console.log('params in testform: ', params);
 const courseId = params.course;
 const week = params.week;
-const [course, setCourse] = useState({name:'',course:'',category:'',description:''});
+const [course, setCourse] = useState({name:'',course:'',category:'', duration:'', description:''});
   const [state, setState] = useState({
     title: "",
     course: courseId,
     week:week,
+    duration:course.duration,
     category: course.category,
     description: "",
   });
@@ -27,6 +28,7 @@ const [course, setCourse] = useState({name:'',course:'',category:'',description:
       title: test.title || "",
       course: courseId || '',
       week:week || '',
+      duration:course.duration || '',
       category: course.category || '',
       description: test.description || "",
     });
@@ -75,7 +77,23 @@ const [course, setCourse] = useState({name:'',course:'',category:'',description:
             id="title"
             className="w-full p-2 border border-gray-300 rounded mt-2"
             value={state.title}
+            placeholder="Test title"
             onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="duration" className="block text-gray-700">
+            Test duration
+          </label>
+          <input
+            type="text"
+            name="duration"
+            id="duration"
+            className="w-full p-2 border border-gray-300 rounded mt-2"
+            value={state.duration}
+            onChange={handleChange}
+            placeholder="Test duration in minute i.e 15 or 75"
             required
           />
         </div>
@@ -121,6 +139,7 @@ const [course, setCourse] = useState({name:'',course:'',category:'',description:
             className="w-full p-2 border border-gray-300 rounded mt-2"
             value={state.description}
             onChange={handleChange}
+            placeholder="Test Description"
           />
         </div>
         <div className="flex justify-end">

@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import React, { useState } from "react";
 
-function InstructionModal({ category }) {
+function InstructionModal({  }) {
   const params = useParams()
   const [isChecked, setIsChecked] = useState(false);
 
@@ -100,13 +100,13 @@ function InstructionModal({ category }) {
               of not adhering to the exam instructions.
             </label>
           </div>
-          {category == "enginerring" ? (
             <Button
               disabled={!isChecked}
               className=" bg-[#49ADE5] hover:bg-[#49ADE5]"
             >
               <Link href={`/mock-test/${params.test}/start`}>Start Test</Link>
             </Button>
+          {/* {category == "enginerring" ? (
           ) : (
             <Button
               disabled={!isChecked}
@@ -114,7 +114,7 @@ function InstructionModal({ category }) {
             >
               <Link href="/mock-test/business-test/start">Start Test</Link>
             </Button>
-          )}
+          )} */}
         </div>
       </div>
     </div>

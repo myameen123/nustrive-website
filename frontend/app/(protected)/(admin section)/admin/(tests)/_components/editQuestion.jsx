@@ -7,10 +7,10 @@ import axios from "axios";
 const EditQuestion = ({field, edit, closeModal, question, fetchQuestions, handleEdit}) => {
   const testId = useParams().Test;
   
-  let url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/engineering/update/${question._id}`;
-  if(field!=='engineering'){
-    url=`${process.env.NEXT_PUBLIC_BACKEND_URL}/question/business/update/${question._id}`
-  }
+  let url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/mock-question/update/${question._id}`;
+  // if(field!=='engineering'){
+  //   url=`${process.env.NEXT_PUBLIC_BACKEND_URL}/question/business/update/${question._id}`
+  // }
 
   const handleSubmit = async (data) => {
     try {

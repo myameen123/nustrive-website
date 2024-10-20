@@ -72,9 +72,10 @@ const CourseForm = ({ edit, closeModal, handleSubmit, course }) => {
                       onChange={handleChange}
                       required
           >
+            <option value=''></option>
             <option value="engineering">Engineering</option>
-            <option value="saab">Business</option>
-            <option value="mercedes">Medical</option>
+            <option value="business">Business</option>
+            <option value="medical">Medical</option>
           </select>
           {/* <input
             name="category"

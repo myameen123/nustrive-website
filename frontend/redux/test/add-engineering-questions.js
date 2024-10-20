@@ -17,7 +17,7 @@ export const addEngineeringQuestion = createAsyncThunk(
       };
       console.log('data: ', data);
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/question/addEngineeringQuestion`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/mock-question/add`,
         data,
         config
       );

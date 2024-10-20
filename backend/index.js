@@ -5,7 +5,8 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import { logger } from "./config/winston.config.js";
 import mockTestRouter from "./routers/mock-test.route.js";
-import authRouter from "./routers/auth.route.js";// authRouter;
+import mockQuestionRouter from './routers/mock-question.route.js';
+import authRouter from "./routers/auth.route.js";
 import engineeringuqQestionRouter from "./routers/engineering-questions.route.js";
 import engineeringTestRouter from './routers/engineering-test.route.js';
 import businessQuestioRouter from './routers/business-questions.route.js';
@@ -57,10 +58,13 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/mock-test", mockTestRouter);
+app.use('/api/mock-question', mockQuestionRouter);
+
 app.use("/api/question/engineering", engineeringuqQestionRouter);
 app.use('/api/test/engineering', engineeringTestRouter)
 app.use('/api/question/business', businessQuestioRouter)
 app.use('/api/test/business',businessTestRouter)
+
 console.log("in index.js");
 app.use("/api/auth", authRouter);
 app.use('/api/file', FilesRouter)

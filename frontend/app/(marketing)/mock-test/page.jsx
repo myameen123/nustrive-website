@@ -1,7 +1,6 @@
 'use client'
 import React, {useState, useEffect} from "react";
 import TestOverview from "./_components/test-overview";
-// import TestModals from "./_components/test-modals";
 import TestModal from "./_components/test-modal";
 import axios from "axios";
 
@@ -14,8 +13,7 @@ function TestPage() {
 
   const fetchTest = async() =>{
     try{
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/test/engineering/get`)
-
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/mock-test/get`)
       // const tes = response.data;
       setTest(response.data)
     }catch(err){
@@ -23,31 +21,8 @@ function TestPage() {
     }
   }
 
-  console.log('test in test-modals: ',test)
+  // console.log('test in test-modals: ',test)
 
-  // let TEST = [
-
-  //   {
-  //     id: '1',
-  //     subjects: [
-  //       "Chemistry",
-  //       "Mathematics",
-  //       "Physics",
-  //       "English",
-  //       "Intelligence Question",
-  //     ],
-  //     type: "Engineering",
-  //     url: `/mock-test/${test ? test._id : '1'}/instructions`,
-  //   },
-  //   {
-  //     id: "2",
-  //     subjects: ["Mathematics", "English", "Intelligence Question"],
-  //     type: "Business Studies / Social Sciences / LLB:",
-  //     url: "/mock-test/business-test/instructions",
-  //   },
-  // ];
-
-  // console.log("TEST", TEST)
 
   return (
     <div>

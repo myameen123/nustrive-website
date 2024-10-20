@@ -1,18 +1,15 @@
 import express from "express";
 
 import {
-  businessTestResponse,
-  engineeringTestResponse,
-  getBusinessTest,
-  getEngineeringTest,
+  addTest,getTests, getTestById,updateTest,deleteTest
 } from "../controllers/mock-test.controller.js";
 
 const router = express.Router();
 
-router.get("/getBusinessTest", getBusinessTest);
-router.post("/businessTestResponse", businessTestResponse);
-
-router.get("/getEngineeringTest", getEngineeringTest);
-router.post("/engineeringTestResponse", engineeringTestResponse);
+router.post("/add", addTest);
+router.get("/get", getTests);
+router.get('/get/:id', getTestById)
+router.put("/update/:id", updateTest);
+router.delete("/delete/:id", deleteTest);
 
 export default router;
