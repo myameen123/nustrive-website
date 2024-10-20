@@ -3,7 +3,16 @@ import Link from "next/link";
 import React from "react";
 
 function TestModal({ test }) {
+  // const [duration, setDuration] = useState()
+  // localStorage.setItem('duration', duration)
   const subjects = test.subjects.join(", ");
+  const testId = test._id
+  // const time = test.duration
+  // console.log('testId',testId)
+  // console.log('time ', time)
+  // useEffect(()=>{
+  //   setDuration(test.duration)
+  // },[testId])
   return (
     <div className=" border shadow-lg">
       <div className=" bg-[#111225] text-white p-2 ">
@@ -30,7 +39,7 @@ function TestModal({ test }) {
             Type: <span className=" font-bold">Free</span>
           </span>
           <Link
-            href={`mock-test/${test._id}`}
+            href={`mock-test/${testId}`}
             className=" bg-[#49ADE5] px-4 py-1 font-bold rounded-md"
           >
             Start

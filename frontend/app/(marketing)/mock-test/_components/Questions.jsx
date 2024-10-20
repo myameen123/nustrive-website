@@ -116,7 +116,7 @@ function Questions({ questions, title, category, sections }) {
 
     // Check if the current section is the last section
     setIsLastSection(sections.indexOf(currentSection) === sections.length - 1);
-  }, [currentSection, questionsUpdated, questions, currentQuestionIndex]);
+  }, [currentSection, questions, currentQuestionIndex]); //questionsUpdated
 
   useEffect(() => {
     // Render LaTeX for the question text and options
@@ -297,7 +297,7 @@ function Questions({ questions, title, category, sections }) {
       setSelectedOption(null);
       setIsReviewDisabled(true);
     }
-  }, [questionsUpdated, currentQuestionIndex]);
+  }, [ currentQuestionIndex]); //questionsUpdated
 
   const onFinishHandler = () => {
     setCheck(true);
@@ -432,7 +432,7 @@ function Questions({ questions, title, category, sections }) {
           </div>
           <div className=" border border-[#111256] py-2 flex flex-col gap-2">
             <div className=" flex justify-between gap-2 md:gap-2 w-full">
-              <TimeCount handleFinsheValue={handleFinsheValue} />
+              <TimeCount handleFinsheValue={handleFinsheValue}  />
               <div className=" flex gap-1 flex-wrap justify-center">
                 <TestButton
                   Icon={Save}

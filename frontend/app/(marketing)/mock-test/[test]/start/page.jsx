@@ -12,15 +12,34 @@ function EngineeringTestStart() {
   const [questions, setQuestions] = useState([]);
   const [error, setError] = useState("");
 
+  const [duration, setDuration] = useState()
+
+
   const saveCurrentTime = () => {
     const currentTime = new Date().getTime();
     localStorage.setItem("startTime", currentTime);
   };
+  localStorage.setItem('duration', duration)
+
+  useEffect(()=>{
+    fetchTest(testId)
+  },[testId])
 
   // Load questions from localStorage or fetch from backend when component mounts
   useEffect(() => {
     fetchEngineeringTest(testId);
+    
   }, [testId]); // Runs whenever `testId` changes
+  
+  const fetchTest = async (id) =>{
+    try{
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/test/engineering/get/${id}`)
+      console.log('response.data int start: ',response.data.duration)
+      setDuration(response.data.duration)
+    }catch(error){
+      console.log('error in start: ', error.message)
+    }
+  }
 
   // Fetch test questions from localStorage or backend
   const fetchEngineeringTest = async (testId) => {
@@ -31,7 +50,7 @@ function EngineeringTestStart() {
       if (storedQuestions) {
         setQuestions(JSON.parse(storedQuestions));
         setLoading(false);
-        return;
+        // return;
       }
 
       // Fetch from the backend if not in localStorage
