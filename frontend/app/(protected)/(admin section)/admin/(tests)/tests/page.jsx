@@ -45,9 +45,10 @@ const TestList = () => {
   const handleAdd = async (test) => {
     try {
       setEdit(false)
-      console.log('test in handleAdd',test)
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/mock-test/add`,test);
-      const newTest = await response.data;
+      // console.log('test in handleAdd',test)
+
+      await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/mock-test/add`,test);
+      // const newTest = response.data;
       fetchTests();
     } catch (err) {
       console.error("Error adding test:", err);

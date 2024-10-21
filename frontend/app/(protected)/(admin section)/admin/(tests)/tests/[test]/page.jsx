@@ -10,43 +10,49 @@ import axios from "axios";
 import Loader from "../../../../../../../components/modals/loader";
 
 const TestPage = () => {
-  const params = useParams();
-  const testId = params.test
+  const { test: testId } = useParams();
   const [questions, setQuestions] = useState([]);
   const [modal, setModal] = useState(false);
   const [edit, setEdit] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [currentQuestion, setCurrentQuestion] = useState(null);
-  console.log('testId in [test]', testId)
+  // console.log("testId", testId);
 
   useEffect(() => {
-    fetchQuestions(testId);
-  }, [testId]);
+      fetchQuestions();
+    // }
+  }, []);
 
-  const fetchQuestions = async (id) => {
+  const toastConfig = {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  };
+
+  const fetchQuestions = async () => {
     try {
+      setLoading(true);
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/mock-question/getTest/${id}`
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/mock-question/getTest/${testId}`
       );
-      console.log('response.data', response.data)
-      const data = response.data;
-      setQuestions(data.questions);
+      // console.log("response.data", response.data);
+      setQuestions(response.data.questions);
     } catch (error) {
-      toast.error(error.message, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      toast.error(error.message, toastConfig);
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleAdd = async (question) => {
     try {
-      const data = await axios.post(
+      // console.log("question handleAdd [test]", question);
+      const response = await axios.post(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/mock-question/add`,
         question,
         {
@@ -54,21 +60,9 @@ const TestPage = () => {
           withCredentials: true,
         }
       );
-      if (data) {
-        console.log("data: ", data);
-        fetchQuestions();
-      }
+      if (response) fetchQuestions(testId);
     } catch (error) {
-      toast.error(error.message, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      toast.error(error.message, toastConfig);
     }
   };
 
@@ -78,18 +72,12 @@ const TestPage = () => {
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/mock-question/delete/${id}`,
         { method: "DELETE" }
       );
-      setQuestions(questions.filter((question) => question._id !== id));
+
+      setQuestions((prevQuestions) =>
+        prevQuestions.filter((question) => question._id !== id)
+      ); //(prevQuestions) => prevQuestions.filter((question) => question._id !== id)
     } catch (error) {
-      toast.error(error.message, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      toast.error(error.message, toastConfig);
     }
   };
 
@@ -108,20 +96,11 @@ const TestPage = () => {
       openModal();
       setCurrentQuestion(question);
     } catch (error) {
-      toast.error(error.message, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      toast.error(error.message, toastConfig);
     }
   };
 
-  console.log('questions in [test]',questions)
+  // console.log("questions in [test]", questions);
 
   return (
     <>
@@ -135,7 +114,9 @@ const TestPage = () => {
       </div>
       <div>
         <h1 className="p-4 text-2xl">All Questions</h1>
-        {questions.length > 0 ? (
+        {loading ? (
+          <Loader />
+        ) : questions.length > 0 ? (
           questions.map((question) => (
             <QuestionCard
               key={question._id}
@@ -143,17 +124,17 @@ const TestPage = () => {
               question={question}
               onDelete={handleDelete}
               onEdit={handleEdit}
-              // field={'engineering'}
-            />))
-        ):(
-          <Loader/>
+            />
+          ))
+        ) : (
+          <p>No questions available</p>
         )}
       </div>
       {modal && (
         <ModalLayout open={true} onClose={closeModal}>
           {edit ? (
             <EditQuestion
-              field={'engineering'}
+              field={"engineering"}
               edit={edit}
               fetchQuestions={fetchQuestions}
               closeModal={closeModal}

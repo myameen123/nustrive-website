@@ -69,7 +69,7 @@ import renderMathInElement from 'katex/dist/contrib/auto-render';
 import 'katex/dist/katex.min.css';
 
 const QuestionCard = ({ setEdit, question, onDelete, onEdit }) => {
-  console.log('question in questionCard: ', question)
+  // console.log('question in questionCard: ', question)
   const questionTextRef = useRef();
   const optionsRef = useRef([]);
 

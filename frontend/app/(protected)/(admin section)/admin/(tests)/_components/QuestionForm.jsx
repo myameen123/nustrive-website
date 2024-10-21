@@ -3,20 +3,24 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { RotateCw } from "lucide-react";
 import { useSelector } from "react-redux"; 
+import { useParams } from "next/navigation";
 
 function QuestionForm({
   edit,
   question,
-  testId,
   closeModal,
   handleSelectFile,
   handleSubmit,
 }) {
+
+  const params = useParams()
+
+  const testId = params.test;
   const { loading, success, error } = useSelector(
     (state) => state.addNewEngineeringQuestion
   );
   const [dataForm, setDataForm] = useState({
-    test: testId || "",
+    test: "",
     text: "",
     subject: "",
     option1: "",
@@ -39,7 +43,7 @@ function QuestionForm({
       option3: "" || question.options[2],
       option4: "" || question.options[3],
     });
-  }, [question]);
+  }, [question, testId]);
 
   const handeUpload = (e) => {
     e.preventDefault();
@@ -55,6 +59,7 @@ function QuestionForm({
           subject: dataForm.subject,
         }
       : dataForm;
+      // console.log('updatedQuestion" ', updatedQuestion)
     handleSubmit(updatedQuestion);
     closeModal();
   };

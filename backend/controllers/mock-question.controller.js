@@ -120,28 +120,27 @@ export const Delete = async (req, res) => {
 export const getTest = async (req, res) => {
   try {
     // Shuffle options of each question in Business_Questions array
-    const testId = req.params.testId
 
-    const mathQuestions = await MockQuestion.find({subject:'maths', test:testId}).limit(80);
+    const mathQuestions = await MockQuestion.find({subject:'maths', test:req.params.testId}).limit(80);
     const physicsQuestions = await MockQuestion.find({
-      subject: "physics", test:testId
+      subject: "physics", test:req.params.testId
     }).limit(60);
     const chemistryQuestions = await MockQuestion.find({
-      subject: "chemistry",test:testId
+      subject: "chemistry",test:req.params.testId
     }).limit(30);
     const englishQuestions = await MockQuestion.find({
-      subject: "english",test:testId
+      subject: "english",test:req.params.testId
     }).limit(20);
     const iqQuestions = await MockQuestion.find({
-      subject: "iq",test:testId
+      subject: "iq",test:req.params.testId
     }).limit(10);
     
     
-    console.log('mathsquestions:', mathQuestions)
-    console.log('physics question:', physicsQuestions)
-    console.log('chemistry question', chemistryQuestions)
-    console.log('english question',englishQuestions)
-    console.log('iq questions', iqQuestions)
+    // console.log('mathsquestions:', mathQuestions)
+    // console.log('physics question:', physicsQuestions)
+    // console.log('chemistry question', chemistryQuestions)
+    // console.log('english question',englishQuestions)
+    // console.log('iq questions', iqQuestions)
 
     // Organize questions into an array in the specified order
     const questionsArray = [
@@ -185,7 +184,7 @@ export const testResponse = async (req, res) => {
     // console.log('req.data',req.data)
 
     // console.log('Engineering_Questions:', Engineering_Questions)
-    console.log('questions in mockTestResponse:',questions)
+    // console.log('questions in mockTestResponse:',questions)
     const subjects = ["maths", "physics", "chemistry", "english", "iq"];
     const subjectQuestions = subjects.map((subject) =>
       Engineering_Questions.filter((question) => question.subject === subject)
@@ -203,7 +202,7 @@ export const testResponse = async (req, res) => {
       questions.filter((question) => question.subject === subject)
     );
 
-    console.log('solvedQuestions', solvedQuestions)
+    // console.log('solvedQuestions', solvedQuestions)
     
     const subjectResults = subjectQuestions.map((questions, index) =>
       solvedQuestions[index].map(

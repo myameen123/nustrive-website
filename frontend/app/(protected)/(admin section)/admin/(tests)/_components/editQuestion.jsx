@@ -1,12 +1,10 @@
 import React from "react";
 import QuestionForm from "./QuestionForm";
-import { useParams } from "next/navigation";
 import toast from "react-hot-toast";
 import axios from "axios";
 
-const EditQuestion = ({field, edit, closeModal, question, fetchQuestions, handleEdit}) => {
-  const testId = useParams().Test;
-  
+const EditQuestion = ({edit, closeModal, question, fetchQuestions, handleEdit}) => {
+  // const questionId = question._id
   let url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/mock-question/update/${question._id}`;
   // if(field!=='engineering'){
   //   url=`${process.env.NEXT_PUBLIC_BACKEND_URL}/question/business/update/${question._id}`
@@ -14,6 +12,7 @@ const EditQuestion = ({field, edit, closeModal, question, fetchQuestions, handle
 
   const handleSubmit = async (data) => {
     try {
+      // console.log('data in handleSubmit editQuestion',data)
       const response = await axios.put(url,
         data
       );
@@ -39,7 +38,6 @@ const EditQuestion = ({field, edit, closeModal, question, fetchQuestions, handle
   return (
     <div>
       <QuestionForm
-      testId = {testId}
         question={question}
         edit={edit}
         fetchQuestions={fetchQuestions}
