@@ -16,7 +16,7 @@ import StudentTestimonials from "../../../constants/testimonials";
 
 const Testimonials = () => {
   return (
-    <div className="bg-[#4463FB]  py-12">
+    <div className="mx-auto max-w-[1200px]  bg-[#4463FB]  py-12">
       <h1 className=" text-center font-bold text-3xl mt-4 text-[#00000] mx-4 mb-2">
         Hear what our students says
       </h1>

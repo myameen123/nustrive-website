@@ -41,7 +41,7 @@ const Disciplines = [
 
 function CustomizeTest() {
   return (
-    <div className="mt-4">
+    <div className=" mx-auto max-w-[1200px] my-4">
       <div className="">
         <MainHeading
           heading={`Customized Test Preparation To Navigate Your Path To Success`}

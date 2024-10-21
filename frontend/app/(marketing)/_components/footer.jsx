@@ -7,11 +7,11 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="w-full  mt-32    bg-[#ffffff]  text-black dark:bg-neutral-600">
-      <div className="mr-2 ml-2 sm:mr-20 sm:ml-20 lg:mr-32 lg:ml-32 items-center grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-10 md:gap-10 ">
+    <footer className="mx-auto mt-20 max-w-[1200px]    bg-[#ffffff]  text-black dark:bg-neutral-600">
+      <div className="mx-5 xlg:mx-0 items-center grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-10 md:gap-10 ">
         <div>
           <div>
-            <div className="flex justify-center sm:justify-start">
+            <div className="flex justify-center sm:justify-start mb-4">
               <Image src="/NR.png" width={50} height={70} alt="NR" />
               {/* <Image
             src="/nustrive-white.png"
@@ -47,14 +47,20 @@ export default function Footer() {
                   fill="#4463FB"
                 />
               </svg>
-              {/* <FiInstagram /> */}
             </Link>
             <Link href={generalInfo.facebook}>
-              {/* // className="mr-4 md:mr-9 bg-[#49ade5] border hover:border-white hover:text-white hover:bg-[#111256] text-[#111256] border-[#111256] flex justify-center items-center p-2 rounded-[7px]" */}
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M22 12C22 6.48 17.52 2 12 2C6.48 2 2 6.48 2 12C2 16.84 5.44 20.87 10 21.8V15H8V12H10V9.5C10 7.57 11.57 6 13.5 6H16V9H14C13.45 9 13 9.45 13 10V12H16V15H13V21.95C18.05 21.45 22 17.19 22 12Z" fill="#4463FB"/>
-                </svg>
-              {/* <FaFacebookF /> */}
+              <svg
+                width="36"
+                height="36"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M22 12C22 6.48 17.52 2 12 2C6.48 2 2 6.48 2 12C2 16.84 5.44 20.87 10 21.8V15H8V12H10V9.5C10 7.57 11.57 6 13.5 6H16V9H14C13.45 9 13 9.45 13 10V12H16V15H13V21.95C18.05 21.45 22 17.19 22 12Z"
+                  fill="#4463FB"
+                />
+              </svg>
             </Link>
             <Link href={generalInfo.youtube}>
               <svg
@@ -71,7 +77,6 @@ export default function Footer() {
               </svg>
             </Link>
             <Link href={`https://wa.me/${generalInfo.whatsapp}`}>
-              {/* className="mr-4 md:mr-9 bg-[#49ade5] border hover:border-white hover:text-white hover:bg-[#111256] text-[#111256] border-[#111256] flex justify-center items-center p-2 rounded-[7px]" */}
               <svg
                 width="35"
                 height="35"
@@ -87,41 +92,39 @@ export default function Footer() {
             </Link>
           </div>
         </div>
-        <div className="">
-          <div className="flex flex-col sm:flex-col md:flex-row items-center md:justify-between gap-8 ">
-            <div className="mt-3 flex flex-col justify-center items-center">
-              <p className=" text-xl sm:text-base md:text-xl font-bold ">
-                Email Address
-              </p>
-              <p className="text-sm md:text-base">nustrive@gmail.com</p>
-            </div>
-            <div className="flex flex-col justify-center items-center">
-              <p className="text-xl sm:text-base md:text-xl font-bold">
-                Phone Number
-              </p>
-              <p className="text-sm md:text-base">(+92)336 9374191</p>
-            </div>
+        <div>
+          <div className="flex flex-col md:flex-row gap-8 mt-3">
+            {[
+              { label: "Email Address", value: "nustrive@gmail.com" },
+              { label: "Phone Number", value: "(+92)336 9374191" },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="flex flex-col items-center"
+              >
+                <p className="text-base md:text-xl font-semibold">
+                  {item.label}
+                </p>
+                <p className="text-base">{item.value}</p>
+              </div>
+            ))}
           </div>
-          <div className="align-bottom pt-8 sm:pt-20">
-            <ul className="flex flex-col sm:flex-row justify-center items-center  gap-2 sm:gap-4 text-sm md:text-base">
-              <li>
-                <Link href="/calculator">Aggregate Calculator</Link>
-              </li>
-              <li>
-                <Link href="/courses">Courses</Link>
-              </li>
-              <li>
-                <Link href="/mock-test">Mock Tests</Link>
-              </li>
-              <li>
-                <Link href="/contact-us">Contact</Link>
-              </li>
+            <ul className=" pt-8 sm:pt-12 flex flex-col sm:flex-row justify-center md:justify-start items-center gap-2 sm:gap-4 text-sm md:text-base">
+              {[
+                { href: "/calculator", text: "Aggregate Calculator" },
+                { href: "/courses", text: "Courses" },
+                { href: "/mock-test", text: "Mock Tests" },
+                { href: "/contact-us", text: "Contact" },
+              ].map((link, index) => (
+                <li key={index}>
+                  <Link href={link.href}>{link.text}</Link>
+                </li>
+              ))}
             </ul>
-          </div>
         </div>
       </div>
       {/* <!--Copyright section--> */}
-      <div className="sm:mr-20 sm:ml-20 lg:mr-32 lg:ml-32 items-center">
+      <div className="items-center">
         <hr className="h-1 mt-8 bg-black " />
       </div>
       <div className="bg-[#ffffff] text-center text-black text-sm md:text-2xl mt-2">

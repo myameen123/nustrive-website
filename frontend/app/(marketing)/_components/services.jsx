@@ -36,7 +36,7 @@ const SERVICES = [
 ];
 function Services() {
   return (
-    <div className=" mt-8 mb-20 ">
+    <div className=" mx-auto max-w-[1200px]  my-10 ">
       <div className="">
         <MainHeading heading="Online Learning Designed To Ace Your Entry Tests" />
         <p className=" text-center text-[#000000]">
