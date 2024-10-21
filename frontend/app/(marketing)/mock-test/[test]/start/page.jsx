@@ -34,7 +34,7 @@ function EngineeringTestStart() {
   const fetchTestById = async (id) =>{
     try{
       const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/mock-test/get/${id}`)
-      console.log('response.data in start: ',response.data.duration)
+      // console.log('response.data in start: ',response.data.duration)
       setDuration(response.data.duration)
     }catch(error){
       console.log('error in start: ', error.message)
@@ -59,14 +59,14 @@ function EngineeringTestStart() {
         withCredentials: true,
       };
 
-      console.log("Fetching questions for testId:", testId);
+      // console.log("Fetching questions for testId:", testId);
 
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/mock-question/getTest/${testId}`,
         config
       );
 
-      console.log("Response data:", response.data);
+      // console.log("Response data:", response.data);
 
       setQuestions(response.data.questions || response.data);
       setError("");
@@ -85,7 +85,7 @@ function EngineeringTestStart() {
     }
   };
 
-  console.log("engineeringTest in page start", questions);
+  // console.log("engineeringTest in page start", questions);
 
   return (
     <div className=" min-h-screen"> 
