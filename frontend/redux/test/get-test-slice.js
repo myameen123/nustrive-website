@@ -35,13 +35,13 @@ export const getTest = createAsyncThunk(
       const config = {
         withCredentials: true,
       };
-      console.log('testId in get-test-slice:',testId)
+      // console.log('testId in get-test-slice:',testId)
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/mock-question/getTest/${testId}`,
         config
       );
 
-      console.log('response.data in get-test-slice: ', response.data)
+      // console.log('response.data in get-test-slice: ', response.data)
       return response.data;
     } catch (error) {
       console.log("error", error);
