@@ -16,7 +16,7 @@ import "katex/dist/katex.min.css";
 // import { set } from "react-hook-form";
 
 function Questions({ questions, title, category, sections }) {
-  console.log('questions,',questions)
+  // console.log('questions,',questions)
   const params = useParams();
   const testId = params.test;
 
