@@ -19,18 +19,19 @@ function EngineeringTestStart() {
     const currentTime = new Date().getTime();
     localStorage.setItem("startTime", currentTime);
   };
-  localStorage.setItem('duration', duration)
-
+  
+  
   useEffect(()=>{
     fetchTestById(testId)
   },[testId])
-
+  
   // Load questions from localStorage or fetch from backend when component mounts
   useEffect(() => {
     fetchTests(testId);
     
   }, [testId]); // Runs whenever `testId` changes
   
+  localStorage.setItem('duration', duration)
   const fetchTestById = async (id) =>{
     try{
       const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/mock-test/get/${id}`)

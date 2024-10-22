@@ -41,7 +41,7 @@ function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 w-full h-16  bg-[#ffffff] transition-all ease-in-out duration-300 z-50 `}
+      className={`fixed top-0 w-full h-16 bg-[#ffffff] transition-all ease-in-out duration-300 z-50 `}
     >
       <div className="mx-auto max-w-[1200px] flex md:gap-4 sm:gap-2 items-center p-4 justify-between text-black font-semibold">
         <Link href="/" className=" flex justify-center h-full md:ml-4">

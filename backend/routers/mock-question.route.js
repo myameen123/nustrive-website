@@ -13,7 +13,7 @@ const router = express.Router();
 
 router.post("/add", add);
 
-router.get("/get", getAll);
+router.get("/get/:testId", getAll);
 
 router.get("/get/:id", get);
 

@@ -38,7 +38,7 @@ const TestPage = () => {
     try {
       setLoading(true);
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/mock-question/getTest/${testId}`
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/mock-question/get/${testId}`
       );
       // console.log("response.data", response.data);
       setQuestions(response.data.questions);

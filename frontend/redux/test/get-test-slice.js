@@ -18,6 +18,8 @@ const saveCurrentTime = () => {
   localStorage.setItem("startTime", currentTime);
 };
 
+
+
 export const getTest = createAsyncThunk(
   "test/getTest",
   async (testId, { rejectWithValue }) => {
@@ -69,6 +71,7 @@ export const getTestSlice = createSlice({
           "Test",
           JSON.stringify(action.payload.questions || action.payload)
         );
+        // localStorage.setItem('duration', )
       }
     });
     builder.addCase(getTest.rejected, (state, action) => {
