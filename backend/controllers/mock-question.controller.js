@@ -63,10 +63,14 @@ export const add = async (req, res) => {
 // Controller function to get all questions
 export const getAll = async (req, res) => {
   try {
-    console.log('req in controller', req.params.testId)
-    const testId = req.params.testId;
-    const questions = await MockQuestion.find({test:testId});
-    res.json(questions);
+    // console.log('req in controller', req.params.testId)
+    // const {testId} = req.params.testId;
+    const questions = await MockQuestion.find({test:req.params.testId});
+    res.json({
+      message: "Successfully",
+      questions: questions,
+    });
+    console.log(questions)
     console.log('in get all question')
   } catch (err) {
     res.status(500).json({ error: "Internal server error" });
