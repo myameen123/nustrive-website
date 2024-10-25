@@ -125,7 +125,7 @@ export const getTest = async (req, res) => {
   try {
     // Shuffle options of each question in Business_Questions array
 
-    const mathQuestions = await MockQuestion.find({subject:'maths', test:req.params.testId}).limit(80);
+    const mathQuestions = await MockQuestion.find({subject:'maths', test:req.params.testId});
     const physicsQuestions = await MockQuestion.find({
       subject: "physics", test:req.params.testId
     }).limit(60);
