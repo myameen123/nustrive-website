@@ -28,7 +28,7 @@ function Questions({ questions, title, category, sections }) {
   const [selectedOption, setSelectedOption] = useState(null);
   const [timeFinshed, setTimeFinished] = useState(false);
   const [isLastSection, setIsLastSection] = useState(false);
-  const [questionsUpdated, setQuestionsUpdated] = useState(false); // New state variable
+  // const [questionsUpdated, setQuestionsUpdated] = useState(false); // New state variable
   const [isSavedisabled, setIsSaveDisabled] = useState(
     filteredQuestions[currentQuestionIndex]?.isSaved || selectedOption == null
   );
@@ -55,7 +55,7 @@ function Questions({ questions, title, category, sections }) {
   // }, []); // Empty dependency array means this runs once when the component mounts
 
 
-  // const fetchEngineeringTestResponse = async () => {
+  // const fetchEngi,lneeringTestResponse = async () => {
   //   try {
   //     const savedQuestions = JSON.parse(localStorage.getItem("engineeringTest"));
   //     const config = {
@@ -155,6 +155,7 @@ function Questions({ questions, title, category, sections }) {
       nextSection();
       setCurrentQuestionIndex(0);
     }
+  
   };
 
   // Function to handle moving to the previous question
@@ -235,10 +236,6 @@ function Questions({ questions, title, category, sections }) {
       return question;
     });
 
-    // localStorage.setItem(
-    //   category === "Business" ? "businessTest" : "engineeringTest",
-    //   JSON.stringify(updatedQuestions)
-    // );
 
       localStorage.setItem("Test", JSON.stringify(updatedQuestions));
       dispatch(getTest(testId));
@@ -317,11 +314,11 @@ function Questions({ questions, title, category, sections }) {
             <span className=" text-red-700 font-bold">{title}</span>
             <span>NUST05</span>
           </div>
-          <div className=" w-full">
+          <div className="mx-auto w-full">
             <div className=" flex w-full">
-              <div className=" border-r border-[#111256] bg-zinc-400 md:w-[85%]">
+              <div className=" border-r border-[#111256] bg-zinc-400 w-full md:w-[85%]">
                 {" "}
-                <div className=" flex  justify-between border-y bg-[#BCDEF5] border-[#111256] px-2">
+                <div className=" flex  justify-between border-y bg-[#BCDEF5] border-[#111256] px-2 ">
                   <div className=" flex font-semibold gap-1">
                     <span>Question No:</span>
                     <span className=" text-blue-700">
@@ -337,7 +334,7 @@ function Questions({ questions, title, category, sections }) {
                   <span className=" font-semibold">Question</span>
                   {filteredQuestions[currentQuestionIndex].image.length > 0 ? (
                     <div
-                      className=" flex flex-col justify-center items-center p-1 border border-black"
+                      className=" flex flex-col w-full justify-center items-center p-1 border border-black"
                       ref={questionTextRef}
                     >
                       {filteredQuestions[currentQuestionIndex].text}

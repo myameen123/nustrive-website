@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import HeroCard from "./hero-card";
 import { useInView } from "react-intersection-observer";
 import { Button } from "../../../components/ui/button";
@@ -43,9 +44,12 @@ function HeroSection() {
           <p className=" text-black text-md md:text-lg lg:text-xl text-center">  
             <span>and Full-Length Tests Free Trial Available!</span>
           </p>
-          <Button className=" bg-[#4463FB] text-white rounded-[7px] w-fit hover:bg-[#4463FB]/90">
-            Get Started
-          </Button>
+          
+          <div className=" flex justify-center mb-4 text-center px-2 py-2 h-10 bg-[#4463FB] text-white rounded-[7px] w-fit hover:bg-[#4463FB]/90 ">
+        <Link href={'/mock-test'}>
+        Get Start
+      </Link>
+    </div>
         </div>
       </div>
     </div>

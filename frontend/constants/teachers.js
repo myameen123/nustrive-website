@@ -9,12 +9,6 @@ import Umer from '../public/teachers/Umer.jpg'
 
 const Tutors = [
     {
-        id: 1,
-        name: "Fatima Tariq",
-        title:"Lecturer",
-        subjects: ['Intelligence Question'],
-        photo: Fatima
-    },{
         id: 2,
         name: "Safeer Butt",
         title:"Lecturer",

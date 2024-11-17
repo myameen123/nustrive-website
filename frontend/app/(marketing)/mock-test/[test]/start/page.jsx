@@ -95,9 +95,9 @@ function EngineeringTestStart() {
         // <QuestionDisplay questions={questions.questions} />
         <Questions
           questions={questions}
-          sections={["maths", "physics", "chemistry", "english", "iq"]}
-          title="Engineering/Computer Science/BS Mathematics (With Chemistry)"
-          category="Chemistry"
+          sections={["maths", "physics", "english"]}
+          title="Engineering/Computer Science/BS Mathematics"
+          // category={'fff'}
         />
       )}
     </div>

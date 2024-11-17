@@ -36,20 +36,17 @@ function TestOverview() {
               Engineering / Computer Science:
             </Typography>
             <ul className=" ml-8 list-disc">
-              <li>Mathemetics: 40% (80 mcqs)</li>
+              <li>Mathemetics: 50% (100 mcqs)</li>
               <li>Physics: 30% (60 mcqs)</li>
-              <li>Chemistry: 15% (30 mcqs)</li>
-              <li>English: 10% (20 mcqs)</li>
-              <li>Intelligence: 5% (10 mcqs)</li>
+              <li>English: 20% (40 mcqs)</li>
             </ul>
             <br />
             <Typography variant="h6">
               Business Studies / Social Sciences / LLB:
             </Typography>
             <ul className=" ml-8 list-disc">
-              <li>Mathemetics: 40% (80 mcqs)</li>
-              <li>English: 40% (80 mcqs)</li>
-              <li>Intelligence: 20% (40 mcqs)</li>
+              <li>Mathemetics: 50% (100 mcqs)</li>
+              <li>English: 50% (100 mcqs)</li>
             </ul>
           </div>
         </div>

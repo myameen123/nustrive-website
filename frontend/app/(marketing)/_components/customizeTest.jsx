@@ -13,28 +13,25 @@ const Disciplines = [
     id: 1,
     title: "Engineering NET",
     desc: "Build engineering expertise with our thorough test preparation. Covering fundamental concepts and language skills, prepare yourself for success in entrance exams.",
-    courses: ["Maths", "Physics", "Chemistry", "English", "Intelligence"],
+    courses: ["Maths", "Physics", "English"],
     url:'/mock-test'
   },
-
   {
     id: 2,
+    title: "Business & Social Sciences",
+    desc: "Excel in social sciences exams by enhancing your mathematical abilities, refining communication skills, fostering analytical thinking, and participating thoughtfully for outstanding performance.",
+    courses: ["Basic Maths", "English"],
+    url:'/mock-test'
+  },
+  {
+    id: 3,
     title: "Computer Science NET",
     desc: "Navigate computer science exams and attempt confidently. We blend math prowess, digital insights, language finesse, and logical skills for your success.",
     courses: [
       "Maths",
       "Physics",
-      "Computer Science",
       "English",
-      "Intelligence",
     ],
-    url:'/mock-test'
-  },
-  {
-    id: 3,
-    title: "Business & Social Sciences",
-    desc: "Excel in social sciences exams by enhancing your mathematical abilities, refining communication skills, fostering analytical thinking, and participating thoughtfully for outstanding performance.",
-    courses: ["Basic Math", "English", "Intelligence", "-", '-'],
     url:'/mock-test'
   },
 ];
