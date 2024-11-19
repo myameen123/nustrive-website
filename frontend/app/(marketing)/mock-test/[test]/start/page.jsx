@@ -12,35 +12,46 @@ function EngineeringTestStart() {
   const [questions, setQuestions] = useState([]);
   const [error, setError] = useState("");
 
-  const [duration, setDuration] = useState()
-
+  const [duration, setDuration] = useState();
 
   const saveCurrentTime = () => {
     const currentTime = new Date().getTime();
     localStorage.setItem("startTime", currentTime);
   };
-  
-  
-  useEffect(()=>{
-    fetchTestById(testId)
-  },[testId])
-  
+
+  useEffect(() => {
+    fetchTestById(testId);
+  }, [testId]);
+
   // Load questions from localStorage or fetch from backend when component mounts
   useEffect(() => {
     fetchTests(testId);
-    
   }, [testId]); // Runs whenever `testId` changes
-  
-  localStorage.setItem('duration', duration)
-  const fetchTestById = async (id) =>{
-    try{
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/mock-test/get/${id}`)
-      // console.log('response.data in start: ',response.data.duration)
-      setDuration(response.data.duration)
-    }catch(error){
-      console.log('error in start: ', error.message)
+
+  useEffect(() => {
+    if (duration) {
+      localStorage.setItem("duration", duration);
     }
-  }
+  }, [duration]);
+
+  const fetchTestById = async (id) => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/mock-test/get/${id}`
+      );
+      // console.log('response.data in start: ',response.data.duration)
+      setDuration(response.data.duration);
+    } catch (error) {
+      console.log("error in start: ", error.message);
+      {
+        error && (
+          <div className="p-2 bg-red-100 text-red-800 rounded">
+            Error: {error}
+          </div>
+        );
+      }
+    }
+  };
 
   // Fetch test questions from localStorage or backend
   const fetchTests = async (testId) => {
@@ -78,6 +89,13 @@ function EngineeringTestStart() {
         JSON.stringify(response.data.questions || response.data)
       );
     } catch (error) {
+      {
+        error && (
+          <div className="p-2 bg-red-100 text-red-800 rounded">
+            Error: {error}
+          </div>
+        );
+      }
       console.log("Error fetching questions:", error);
       setError(error.response?.data?.message || error.message);
       setQuestions([]);
@@ -89,7 +107,7 @@ function EngineeringTestStart() {
   // console.log("engineeringTest in page start", questions);
 
   return (
-    <div className=" min-h-screen"> 
+    <div className=" min-h-screen">
       {/* <Test /> */}
       {questions && (
         // <QuestionDisplay questions={questions.questions} />
@@ -99,6 +117,11 @@ function EngineeringTestStart() {
           title="Engineering/Computer Science/BS Mathematics"
           // category={'fff'}
         />
+      )}
+      {error && (
+        <div className="p-2 bg-red-100 text-red-800 rounded">
+          Error: {error}
+        </div>
       )}
     </div>
   );
