@@ -4,7 +4,7 @@ const mockTestSchema = mongoose.Schema({
   title: { type: String, required: true },
   subjects: [{
       type:String, 
-      enum:['maths','physics','english','iq','chemistry'],
+      enum:['maths','physics','english','biology', 'iq','chemistry'],
     }],
     category:{type:String, enum:['engineering', 'business','medical'], required:true},
     duration:{type:Number, required:true},

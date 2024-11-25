@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 const TestForm = ({ edit, closeModal, handleSubmit, test }) => {
-  const subjectsList = ['maths', 'physics', 'english', 'iq', 'chemistry'];
+  const subjectsList = ['maths', 'physics', 'english', 'biology', 'iq', 'chemistry'];
   const [state, setState] = useState({
     title: '',
     subjects: [],

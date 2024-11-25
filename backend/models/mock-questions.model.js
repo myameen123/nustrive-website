@@ -13,7 +13,7 @@ const mockQuestionSchema = mongoose.Schema({
   subject: {
     type: String,
     required: [true, "Subject is required"],
-    enum:['maths', 'physics','iq','chemistry','english']
+    enum:['maths', 'physics','iq','biology','chemistry','english']
   },
   correctAnswer: String,
   isSaved: {

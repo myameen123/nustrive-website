@@ -195,6 +195,7 @@ function QuestionForm({
                 <option value="physics">Physics</option>
                 <option value="chemistry">Chemistry</option>
                 <option value="english">English</option>
+                <option value="biology">Biology</option>
                 <option value="iq">IQ</option>
               </select>
             </div>
