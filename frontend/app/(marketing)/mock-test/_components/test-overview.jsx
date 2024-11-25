@@ -33,7 +33,7 @@ function TestOverview() {
             </Typography>
             <br />
             <Typography variant="h6">
-              Engineering / Computer Science:
+              NET-Engineering / Computer Science:
             </Typography>
             <ul className=" ml-8 list-disc">
               <li>Mathemetics: 50% (100 mcqs)</li>
@@ -42,10 +42,36 @@ function TestOverview() {
             </ul>
             <br />
             <Typography variant="h6">
-              Business Studies / Social Sciences / LLB:
+              NET-Business Studies / Social Sciences / LLB:
             </Typography>
             <ul className=" ml-8 list-disc">
-              <li>Mathemetics: 50% (100 mcqs)</li>
+              <li>Quantitative Mathemetics: 50% (100 mcqs)</li>
+              <li>English: 50% (100 mcqs)</li>
+            </ul>
+            <br />
+            <Typography variant="h6">
+            NET-Applied Sciences:
+            </Typography>
+            <ul className=" ml-8 list-disc">
+              <li>Biology: 50% (100 mcqs)</li>
+              <li>Chemistry: 30% (60 mcqs)</li>
+              <li>English: 20% (40 mcqs)</li>
+            </ul>
+            <br />
+            <Typography variant="h6">
+            NET-Architecture :
+            </Typography>
+            <ul className=" ml-8 list-disc">
+              <li>Design Aptitude: 50% (100 mcqs)</li>
+              <li>Mathematics: 30% (60 mcqs)</li>
+              <li>English: 20% (40 mcqs)</li>
+            </ul>
+            <br />
+            <Typography variant="h6">
+            NET-Natural Sciences:
+            </Typography>
+            <ul className=" ml-8 list-disc">
+              <li>Mathematics: 50% (100 mcqs)</li>
               <li>English: 50% (100 mcqs)</li>
             </ul>
           </div>

@@ -4,15 +4,10 @@ import React from "react";
 
 function TestModal({ test }) {
   // const [duration, setDuration] = useState()
-  // localStorage.setItem('duration', duration)
+  // console.log('test', test)
   const subjects = test.subjects.join(", ");
   const testId = test._id
-  // const time = test.duration
-  // console.log('testId',testId)
-  // console.log('time ', time)
-  // useEffect(()=>{
-  //   setDuration(test.duration)
-  // },[testId])
+
   return (
     <div className=" border shadow-lg">
       <div className=" bg-[#111225] text-white p-2 ">
@@ -23,13 +18,13 @@ function TestModal({ test }) {
       </div>
       <div className=" flex flex-col p-4 gap-1">
         <Typography variant="h7" className=" font-bold">
-          Subjects included:
+          Subjects included:  {subjects}
         </Typography>
-        <Typography> {subjects}</Typography>
+        {/* <Typography> </Typography> */}
 
         <div className=" flex flex-wrap gap-3 text-sm">
           <span>
-            Total Marks: <span className=" font-bold">{200}</span>
+            Test Duration: <span className=" font-bold">{test.duration}</span>
           </span>
           <span>
             Marks/Question: <span className=" font-bold">1</span>

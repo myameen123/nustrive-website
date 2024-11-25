@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import React, { useState } from "react";
 
-function InstructionModal({  }) {
+function InstructionModal({}) {
   const params = useParams()
   const [isChecked, setIsChecked] = useState(false);
 
@@ -32,16 +32,16 @@ function InstructionModal({  }) {
               information is available on the website concerned.
             </p>
           </li>
-          <li>
+          {/* <li>
             <p>
               You have <b>180 minutes</b> to complete the test.
             </p>
-          </li>
-          <li>
+          </li> */}
+          {/* <li>
             <p>
               The test contains a total of <b>200 questions</b>.
             </p>
-          </li>
+          </li> */}
           <li>
             <p>
               There is only one correct answer to each question. Click on the

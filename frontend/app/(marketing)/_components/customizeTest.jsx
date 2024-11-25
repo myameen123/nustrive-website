@@ -11,26 +11,47 @@ import { FreeMode, Pagination } from "swiper/modules";
 const Disciplines = [
   {
     id: 1,
-    title: "Engineering NET",
-    desc: "Build engineering expertise with our thorough test preparation. Covering fundamental concepts and language skills, prepare yourself for success in entrance exams.",
-    courses: ["Maths", "Physics", "English"],
+    title: "NET-Engineering",
+    desc: "The test will be conducted for candidates seeking admission in all Engineering and Computing Programmes.Candidate admission in Engineering can also opt for admission in BS Mathematics, BS Physics, BS Chemistry and BS Food Science & Technology programmes",
+    courses: ["Maths 50%", "Physics  30%", "English 20%"],
     url:'/mock-test'
   },
   {
     id: 2,
-    title: "Business & Social Sciences",
-    desc: "Excel in social sciences exams by enhancing your mathematical abilities, refining communication skills, fostering analytical thinking, and participating thoughtfully for outstanding performance.",
-    courses: ["Basic Maths", "English"],
+    title: "NET-Business & Social Sciences",
+    desc: "The test is for candidates seeking admission in BBA / BS Public Administration / BS Mass Communication / BS Economics / BS Psychology / BS Accounting & Finance / LLB / BS Tourism and Hospitality Management / BS English (Language and Literature)",
+    courses: ["Basic Maths 50%", "English 50%"],
     url:'/mock-test'
   },
   {
     id: 3,
-    title: "Computer Science NET",
-    desc: "Navigate computer science exams and attempt confidently. We blend math prowess, digital insights, language finesse, and logical skills for your success.",
+    title: "NET-Applied Sciences",
+    desc: "This test is for candidates having Pre-Medical background (with or without Additional Math) applying in BS Biotechnology / BS Environmental Science / BS Agriculture, BS Food Science & Technology, BS Bioinformatics or BS Chemistry.",
     courses: [
-      "Maths",
-      "Physics",
-      "English",
+      "Biology 50%",
+      "Chemistry 30%",
+      "English 20%",
+    ],
+    url:'/mock-test'
+  },
+  {
+    id: 4,
+    title: "NET-Architecture",
+    desc: "The test is for candidates seeking admission in B Architecture / B Industrial Design only.",
+    courses: [
+      "Design Aptitude 50%",
+      "Maths 30%",
+      "English 20%",
+    ],
+    url:'/mock-test'
+  },
+  {
+    id: 4,
+    title: "NET-Natural Sciences",
+    desc: "This test is for candidates seeking admission in BS Mathematics, BS Physics, or BS Chemistry only",
+    courses: [
+      "Maths 50%",
+      "English 50%",
     ],
     url:'/mock-test'
   },
