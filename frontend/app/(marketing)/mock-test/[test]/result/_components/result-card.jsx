@@ -52,7 +52,7 @@ function ResultCard({ result }) {
     ),
 
     createData("English", result.totalEnglishQuestions, result.englishScore),
-    createData("Intelligence", result.totaliqQuestions, result.iqScore),
+    // createData("Intelligence", result.totaliqQuestions, result.iqScore),
   ];
 
   const onClickHandler = (path) => {

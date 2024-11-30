@@ -1,14 +1,15 @@
 "use client";
-import React,{useEffect} from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react"; //,{useEffect}
+import {  useSelector } from "react-redux"; //useDispatch,
 import ResultCard from "./_components/result-card";
 import { useParams } from "next/navigation";
-import { testResponse } from "../../../../../redux/test/test-response-slice";
+// import { testResponse } from "../../../../../redux/test/test-response-slice";
 
 function TestFinish() {
-  const params = useParams()
-  const testId = params.test;
   const result = useSelector((state) => state.testResponse);
+
+  // const params = useParams()
+  // const testId = params.test;
   // const dispatch = useDispatch();
 
   // // Dispatch testResponse when component mounts

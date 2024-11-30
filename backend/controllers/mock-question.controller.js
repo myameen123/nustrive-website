@@ -128,16 +128,14 @@ export const getTest = async (req, res) => {
     const mathQuestions = await MockQuestion.find({subject:'maths', test:req.params.testId});
     const physicsQuestions = await MockQuestion.find({
       subject: "physics", test:req.params.testId
-    }).limit(60);
+    });
     const chemistryQuestions = await MockQuestion.find({
       subject: "chemistry",test:req.params.testId
-    }).limit(30);
+    });
     const englishQuestions = await MockQuestion.find({
       subject: "english",test:req.params.testId
-    }).limit(20);
-    const iqQuestions = await MockQuestion.find({
-      subject: "iq",test:req.params.testId
-    }).limit(10);
+    });
+
     
     
     // console.log('mathsquestions:', mathQuestions)
@@ -152,7 +150,6 @@ export const getTest = async (req, res) => {
       ...physicsQuestions,
       ...chemistryQuestions,
       ...englishQuestions,
-      ...iqQuestions,
     ];
 
     const shuffledQuestions = questionsArray.map((question) => {
@@ -189,7 +186,7 @@ export const testResponse = async (req, res) => {
 
     // console.log('Engineering_Questions:', Engineering_Questions)
     // console.log('questions in mockTestResponse:',questions)
-    const subjects = ["maths", "physics", "chemistry", "english", "iq"];
+    const subjects = ["maths", "physics", "chemistry", "english"];
     const subjectQuestions = subjects.map((subject) =>
       Engineering_Questions.filter((question) => question.subject === subject)
     );
@@ -232,7 +229,6 @@ export const testResponse = async (req, res) => {
         totalPhysicsQuestions: subjectQuestions[1].length,
         totalChemistryQuestions: subjectQuestions[2].length,
         totalEnglishQuestions: subjectQuestions[3].length,
-        totaliqQuestions: subjectQuestions[4].length,
         resultPersentage: (totalScore / questions.length) * 100,
       },
     });
