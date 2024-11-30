@@ -11,6 +11,7 @@ function EngineeringTestStart() {
   const [loading, setLoading] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [error, setError] = useState("");
+  const [sections, setSections] = useState([])
 
   const [duration, setDuration] = useState();
 
@@ -41,6 +42,7 @@ function EngineeringTestStart() {
       );
       // console.log('response.data in start: ',response.data.duration)
       setDuration(response.data.duration);
+      setSections(response.data.subjects)
     } catch (error) {
       console.log("error in start: ", error.message);
       {
@@ -105,6 +107,7 @@ function EngineeringTestStart() {
   };
 
   // console.log("engineeringTest in page start", questions);
+  // console.log('sections', sections)
 
   return (
     <div className=" min-h-screen">
@@ -113,7 +116,7 @@ function EngineeringTestStart() {
         // <QuestionDisplay questions={questions.questions} />
         <Questions
           questions={questions}
-          sections={["maths", "physics", "english"]}
+          sections={sections}//"physics", "english"
           title="Engineering/Computer Science/BS Mathematics"
           // category={'fff'}
         />

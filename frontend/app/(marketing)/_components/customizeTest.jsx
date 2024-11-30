@@ -46,7 +46,7 @@ const Disciplines = [
     url:'/mock-test'
   },
   {
-    id: 4,
+    id: 5,
     title: "NET-Natural Sciences",
     desc: "This test is for candidates seeking admission in BS Mathematics, BS Physics, or BS Chemistry only",
     courses: [
